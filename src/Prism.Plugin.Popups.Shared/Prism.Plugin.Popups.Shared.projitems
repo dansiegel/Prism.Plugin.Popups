@@ -9,6 +9,7 @@
     <Import_RootNamespace>Prism.Plugin.Popups.Shared</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)AssemblyInfo-Shared.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)PopupExtensions.cs" />
   </ItemGroup>
 </Project>
