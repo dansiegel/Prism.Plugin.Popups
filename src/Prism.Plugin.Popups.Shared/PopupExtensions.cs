@@ -4,6 +4,7 @@ using Rg.Plugins.Popup.Pages;
 using Rg.Plugins.Popup.Services;
 using System.Threading.Tasks;
 using System.Linq;
+using Prism.Mvvm;
 
 namespace Prism.Navigation
 {
@@ -45,8 +46,18 @@ namespace Prism.Navigation
         public static async Task PushPopupPageAsync( this INavigationService navigationService, string name, NavigationParameters parameters = null, bool animated = true )
         {
             var page = CreatePopupPageByName( name );
-            HandleINavigationAware( page, parameters, navigatedTo: true );
+            ViewModelLocator.SetAutowireViewModel( page, ViewModelLocator.GetAutowireViewModel( page ) ?? true );
             await PopupNavigation.PushAsync( page, animated );
+            HandleINavigationAware( page, parameters, navigatedTo: true );
+        }
+
+        public static Task PushPopupPageAsync( this INavigationService navigationService, string name, string key, object param, bool animated = true )
+        {
+            var parameters = new NavigationParameters()
+            {
+                { key, param }
+            };
+            return navigationService.PushPopupPageAsync( name, parameters, animated );
         }
 
         private static void HandleINavigationAware( Page page, NavigationParameters parameters, bool navigatedTo )
