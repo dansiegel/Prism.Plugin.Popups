@@ -1,10 +1,11 @@
-﻿using System.Collections.Generic;
-using Xamarin.Forms;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using Prism.Mvvm;
 using Rg.Plugins.Popup.Pages;
 using Rg.Plugins.Popup.Services;
-using System.Threading.Tasks;
-using System.Linq;
-using Prism.Mvvm;
+using Xamarin.Forms;
 
 namespace Prism.Navigation
 {
@@ -20,13 +21,23 @@ namespace Prism.Navigation
             get { return PopupNavigation.PopupStack; }
         }
 
-        public static async Task ClearPopupStack( this INavigationService navigationService, NavigationParameters parameters = null, bool animated = true )
+        [Obsolete( "Use ClearPopupStackAsync" )]
+        public static Task ClearPopupStack( this INavigationService navigationService, NavigationParameters parameters = null, bool animated = true ) =>
+            navigationService.ClearPopupStackAsync( parameters, animated );
+
+        public static Task ClearPopupStackAsync( this INavigationService navigationService, string key, object param, bool animated = true ) =>
+            navigationService.ClearPopupStack( GetNavigationParameters( key, param ), animated );
+
+        public static async Task ClearPopupStackAsync( this INavigationService navigationService, NavigationParameters parameters = null, bool animated = true )
         {
             while( s_popupStack.Count > 0 )
             {
                 await PopupGoBackAsync( navigationService, parameters, animated );
             }
         }
+
+        public static Task PopupGoBackAsync( this INavigationService navigationService, string key, object param, bool animated = true ) =>
+            navigationService.PopupGoBackAsync( GetNavigationParameters( key, param ), animated );
 
         public static async Task PopupGoBackAsync( this INavigationService navigationService, NavigationParameters parameters = null, bool animate = true )
         {
@@ -51,14 +62,8 @@ namespace Prism.Navigation
             HandleINavigationAware( page, parameters, navigatedTo: true );
         }
 
-        public static Task PushPopupPageAsync( this INavigationService navigationService, string name, string key, object param, bool animated = true )
-        {
-            var parameters = new NavigationParameters()
-            {
-                { key, param }
-            };
-            return navigationService.PushPopupPageAsync( name, parameters, animated );
-        }
+        public static Task PushPopupPageAsync( this INavigationService navigationService, string name, string key, object param, bool animated = true ) =>
+            navigationService.PushPopupPageAsync( name, GetNavigationParameters( key, param ), animated );
 
         private static void HandleINavigationAware( Page page, NavigationParameters parameters, bool navigatedTo )
         {
@@ -96,5 +101,12 @@ namespace Prism.Navigation
 
             return page;
         }
+
+        private static NavigationParameters GetNavigationParameters( string key, object param ) =>
+            new NavigationParameters()
+            {
+                { key, param }
+            };
+
     }
 }
