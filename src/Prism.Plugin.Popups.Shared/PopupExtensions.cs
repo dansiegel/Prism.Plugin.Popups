@@ -26,7 +26,7 @@ namespace Prism.Navigation
             navigationService.ClearPopupStackAsync( parameters, animated );
 
         public static Task ClearPopupStackAsync( this INavigationService navigationService, string key, object param, bool animated = true ) =>
-            navigationService.ClearPopupStack( GetNavigationParameters( key, param ), animated );
+            navigationService.ClearPopupStackAsync( GetNavigationParameters( key, param ), animated );
 
         public static async Task ClearPopupStackAsync( this INavigationService navigationService, NavigationParameters parameters = null, bool animated = true )
         {
