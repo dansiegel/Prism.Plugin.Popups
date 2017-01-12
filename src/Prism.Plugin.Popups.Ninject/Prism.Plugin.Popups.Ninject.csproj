@@ -73,6 +73,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+    <None Include="Prism.Plugin.Popups.Ninject.nuspec" />
   </ItemGroup>
   <Import Project="..\Prism.Plugin.Popups.Shared\Prism.Plugin.Popups.Shared.projitems" Label="Shared" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
