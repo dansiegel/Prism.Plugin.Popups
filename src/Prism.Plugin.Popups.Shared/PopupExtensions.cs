@@ -85,7 +85,14 @@ namespace Prism.Navigation
             {
                 pageAware?.OnNavigatedFrom( parameters );
                 contextAware?.OnNavigatedFrom( parameters );
+                HandleIDestructiblePage( page );
             }
+        }
+
+        private static void HandleIDestructiblePage( Page page )
+        {
+            ( page as IDestructible )?.Destroy();
+            ( page?.BindingContext as IDestructible )?.Destroy();
         }
 
         private static Page GetCurrentPage()
