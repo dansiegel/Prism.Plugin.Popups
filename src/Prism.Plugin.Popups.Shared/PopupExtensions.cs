@@ -44,31 +44,40 @@ namespace Prism.Navigation
             if( s_popupStack.Count == 0 ) return;
 
             var page = s_popupStack.Last();
-            HandleINavigationAware( page, parameters, navigatedTo: false );
+            HandleINavigatedAware( page, parameters, navigatedTo: false );
 
             await PopupNavigation.PopAsync( animate );
 
             Page currentPage = s_popupStack.LastOrDefault();
             if( currentPage == null ) currentPage = GetCurrentPage();
 
-            HandleINavigationAware( currentPage, parameters, navigatedTo: true );
+            HandleINavigatedAware( currentPage, parameters, navigatedTo: true );
         }
 
         public static async Task PushPopupPageAsync( this INavigationService navigationService, string name, NavigationParameters parameters = null, bool animated = true )
         {
             var page = CreatePopupPageByName( name );
             ViewModelLocator.SetAutowireViewModel( page, ViewModelLocator.GetAutowireViewModel( page ) ?? true );
+            HandleINavigatingAware( page, parameters );
             await PopupNavigation.PushAsync( page, animated );
-            HandleINavigationAware( page, parameters, navigatedTo: true );
+            HandleINavigatedAware( page, parameters, navigatedTo: true );
         }
 
         public static Task PushPopupPageAsync( this INavigationService navigationService, string name, string key, object param, bool animated = true ) =>
             navigationService.PushPopupPageAsync( name, GetNavigationParameters( key, param ), animated );
 
-        private static void HandleINavigationAware( Page page, NavigationParameters parameters, bool navigatedTo )
+        private static void HandleINavigatingAware( PopupPage page, NavigationParameters parameters )
+        {
+            //TODO: This will need to be updated to INavigatingAware once Pre2 is released
+            ( page as INavigationAware )?.OnNavigatingTo( parameters );
+            ( page?.BindingContext as INavigationAware )?.OnNavigatingTo( parameters );
+        }
+
+        private static void HandleINavigatedAware( Page page, NavigationParameters parameters, bool navigatedTo )
         {
             if( page == null ) return;
 
+            //TODO: Change this to INavigatedAware once pre2 is released
             var pageAware = page as INavigationAware;
             var contextAware = page.BindingContext as INavigationAware;
 
