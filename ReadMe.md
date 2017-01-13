@@ -12,6 +12,45 @@ The Popups plugin provides an extremely lightweight framework for implementing P
 | [Prism.Plugin.Popups.Unity][14] | [![24]][14] |
 
 
+## Usage
+
+There are three primary extensions added for working with Navigation.
+
+   * ClearPopupStackAsync
+   * PopupGoBackAsync
+   * PushPopupPageAsync
+
+ All three of these contain overloads so that you can pass in a NavigationParameters object, or if you have a single key value pair you can pass it in as shown below for the NavigateCommand.
+
+```cs
+public class MyPageViewModel : BindableBase
+{
+	INavigationService _navigationService { get; }
+
+	public MyPageViewModel( INavigationService navigationService )
+	{
+		_navigationService = navigationService;
+		NavigateCommand = new DelegateCommand( OnNavigateCommandExecuted );
+		GoBackCommand = new DelegateCommand( OnGoBackCommandExecuted );
+	}
+
+	public DelegateCommand NavigateCommand { get; }
+
+	public DelegateCommand GoBackCommand { get; }
+
+	private async void OnNavigateCommandExecuted()
+	{
+		await _navigationService.PushPopupPageAsync( "SomePopupPage", "message", "hello from MyPage" );
+	}
+
+	private async void OnGoBackCommandExecuted()
+	{
+		await _navigationService.PopupGoBackAsync();
+	}
+}
+```
+
+
 [1]: https://github.com/rotorgames/Rg.Plugins.Popup
 [2]: https://github.com/PrismLibrary/Prism
 
