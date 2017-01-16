@@ -58,9 +58,10 @@ namespace Prism.Navigation
         {
             var page = CreatePopupPageByName( name );
             ViewModelLocator.SetAutowireViewModel( page, ViewModelLocator.GetAutowireViewModel( page ) ?? true );
+            var currentPage = GetCurrentPage();
             HandleINavigatingAware( page, parameters );
             await PopupNavigation.PushAsync( page, animated );
-            HandleINavigatedAware( page, parameters, navigatedTo: true );
+            HandleINavigatedAware( currentPage, page, parameters );
         }
 
         public static Task PushPopupPageAsync( this INavigationService navigationService, string name, string key, object param, bool animated = true ) =>
@@ -71,6 +72,12 @@ namespace Prism.Navigation
             //TODO: This will need to be updated to INavigatingAware once Pre2 is released
             ( page as INavigationAware )?.OnNavigatingTo( parameters );
             ( page?.BindingContext as INavigationAware )?.OnNavigatingTo( parameters );
+        }
+
+        private static void HandleINavigatedAware( Page pageFrom, Page pageTo, NavigationParameters parameters )
+        {
+            HandleINavigatedAware( pageFrom, parameters, navigatedTo: false );
+            HandleINavigatedAware( pageTo, parameters, navigatedTo: true );
         }
 
         private static void HandleINavigatedAware( Page page, NavigationParameters parameters, bool navigatedTo )
