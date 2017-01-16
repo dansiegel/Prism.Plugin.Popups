@@ -21,5 +21,19 @@ msbuild $solutionFile /p:"Configuration=$Configuration"
 foreach( $projectName in $projects )
 {
     $projFile = "./src/$projectName/$projectName.csproj"
-    nuget pack $projFile -properties "Configuration=$Configuration" -outputdirectory $outputDir
+    nuget pack $projFile -properties "Configuration=$Configuration" -outputdirectory $outputDir -verbosity detailed
+}
+
+if( !( Test-Path -Path "$outputDir/*" ) )
+{
+    throw "No NuGet Files found following build and pack"
+}
+
+if( ![string]::IsNullOrWhiteSpace( $(NuGetApiKey) ) )
+{
+    nuget.exe push "$outputDir/*.nupkg" -Source https://www.nuget.org/api/v2/package -ApiKey $(NuGetApiKey)
+}
+else 
+{
+    Write-Information "No ApiKey provided for NuGet Push"    
 }
