@@ -122,7 +122,31 @@ namespace Prism.Navigation
             if( page == null )
                 page = Application.Current.MainPage;
 
-            return page;
+            return FilterPage( page );
+        }
+
+        private static Page FilterPage( Page page )
+        {
+            if( page == null ) return page;
+            var startPage = page;
+
+            while( page is MasterDetailPage || page is NavigationPage || page.GetType() == typeof( MultiPage<> ) )
+            {
+                if( page.GetType() == typeof( MultiPage<> ) )
+                {
+                    page = ( page as MultiPage<Page> ).CurrentPage;
+                }
+                else if( page.GetType() == typeof( MasterDetailPage ) )
+                {
+                    page = ( page as MasterDetailPage ).Detail;
+                }
+                else if( page.GetType() == typeof( NavigationPage ) )
+                {
+                    page = ( page as NavigationPage ).CurrentPage;
+                }
+            }
+
+            return page ?? startPage;
         }
 
         private static NavigationParameters GetNavigationParameters( string key, object param ) =>
