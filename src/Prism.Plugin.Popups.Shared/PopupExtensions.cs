@@ -155,5 +155,11 @@ namespace Prism.Navigation
                 { key, param }
             };
 
+        private static void VerifyPageIsRegistered( string name )
+        {
+            if( !IsPageRegistered( name ) )
+                throw new NullReferenceException( $"The requested page '{name}' has not been registered." );
+        }
+
     }
 }

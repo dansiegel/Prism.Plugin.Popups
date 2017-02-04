@@ -12,8 +12,12 @@ namespace Prism.Navigation
             get { return ( Application.Current as PrismApplication ).Container; }
         }
 
+        private static bool IsPageRegistered( string name ) =>
+            s_container.IsRegistered<object>( name );
+
         private static PopupPage CreatePopupPageByName( string name )
         {
+            VerifyPageIsRegistered( name );
             return s_container.Resolve<object>( name ) as PopupPage;
         }
     }
