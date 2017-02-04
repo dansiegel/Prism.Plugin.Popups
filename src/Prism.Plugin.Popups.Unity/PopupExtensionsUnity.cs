@@ -1,4 +1,6 @@
-﻿using Microsoft.Practices.Unity;
+﻿using System;
+using Microsoft.Practices.Unity;
+using Prism.Logging;
 using Prism.Unity;
 using Rg.Plugins.Popup.Pages;
 using Xamarin.Forms;
@@ -10,6 +12,11 @@ namespace Prism.Navigation
         static IUnityContainer s_container
         {
             get { return ( Application.Current as PrismApplication ).Container; }
+        }
+
+        static ILoggerFacade s_logger
+        {
+            get { return ( Application.Current as PrismApplication ).Container.Resolve<ILoggerFacade>(); }
         }
 
         private static bool IsPageRegistered( string name ) =>

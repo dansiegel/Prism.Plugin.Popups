@@ -1,5 +1,6 @@
 ﻿using DryIoc;
 using Prism.DryIoc;
+using Prism.Logging;
 using Rg.Plugins.Popup.Pages;
 using Xamarin.Forms;
 
@@ -10,6 +11,11 @@ namespace Prism.Navigation
         static IContainer s_container
         {
             get { return ( Application.Current as PrismApplication ).Container; }
+        }
+
+        static ILoggerFacade s_logger
+        {
+            get { return ( Application.Current as PrismApplication ).Container.Resolve<ILoggerFacade>(); }
         }
 
         private static bool IsPageRegistered( string name ) =>
