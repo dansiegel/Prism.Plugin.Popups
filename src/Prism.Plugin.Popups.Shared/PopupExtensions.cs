@@ -150,7 +150,10 @@ namespace Prism.Navigation
             if( page == null ) return page;
             var startPage = page;
 
-            while( page is MasterDetailPage || page is NavigationPage || page.GetType() == typeof( MultiPage<> ) )
+            var pageTypeInfo = page.GetType().GetTypeInfo();
+            while( pageTypeInfo.IsSubclassOf( typeof( MasterDetailPage ) ) || 
+                  pageTypeInfo.IsSubclassOf( typeof( NavigationPage ) ) || 
+                  pageTypeInfo.IsSubclassOf( typeof( MultiPage<> ) ) )
             {
                 if( page.GetType().GetTypeInfo().IsSubclassOf( typeof( MultiPage<> ) ) )
                 {
