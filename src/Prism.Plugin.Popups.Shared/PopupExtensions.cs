@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Prism.Mvvm;
+using Prism.Plugin.Popups;
 using Rg.Plugins.Popup.Pages;
 using Rg.Plugins.Popup.Services;
 using Xamarin.Forms;
@@ -56,12 +57,28 @@ namespace Prism.Navigation
 
         public static async Task PushPopupPageAsync( this INavigationService navigationService, string name, NavigationParameters parameters = null, bool animated = true )
         {
-            var page = CreatePopupPageByName( name );
-            ViewModelLocator.SetAutowireViewModel( page, ViewModelLocator.GetAutowireViewModel( page ) ?? true );
-            var currentPage = GetCurrentPage();
-            HandleINavigatingAware( page, parameters );
-            await PopupNavigation.PushAsync( page, animated );
-            HandleINavigatedAware( currentPage, page, parameters );
+            try
+            {
+                var page = CreatePopupPageByName( name );
+
+                // Ensure resolved page is not null. This could happen if the resolved page wasn't a Popup Page
+                if( page == null )
+                    throw new PopupPageMissingException( $"It seems something went wrong. We seem to have resolved a page for '{name}', but it doesn't seem to be a Popup Page.", new ArgumentNullException( nameof( page ) ) );
+
+                // Make sure the VML is set to either True or False
+                if( ViewModelLocator.GetAutowireViewModel( page ) == null )
+                    ViewModelLocator.SetAutowireViewModel( page, true );
+                
+                var currentPage = GetCurrentPage();
+                HandleINavigatingAware( page, parameters );
+                await PopupNavigation.PushAsync( page, animated );
+                HandleINavigatedAware( currentPage, page, parameters );
+            }
+            catch( Exception ex )
+            {
+                s_logger.Log( ex.ToString(), Logging.Category.Exception, Logging.Priority.High );
+                throw;
+            }
         }
 
         public static Task PushPopupPageAsync( this INavigationService navigationService, string name, string key, object param, bool animated = true ) =>
@@ -114,7 +131,9 @@ namespace Prism.Navigation
         private static Page GetCurrentPage()
         {
             Page page = null;
-            if( s_navigation.ModalStack.Count > 0 )
+            if( PopupNavigation.PopupStack.Count > 0 )
+                page = PopupNavigation.PopupStack.LastOrDefault();
+            else if( s_navigation.ModalStack.Count > 0 )
                 page = s_navigation.ModalStack.LastOrDefault();
             else
                 page = s_navigation.NavigationStack.LastOrDefault();
@@ -154,6 +173,12 @@ namespace Prism.Navigation
             {
                 { key, param }
             };
+
+        private static void VerifyPageIsRegistered( string name )
+        {
+            if( !IsPageRegistered( name ) )
+                throw new PopupPageMissingException( name );
+        }
 
     }
 }
