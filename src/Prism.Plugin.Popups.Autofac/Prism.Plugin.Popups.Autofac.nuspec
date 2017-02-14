@@ -8,6 +8,8 @@
     <summary>Provides extensions to the Navigation Service to allow Prism Navigation for Popup Pages</summary>
     <description>$description$</description>
     <releaseNotes>
+v1.1.0-pre3
+-Fixes issue where the Filter Page function ends up in an infinite loop resulting in a hang during navigation. Navigation should now get the Current Page of any NavigationPage, MasterDetailPage, or TabbedPage.
 v1.1.0-pre2
 -Fixes issue where OnNavigatingTo could be called on a parent page. Will now call the Detail page of a MasterDetailPage or CurrentPage for a NavigationPage or any MultiPage&lt;&gt;. Will continue evaluating the current page until a page type is recieved that does not possess Child Pages.
 v1.1.0-pre1

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Threading.Tasks;
 using Prism.Mvvm;
 using Prism.Plugin.Popups;
@@ -149,17 +150,20 @@ namespace Prism.Navigation
             if( page == null ) return page;
             var startPage = page;
 
-            while( page is MasterDetailPage || page is NavigationPage || page.GetType() == typeof( MultiPage<> ) )
+            var pageTypeInfo = page.GetType().GetTypeInfo();
+            while( pageTypeInfo.IsSubclassOf( typeof( MasterDetailPage ) ) || 
+                  pageTypeInfo.IsSubclassOf( typeof( NavigationPage ) ) || 
+                  pageTypeInfo.IsSubclassOf( typeof( MultiPage<> ) ) )
             {
-                if( page.GetType() == typeof( MultiPage<> ) )
+                if( page.GetType().GetTypeInfo().IsSubclassOf( typeof( MultiPage<> ) ) )
                 {
                     page = ( page as MultiPage<Page> ).CurrentPage;
                 }
-                else if( page.GetType() == typeof( MasterDetailPage ) )
+                else if( page.GetType().GetTypeInfo().IsSubclassOf( typeof( MasterDetailPage ) ) )
                 {
                     page = ( page as MasterDetailPage ).Detail;
                 }
-                else if( page.GetType() == typeof( NavigationPage ) )
+                else if( page.GetType().GetTypeInfo().IsSubclassOf( typeof( NavigationPage ) ) )
                 {
                     page = ( page as NavigationPage ).CurrentPage;
                 }
