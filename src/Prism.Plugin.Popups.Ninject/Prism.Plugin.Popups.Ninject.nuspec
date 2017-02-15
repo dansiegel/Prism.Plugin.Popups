@@ -8,6 +8,8 @@
     <summary>Provides extensions to the Navigation Service to allow Prism Navigation for Popup Pages</summary>
     <description>$description$</description>
     <releaseNotes>
+v1.1.0-pre4
+-Fixes infinite loop
 v1.1.0-pre3
 -Fixes issue where the Filter Page function ends up in an infinite loop resulting in a hang during navigation. Navigation should now get the Current Page of any NavigationPage, MasterDetailPage, or TabbedPage.
 v1.1.0-pre2

@@ -167,6 +167,7 @@ namespace Prism.Navigation
                 {
                     page = ( page as NavigationPage ).CurrentPage;
                 }
+                pageTypeInfo = page.GetType().GetTypeInfo();
             }
 
             return page ?? startPage;
