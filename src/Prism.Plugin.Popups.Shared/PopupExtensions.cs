@@ -119,7 +119,8 @@ namespace Prism.Navigation
             {
                 pageAware?.OnNavigatedFrom( parameters );
                 contextAware?.OnNavigatedFrom( parameters );
-                HandleIDestructiblePage( page );
+                //HandleIDestructiblePage( page );
+                if (page is PopupPage) HandleIDestructiblePage( page );
             }
         }
 
