@@ -47,6 +47,7 @@ namespace Prism.Navigation
 
             var page = s_popupStack.Last();
             HandleINavigatedAware( page, parameters, navigatedTo: false );
+            HandleIDestructiblePage( page );
 
             await PopupNavigation.PopAsync( animate );
 
@@ -119,11 +120,10 @@ namespace Prism.Navigation
             {
                 pageAware?.OnNavigatedFrom( parameters );
                 contextAware?.OnNavigatedFrom( parameters );
-                HandleIDestructiblePage( page );
             }
         }
 
-        private static void HandleIDestructiblePage( Page page )
+        private static void HandleIDestructiblePage( PopupPage page )
         {
             ( page as IDestructible )?.Destroy();
             ( page?.BindingContext as IDestructible )?.Destroy();
