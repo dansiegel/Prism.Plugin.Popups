@@ -88,9 +88,8 @@ namespace Prism.Navigation
 
         private static void HandleINavigatingAware( PopupPage page, NavigationParameters parameters )
         {
-            //TODO: This will need to be updated to INavigatingAware once Pre2 is released
-            ( page as INavigationAware )?.OnNavigatingTo( parameters );
-            ( page?.BindingContext as INavigationAware )?.OnNavigatingTo( parameters );
+            ( page as INavigatingAware )?.OnNavigatingTo( parameters );
+            ( page?.BindingContext as INavigatingAware )?.OnNavigatingTo( parameters );
         }
 
         private static void HandleINavigatedAware( Page pageFrom, Page pageTo, NavigationParameters parameters )
@@ -103,9 +102,8 @@ namespace Prism.Navigation
         {
             if( page == null ) return;
 
-            //TODO: Change this to INavigatedAware once pre2 is released
-            var pageAware = page as INavigationAware;
-            var contextAware = page.BindingContext as INavigationAware;
+            var pageAware = page as INavigatedAware;
+            var contextAware = page.BindingContext as INavigatedAware;
 
             if( pageAware == null && contextAware == null ) return;
 
