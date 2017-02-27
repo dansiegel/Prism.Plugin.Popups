@@ -8,6 +8,10 @@
     <summary>Provides extensions to the Navigation Service to allow Prism Navigation for Popup Pages</summary>
     <description>$description$</description>
     <releaseNotes>
+v1.1.0-pre5
+-Updates to Prism.Forms 6.3.0-pre2
+-Fixes issue where IDestructible.Destroy was being called on non-PopupPages
+-Updates INavigationAware to INavigatingAware &amp; INavigatedAware
 v1.1.0-pre4
 -Fixes infinite loop
 v1.1.0-pre3
