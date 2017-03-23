@@ -28,7 +28,7 @@ namespace Prism.Navigation
             navigationService.ClearPopupStackAsync( parameters, animated );
 
         public static Task ClearPopupStackAsync( this INavigationService navigationService, string key, object param, bool animated = true ) =>
-            navigationService.ClearPopupStackAsync( GetNavigationParameters( key, param ), animated );
+            navigationService.ClearPopupStackAsync( GetNavigationParameters( key, param, NavigationMode.Back ), animated );
 
         public static async Task ClearPopupStackAsync( this INavigationService navigationService, NavigationParameters parameters = null, bool animated = true )
         {
@@ -39,13 +39,16 @@ namespace Prism.Navigation
         }
 
         public static Task PopupGoBackAsync( this INavigationService navigationService, string key, object param, bool animated = true ) =>
-            navigationService.PopupGoBackAsync( GetNavigationParameters( key, param ), animated );
+            navigationService.PopupGoBackAsync( GetNavigationParameters( key, param, NavigationMode.Back ), animated );
 
         public static async Task PopupGoBackAsync( this INavigationService navigationService, NavigationParameters parameters = null, bool animate = true )
         {
             if( s_popupStack.Count == 0 ) return;
 
             var page = s_popupStack.Last();
+
+            EnsureParametersContainsMode( parameters ?? ( parameters = new NavigationParameters() ), NavigationMode.Back);
+
             HandleINavigatedAware( page, parameters, navigatedTo: false );
             HandleIDestructiblePage( page );
 
@@ -72,6 +75,9 @@ namespace Prism.Navigation
                     ViewModelLocator.SetAutowireViewModel( page, true );
                 
                 var currentPage = GetCurrentPage();
+
+                EnsureParametersContainsMode( parameters ?? ( parameters = new NavigationParameters() ), NavigationMode.New );
+
                 HandleINavigatingAware( page, parameters );
                 await PopupNavigation.PushAsync( page, animated );
                 HandleINavigatedAware( currentPage, page, parameters );
@@ -84,7 +90,7 @@ namespace Prism.Navigation
         }
 
         public static Task PushPopupPageAsync( this INavigationService navigationService, string name, string key, object param, bool animated = true ) =>
-            navigationService.PushPopupPageAsync( name, GetNavigationParameters( key, param ), animated );
+            navigationService.PushPopupPageAsync( name, GetNavigationParameters( key, param, NavigationMode.New ), animated );
 
         private static void HandleINavigatingAware( PopupPage page, NavigationParameters parameters )
         {
@@ -171,10 +177,18 @@ namespace Prism.Navigation
             return page ?? startPage;
         }
 
-        private static NavigationParameters GetNavigationParameters( string key, object param ) =>
+        private static void EnsureParametersContainsMode( NavigationParameters parameters, NavigationMode mode )
+        {
+            if( parameters.ContainsKey( KnownNavigationParameters.NavigationMode ) ) return;
+
+            parameters.Add( KnownNavigationParameters.NavigationMode, mode );
+        }
+
+        private static NavigationParameters GetNavigationParameters( string key, object param, NavigationMode mode ) =>
             new NavigationParameters()
             {
-                { key, param }
+                { key, param },
+                { KnownNavigationParameters.NavigationMode, mode }
             };
 
         private static void VerifyPageIsRegistered( string name )
