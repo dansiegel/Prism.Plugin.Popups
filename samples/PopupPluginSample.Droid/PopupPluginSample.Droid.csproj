@@ -74,18 +74,6 @@
     <Reference Include="Microsoft.Practices.Unity">
       <HintPath>..\..\packages\Unity.4.0.1\lib\portable-net45+wp80+win8+wpa81+MonoAndroid10+MonoTouch10\Microsoft.Practices.Unity.dll</HintPath>
     </Reference>
-    <Reference Include="Rg.Plugins.Popup">
-      <HintPath>..\..\packages\Rg.Plugins.Popup.1.0.3\lib\MonoAndroid\Rg.Plugins.Popup.dll</HintPath>
-    </Reference>
-    <Reference Include="Rg.Plugins.Popup.Droid">
-      <HintPath>..\..\packages\Rg.Plugins.Popup.1.0.3\lib\MonoAndroid\Rg.Plugins.Popup.Droid.dll</HintPath>
-    </Reference>
-    <Reference Include="Rg.Plugins.Popup.Platform">
-      <HintPath>..\..\packages\Rg.Plugins.Popup.1.0.3\lib\MonoAndroid\Rg.Plugins.Popup.Platform.dll</HintPath>
-    </Reference>
-    <Reference Include="Prism">
-      <HintPath>..\..\packages\Prism.Core.6.3.0-pre2\lib\MonoAndroid10\Prism.dll</HintPath>
-    </Reference>
     <Reference Include="FormsViewGroup">
       <HintPath>..\..\packages\Xamarin.Forms.2.3.3.193\lib\MonoAndroid10\FormsViewGroup.dll</HintPath>
     </Reference>
@@ -101,11 +89,23 @@
     <Reference Include="Xamarin.Forms.Xaml">
       <HintPath>..\..\packages\Xamarin.Forms.2.3.3.193\lib\MonoAndroid10\Xamarin.Forms.Xaml.dll</HintPath>
     </Reference>
+    <Reference Include="Prism">
+      <HintPath>..\..\packages\Prism.Core.6.3.0\lib\MonoAndroid10\Prism.dll</HintPath>
+    </Reference>
     <Reference Include="Prism.Forms">
-      <HintPath>..\..\packages\Prism.Forms.6.3.0-pre2\lib\MonoAndroid1.0\Prism.Forms.dll</HintPath>
+      <HintPath>..\..\packages\Prism.Forms.6.3.0\lib\MonoAndroid1.0\Prism.Forms.dll</HintPath>
     </Reference>
     <Reference Include="Prism.Unity.Forms">
-      <HintPath>..\..\packages\Prism.Unity.Forms.6.3.0-pre2\lib\MonoAndroid1.0\Prism.Unity.Forms.dll</HintPath>
+      <HintPath>..\..\packages\Prism.Unity.Forms.6.3.0\lib\MonoAndroid1.0\Prism.Unity.Forms.dll</HintPath>
+    </Reference>
+    <Reference Include="Rg.Plugins.Popup">
+      <HintPath>..\..\packages\Rg.Plugins.Popup.1.0.4\lib\MonoAndroid\Rg.Plugins.Popup.dll</HintPath>
+    </Reference>
+    <Reference Include="Rg.Plugins.Popup.Droid">
+      <HintPath>..\..\packages\Rg.Plugins.Popup.1.0.4\lib\MonoAndroid\Rg.Plugins.Popup.Droid.dll</HintPath>
+    </Reference>
+    <Reference Include="Rg.Plugins.Popup.Platform">
+      <HintPath>..\..\packages\Rg.Plugins.Popup.1.0.4\lib\MonoAndroid\Rg.Plugins.Popup.Platform.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
