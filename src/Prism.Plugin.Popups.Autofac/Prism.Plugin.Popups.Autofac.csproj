@@ -38,6 +38,8 @@
   <ItemGroup>
     <Compile Include="PopupExtensionsAutofac.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="AutofacPopupPageNavigationService.cs" />
+    <Compile Include="PopupNavigationServiceExtensions.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Autofac, Version=3.5.0.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">

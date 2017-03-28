@@ -38,6 +38,8 @@
   <ItemGroup>
     <Compile Include="PopupExtensionsDryIoc.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="DryIocPopupPageNavigationService.cs" />
+    <Compile Include="PopupNavigationServiceExtensions.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="DryIoc">

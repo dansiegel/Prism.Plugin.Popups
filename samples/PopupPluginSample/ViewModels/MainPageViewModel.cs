@@ -44,7 +44,7 @@ namespace PopupPluginSample.ViewModels
 
         private async void OnLaunchPopupCommandExecuted()
         {
-            await _navigationService.PushPopupPageAsync( "PopupView", "message", $"Hello from {GetType().Name}" );
+            await _navigationService.NavigateAsync( $"PopupView?message=Hello%20from%20{GetType().Name}" );
         }
     }
 }
