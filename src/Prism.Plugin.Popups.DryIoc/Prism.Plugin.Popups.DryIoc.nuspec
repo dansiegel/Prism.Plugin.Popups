@@ -8,6 +8,10 @@
     <summary>Provides extensions to the Navigation Service to allow Prism Navigation for Popup Pages</summary>
     <description>$description$</description>
     <releaseNotes>
+v2.0.0-pre1
+-Adds PopupPageNavigationService
+-Marks `PopupGoBackAsync` and `PushPopupAsync` extension methods as obsolete in favor of directly using the `INavigationService.GoBackAsync` &amp; `INavigationService.NavigateAsync` methods
+-Adds Registration extension for all DI Containers with overload so that users can add custom logic to the `PopupPageNavigationService`
 v1.1.0
 -Adds support for Prism.Forms IDestructible
 -Adds support for new INavigationAware paradigm with `INavigatingAware` and `INavigatedAware`
