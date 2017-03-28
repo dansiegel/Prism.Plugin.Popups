@@ -38,6 +38,8 @@
   <ItemGroup>
     <Compile Include="PopupExtensionsNinject.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="NinjectPopupPageNavigationService.cs" />
+    <Compile Include="PopupNavigationServiceExtensions.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Ninject, Version=3.0.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
