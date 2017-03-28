@@ -12,5 +12,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)AssemblyInfo-Shared.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)PopupExtensions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)PopupPageMissingException.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)PopupPageNavigationServiceBase.cs" />
   </ItemGroup>
 </Project>
