@@ -47,7 +47,7 @@ namespace PopupPluginSample.ViewModels
 
         private async void OnNavigateBackCommandExecuted()
         {
-            await _navigationService.PopupGoBackAsync();
+            await _navigationService.GoBackAsync();
         }
     }
 }

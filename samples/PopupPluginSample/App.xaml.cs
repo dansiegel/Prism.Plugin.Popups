@@ -18,6 +18,7 @@ namespace PopupPluginSample
         {
             Container.RegisterTypeForNavigation<MainPage>();
             Container.RegisterTypeForNavigation<PopupView>();
+            Container.RegisterPopupNavigationService();
         }
     }
 }
