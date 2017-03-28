@@ -14,11 +14,39 @@ The Popups plugin provides an extremely lightweight framework for implementing P
 
 ## Usage
 
+### Version 2.X
+
+Version 2.X deprecates the use of all but the `ClearPopupStackAsync` extension method. You can now register a `PopupNavigationService` which uses the base Prism PageNavigationService and adds support for Pushing and Popping PopupPage's. To use the `PopupNavigationService` see the registration example below for the DI container of your choice.
+
+#### Autofac
+
+```cs
+protected override void RegisterTypes()
+{
+	var builder = new ContainerBuilder();
+	builder.RegisterPopupNavigatioService();
+	builder.UpdateContainer( Container );
+}
+``` 
+
+#### All other containers
+
+```cs
+protectd override void RegisterTypes()
+{
+	Container.RegisterPopupNavigationService();
+}
+```
+
+It's worth noting that there is a generic overload for the registration method that accepts any type that inherits from `PopupPageNavigationServiceBase` in the event that you have custom logic you need to execute in the NavigationService. 
+
+### Version 1.X
+
 There are three primary extensions added for working with Navigation.
 
    * ClearPopupStackAsync
-   * PopupGoBackAsync
-   * PushPopupPageAsync
+   * PopupGoBackAsync (Obsolete in v2.X)
+   * PushPopupPageAsync (Obsolete in v2.X)
 
  All three of these contain overloads so that you can pass in a NavigationParameters object, or if you have a single key value pair you can pass it in as shown below for the NavigateCommand.
 
