@@ -34,9 +34,11 @@ namespace Prism.Navigation
             }
         }
 
+        [Obsolete("This method is being deprecated in favor of Registering the PopupNavigationService and using INavigationService.GoBackAsync")]
         public static Task PopupGoBackAsync( this INavigationService navigationService, string key, object param, bool animated = true ) =>
             navigationService.PopupGoBackAsync( GetNavigationParameters( key, param, NavigationMode.Back ), animated );
 
+        [Obsolete("This method is being deprecated in favor of Registering the PopupNavigationService and using INavigationService.GoBackAsync")]
         public static async Task PopupGoBackAsync( this INavigationService navigationService, NavigationParameters parameters = null, bool animate = true )
         {
             if( s_popupStack.Count == 0 ) return;
@@ -56,6 +58,7 @@ namespace Prism.Navigation
             HandleINavigatedAware( currentPage, parameters, navigatedTo: true );
         }
 
+        [Obsolete("This method is being deprecated in favor of Registering the PopupNavigationService and using INavigationService.NavigateAsync")]
         public static async Task PushPopupPageAsync( this INavigationService navigationService, string name, NavigationParameters parameters = null, bool animated = true )
         {
             try
@@ -85,6 +88,7 @@ namespace Prism.Navigation
             }
         }
 
+        [Obsolete("This method is being deprecated in favor of Registering the PopupNavigationService and using INavigationService.NavigateAsync")]
         public static Task PushPopupPageAsync( this INavigationService navigationService, string name, string key, object param, bool animated = true ) =>
             navigationService.PushPopupPageAsync( name, GetNavigationParameters( key, param, NavigationMode.New ), animated );
 
