@@ -30,7 +30,7 @@ namespace Prism.Navigation
         {
             while( s_popupStack.Count > 0 )
             {
-                await PopupGoBackAsync( navigationService, parameters, animated );
+                await navigationService.GoBackAsync(parameters, animated: animated);
             }
         }
 
