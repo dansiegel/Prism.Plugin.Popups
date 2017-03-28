@@ -4,6 +4,8 @@ Param(
 	[string]$Configuration = "Release"
 )
 
+Write-Host "Starting $Configuration Build"
+
 $outputDir = "./build"
 $solutionFile = "Prism.Plugin.Popups.sln"
 $projects = "Prism.Plugin.Popups.Autofac","Prism.Plugin.Popups.DryIoc","Prism.Plugin.Popups.Ninject","Prism.Plugin.Popups.Unity"
