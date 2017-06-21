@@ -14,6 +14,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)PopupPageMissingException.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)PopupPageNavigationServiceBase.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Extensions\PageExtensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)BackgroundPopupDismissalBehavior.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="$(MSBuildThisFileDirectory)Extensions\" />

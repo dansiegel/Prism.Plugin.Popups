@@ -57,5 +57,15 @@ namespace Prism.Plugin.Popups
 
             return base.DoPush(currentPage, page, useModalNavigation, animated);
         }
+
+        protected override void ApplyPageBehaviors(Page page)
+        {
+            base.ApplyPageBehaviors(page);
+
+            if(page.IsOrDerivesFrom<PopupPage>())
+            {
+                page.Behaviors.Add(new BackgroundPopupDismissalBehavior(_popupNavigation, _applicationProvider));
+            }
+        }
     }
 }
