@@ -8,6 +8,8 @@ using Prism.Plugin.Popups;
 using Rg.Plugins.Popup.Pages;
 using Rg.Plugins.Popup.Services;
 using Xamarin.Forms;
+using Prism.Common;
+using Prism.Plugin.Popups.Extensions;
 
 namespace Prism.Navigation
 {
@@ -92,11 +94,8 @@ namespace Prism.Navigation
         public static Task PushPopupPageAsync( this INavigationService navigationService, string name, string key, object param, bool animated = true ) =>
             navigationService.PushPopupPageAsync( name, GetNavigationParameters( key, param, NavigationMode.New ), animated );
 
-        private static void HandleINavigatingAware( PopupPage page, NavigationParameters parameters )
-        {
-            ( page as INavigatingAware )?.OnNavigatingTo( parameters );
-            ( page?.BindingContext as INavigatingAware )?.OnNavigatingTo( parameters );
-        }
+        private static void HandleINavigatingAware(PopupPage page, NavigationParameters parameters) =>
+            PageUtilities.InvokeViewAndViewModelAction<INavigatingAware>(page, (view) => view.OnNavigatingTo(parameters));
 
         private static void HandleINavigatedAware( Page pageFrom, Page pageTo, NavigationParameters parameters )
         {
@@ -107,31 +106,22 @@ namespace Prism.Navigation
         private static void HandleINavigatedAware( Page page, NavigationParameters parameters, bool navigatedTo )
         {
             if( page == null ) return;
+            if(parameters == null) parameters = new NavigationParameters {
+                { KnownNavigationParameters.NavigationMode, navigatedTo ? NavigationMode.New : NavigationMode.Back }
+            };
 
-            var pageAware = page as INavigatedAware;
-            var contextAware = page.BindingContext as INavigatedAware;
+            PageUtilities.InvokeViewAndViewModelAction<INavigatedAware>(page, (view) => {
+                if(navigatedTo)
+                    view.OnNavigatedTo(parameters);
+                else
+                    view.OnNavigatedFrom(parameters);
+            });
 
-            if( pageAware == null && contextAware == null ) return;
-
-            if( parameters == null ) parameters = new NavigationParameters();
-
-            if( navigatedTo )
-            {
-                pageAware?.OnNavigatedTo( parameters );
-                contextAware?.OnNavigatedTo( parameters );
-            }
-            else
-            {
-                pageAware?.OnNavigatedFrom( parameters );
-                contextAware?.OnNavigatedFrom( parameters );
-            }
+            PageUtilities.InvokeViewAndViewModelAction<IActiveAware>(page, (view) => view.IsActive = navigatedTo);
         }
 
-        private static void HandleIDestructiblePage( PopupPage page )
-        {
-            ( page as IDestructible )?.Destroy();
-            ( page?.BindingContext as IDestructible )?.Destroy();
-        }
+        private static void HandleIDestructiblePage(PopupPage page) =>
+            PageUtilities.InvokeViewAndViewModelAction<IDestructible>(page, (view) => view.Destroy());
 
         private static Page GetCurrentPage()
         {
@@ -146,35 +136,7 @@ namespace Prism.Navigation
             if( page == null )
                 page = Application.Current.MainPage;
 
-            return FilterPage( page );
-        }
-
-        private static Page FilterPage( Page page )
-        {
-            if( page == null ) return page;
-            var startPage = page;
-
-            var pageTypeInfo = page.GetType().GetTypeInfo();
-            while( pageTypeInfo.IsSubclassOf( typeof( MasterDetailPage ) ) || 
-                  pageTypeInfo.IsSubclassOf( typeof( NavigationPage ) ) || 
-                  pageTypeInfo.IsSubclassOf( typeof( MultiPage<> ) ) )
-            {
-                if( page.GetType().GetTypeInfo().IsSubclassOf( typeof( MultiPage<> ) ) )
-                {
-                    page = ( page as MultiPage<Page> ).CurrentPage;
-                }
-                else if( page.GetType().GetTypeInfo().IsSubclassOf( typeof( MasterDetailPage ) ) )
-                {
-                    page = ( page as MasterDetailPage ).Detail;
-                }
-                else if( page.GetType().GetTypeInfo().IsSubclassOf( typeof( NavigationPage ) ) )
-                {
-                    page = ( page as NavigationPage ).CurrentPage;
-                }
-                pageTypeInfo = page.GetType().GetTypeInfo();
-            }
-
-            return page ?? startPage;
+            return page.GetDisplayedPage();
         }
 
         private static void EnsureParametersContainsMode( NavigationParameters parameters, NavigationMode mode )

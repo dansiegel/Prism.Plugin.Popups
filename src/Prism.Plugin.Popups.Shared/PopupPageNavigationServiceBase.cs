@@ -1,13 +1,14 @@
 ﻿using System;
+using System.Linq;
+using System.Reflection;
 using System.Threading.Tasks;
 using Prism.Common;
 using Prism.Logging;
 using Prism.Navigation;
-using Xamarin.Forms;
+using Prism.Plugin.Popups.Extensions;
 using Rg.Plugins.Popup.Pages;
 using Rg.Plugins.Popup.Services;
-using System.Linq;
-using System.Reflection;
+using Xamarin.Forms;
 
 namespace Prism.Plugin.Popups
 {
@@ -42,35 +43,7 @@ namespace Prism.Plugin.Popups
             if(page == null)
                 page = Application.Current.MainPage;
 
-            return FilterPage(page);
-        }
-
-        protected virtual Page FilterPage(Page page)
-        {
-            if(page == null) return page;
-            var startPage = page;
-
-            var pageTypeInfo = page.GetType().GetTypeInfo();
-            while(pageTypeInfo.IsSubclassOf(typeof(MasterDetailPage)) ||
-                  pageTypeInfo.IsSubclassOf(typeof(NavigationPage)) ||
-                  pageTypeInfo.IsSubclassOf(typeof(MultiPage<>)))
-            {
-                if(page.GetType().GetTypeInfo().IsSubclassOf(typeof(MultiPage<>)))
-                {
-                    page = (page as MultiPage<Page>).CurrentPage;
-                }
-                else if(page.GetType().GetTypeInfo().IsSubclassOf(typeof(MasterDetailPage)))
-                {
-                    page = (page as MasterDetailPage).Detail;
-                }
-                else if(page.GetType().GetTypeInfo().IsSubclassOf(typeof(NavigationPage)))
-                {
-                    page = (page as NavigationPage).CurrentPage;
-                }
-                pageTypeInfo = page.GetType().GetTypeInfo();
-            }
-
-            return page ?? startPage;
+            return page.GetDisplayedPage();
         }
 
         protected override Task DoPush(Page currentPage, Page page, bool? useModalNavigation, bool animated)
