@@ -2,6 +2,7 @@
 using DryIoc;
 using Prism.Common;
 using Prism.Logging;
+using Rg.Plugins.Popup.Contracts;
 using Xamarin.Forms;
 
 namespace Prism.Plugin.Popups
@@ -10,8 +11,8 @@ namespace Prism.Plugin.Popups
     {
         IContainer _container { get; }
 
-        public DryIocPopupPageNavigationService(IApplicationProvider applicationProvider, ILoggerFacade logger, IContainer container)
-            : base( applicationProvider, logger )
+        public DryIocPopupPageNavigationService(IPopupNavigation popupNavigation, IApplicationProvider applicationProvider, ILoggerFacade logger, IContainer container)
+            : base( popupNavigation, applicationProvider, logger )
         {
             _container = container;
         }

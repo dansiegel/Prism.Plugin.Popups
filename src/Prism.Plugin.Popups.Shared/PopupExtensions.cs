@@ -10,6 +10,7 @@ using Rg.Plugins.Popup.Services;
 using Xamarin.Forms;
 using Prism.Common;
 using Prism.Plugin.Popups.Extensions;
+using Rg.Plugins.Popup.Contracts;
 
 namespace Prism.Navigation
 {
@@ -20,10 +21,9 @@ namespace Prism.Navigation
             get { return Application.Current.MainPage.Navigation; }
         }
 
-        static IReadOnlyList<PopupPage> s_popupStack
-        {
-            get { return PopupNavigation.PopupStack; }
-        }
+        static IPopupNavigation s_popupNavigation => PopupNavigation.Instance;
+
+        static IReadOnlyList<PopupPage> s_popupStack => s_popupNavigation.PopupStack;
 
         public static Task ClearPopupStackAsync( this INavigationService navigationService, string key, object param, bool animated = true ) =>
             navigationService.ClearPopupStackAsync( GetNavigationParameters( key, param, NavigationMode.Back ), animated );
@@ -52,7 +52,7 @@ namespace Prism.Navigation
             HandleINavigatedAware( page, parameters, navigatedTo: false );
             HandleIDestructiblePage( page );
 
-            await PopupNavigation.PopAsync( animate );
+            await s_popupNavigation.PopAsync( animate );
 
             Page currentPage = s_popupStack.LastOrDefault();
             if( currentPage == null ) currentPage = GetCurrentPage();
@@ -80,7 +80,7 @@ namespace Prism.Navigation
                 EnsureParametersContainsMode( parameters ?? ( parameters = new NavigationParameters() ), NavigationMode.New );
 
                 HandleINavigatingAware( page, parameters );
-                await PopupNavigation.PushAsync( page, animated );
+                await s_popupNavigation.PushAsync( page, animated );
                 HandleINavigatedAware( currentPage, page, parameters );
             }
             catch( Exception ex )
@@ -126,8 +126,8 @@ namespace Prism.Navigation
         private static Page GetCurrentPage()
         {
             Page page = null;
-            if( PopupNavigation.PopupStack.Count > 0 )
-                page = PopupNavigation.PopupStack.LastOrDefault();
+            if( s_popupNavigation.PopupStack.Count > 0 )
+                page = s_popupNavigation.PopupStack.LastOrDefault();
             else if( s_navigation.ModalStack.Count > 0 )
                 page = s_navigation.ModalStack.LastOrDefault();
             else

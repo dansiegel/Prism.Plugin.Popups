@@ -6,6 +6,7 @@ using Prism.Common;
 using Prism.Logging;
 using Prism.Navigation;
 using Prism.Plugin.Popups.Extensions;
+using Rg.Plugins.Popup.Contracts;
 using Rg.Plugins.Popup.Pages;
 using Rg.Plugins.Popup.Services;
 using Xamarin.Forms;
@@ -14,16 +15,19 @@ namespace Prism.Plugin.Popups
 {
     public abstract class PopupPageNavigationServiceBase : PageNavigationService
     {
-        public PopupPageNavigationServiceBase( IApplicationProvider applicationProvider, ILoggerFacade logger ) 
+        protected IPopupNavigation _popupNavigation { get; }
+
+        public PopupPageNavigationServiceBase( IPopupNavigation popupNavigation, IApplicationProvider applicationProvider, ILoggerFacade logger ) 
             : base( applicationProvider, logger )
         {
+            _popupNavigation = popupNavigation;
         }
 
         protected override async Task<Page> DoPop(INavigation navigation, bool useModalNavigation, bool animated)
         {
-            if(PopupNavigation.PopupStack.Count > 0)
+            if(_popupNavigation.PopupStack.Count > 0)
             {
-                await PopupNavigation.PopAsync(animated);
+                await _popupNavigation.PopAsync(animated);
                 return TopPage();
             }
 
@@ -33,8 +37,8 @@ namespace Prism.Plugin.Popups
         protected virtual Page TopPage()
         {
             Page page = null;
-            if(PopupNavigation.PopupStack.Count > 0)
-                page = PopupNavigation.PopupStack.LastOrDefault();
+            if(_popupNavigation.PopupStack.Count > 0)
+                page = _popupNavigation.PopupStack.LastOrDefault();
             else if(_applicationProvider.MainPage.Navigation.ModalStack.Count > 0)
                 page = _applicationProvider.MainPage.Navigation.ModalStack.LastOrDefault();
             else
@@ -49,7 +53,7 @@ namespace Prism.Plugin.Popups
         protected override Task DoPush(Page currentPage, Page page, bool? useModalNavigation, bool animated)
         {
             if(page is PopupPage)
-                return PopupNavigation.PushAsync(page as PopupPage, animated);
+                return _popupNavigation.PushAsync(page as PopupPage, animated);
 
             return base.DoPush(currentPage, page, useModalNavigation, animated);
         }

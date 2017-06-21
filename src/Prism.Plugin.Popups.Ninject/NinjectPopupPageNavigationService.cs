@@ -3,6 +3,7 @@ using Prism.Common;
 using Prism.Logging;
 using Ninject;
 using Xamarin.Forms;
+using Rg.Plugins.Popup.Contracts;
 
 namespace Prism.Plugin.Popups
 {
@@ -10,8 +11,8 @@ namespace Prism.Plugin.Popups
     {
         IKernel _kernel { get; }
 
-        public NinjectPopupPageNavigationService( IApplicationProvider applicationProvider, ILoggerFacade logger, IKernel kernel )
-            : base( applicationProvider, logger )
+        public NinjectPopupPageNavigationService( IPopupNavigation popupNavigation, IApplicationProvider applicationProvider, ILoggerFacade logger, IKernel kernel )
+            : base( popupNavigation, applicationProvider, logger )
         {
             _kernel = kernel;
         }
