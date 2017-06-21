@@ -3,7 +3,7 @@
      xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms" prism:ViewModelLocator.AutowireViewModel="True"
      x:Class="PopupPluginSample.Views.MainPage" Title="MainPage">
     <StackLayout HorizontalOptions="Center" VerticalOptions="Center">
-        <Label Text="{Binding Title}" />
-		<Button Text="Launch Popup" Command="{Binding LaunchPopupCommand}" />
+        <Label Text="{Binding Message}" />
+        <Button Text="Launch Popup" Command="{Binding LaunchPopupCommand}" />
     </StackLayout>
 </ContentPage>

@@ -7,45 +7,17 @@ using System.Linq;
 
 namespace PopupPluginSample.ViewModels
 {
-    public class MainPageViewModel : BindableBase, INavigationAware
+    public class MainPageViewModel : BaseViewModel
     {
-        private INavigationService _navigationService { get; }
-
-        private string _title;
-        public string Title
+        public MainPageViewModel(INavigationService navigationService) 
+            : base(navigationService)
         {
-            get { return _title; }
-            set { SetProperty( ref _title, value ); }
         }
 
-        public DelegateCommand LaunchPopupCommand { get; }
+        public DelegateCommand LaunchPopupCommand => new DelegateCommand(OnLaunchPopupCommandExecuted);
 
-        public MainPageViewModel( INavigationService navigationService )
-        {
-            _navigationService = navigationService;
-            LaunchPopupCommand = new DelegateCommand( OnLaunchPopupCommandExecuted );
-        }
-
-        public void OnNavigatingTo( NavigationParameters parameters )
-        {
-            System.Diagnostics.Debug.WriteLine( "NavigatingTo MainPageViewModel" );
-        }
-
-        public void OnNavigatedFrom( NavigationParameters parameters )
-        {
-
-        }
-
-        public void OnNavigatedTo( NavigationParameters parameters )
-        {
-            if( parameters.ContainsKey( "title" ) )
-                Title = ( string )parameters[ "title" ] + " and Prism";
-        }
-
-        private async void OnLaunchPopupCommandExecuted()
-        {
-            await _navigationService.NavigateAsync( $"PopupView?message=Hello%20from%20{GetType().Name}" );
-        }
+        private async void OnLaunchPopupCommandExecuted() =>
+            await _navigationService.NavigateAsync("PopupView");
     }
 }
 
