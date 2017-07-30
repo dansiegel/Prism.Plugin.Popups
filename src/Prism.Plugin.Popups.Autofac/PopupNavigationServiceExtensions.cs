@@ -1,6 +1,8 @@
 ﻿using Autofac;
 using Prism.Navigation;
 using Prism.Plugin.Popups;
+using Rg.Plugins.Popup.Contracts;
+using Rg.Plugins.Popup.Services;
 
 namespace Prism.Autofac
 {
@@ -11,6 +13,7 @@ namespace Prism.Autofac
         public static ContainerBuilder RegisterPopupNavigationService<TService>(this ContainerBuilder builder)
             where TService : PopupPageNavigationServiceBase
         {
+            builder.RegisterInstance(PopupNavigation.Instance).As<IPopupNavigation>().IfNotRegistered(typeof(IPopupNavigation));
             builder.RegisterType<TService>().Named<INavigationService>(_navigationServiceName);
             return builder;
         }
