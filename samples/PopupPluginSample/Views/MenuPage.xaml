@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             x:Class="PopupPluginSample.Views.MenuPage">
+
+    <StackLayout HorizontalOptions="Center"
+                 VerticalOptions="Center">
+        <Label Text="Select the root page to test from" />
+        <Button Text="Master Detail Page" Command="NavigateCommand" CommandParameter="MDPRoot/NavigationRoot/MainPage" />
+        <Button Text="Tabbed Page" Command="NavigateCommand" CommandParameter="TabbedRoot" />
+        <Button Text="Navigation Page" Command="NavigateCommand" CommandParameter="NavigationRoot/MainPage" />
+<!--        <Button Text="Content Page" Command="NavigateCommand" CommandParameter="MainPage" />-->
+    </StackLayout>
+
+</ContentPage>

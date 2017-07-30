@@ -17,6 +17,11 @@ Resources/
     values/
         strings.xml
 
+    // For more information about why to use mipmap see: 
+    // https://android-developers.googleblog.com/2014/10/getting-your-apps-ready-for-nexus-6-and.html
+    mipmap/
+        lc_launcher.png
+
 In order to get the build system to recognize Android resources, set the build action to
 "AndroidResource".  The native Android APIs do not operate directly with filenames, but 
 instead operate on resource IDs.  When you compile an Android application that uses resources, 

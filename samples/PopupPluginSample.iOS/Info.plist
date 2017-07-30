@@ -4,8 +4,10 @@
 <dict>
     <key>CFBundleDisplayName</key>
     <string>Popup Plugin Sample</string>
+    <key>CFBundleName</key>
+    <string>PopupPluginSample</string>
     <key>CFBundleIdentifier</key>
-    <string>com.prismlibrary.plugins.popup-plugin-sample</string>
+    <string>com.avantipoint.popupplugin</string>
     <key>CFBundleShortVersionString</key>
     <string>1.0</string>
     <key>CFBundleVersion</key>
@@ -13,7 +15,7 @@
     <key>LSRequiresIPhoneOS</key>
     <true/>
     <key>MinimumOSVersion</key>
-    <string>7.0</string>
+    <string>8.0</string>
     <key>UIDeviceFamily</key>
     <array>
         <integer>1</integer>
@@ -39,6 +41,6 @@
         <string>UIInterfaceOrientationLandscapeRight</string>
     </array>
     <key>XSAppIconAssets</key>
-    <string>Resources/Images.xcassets/AppIcons.appiconset</string>
+    <string>Assets.xcassets/AppIcon.appiconset</string>
 </dict>
 </plist>

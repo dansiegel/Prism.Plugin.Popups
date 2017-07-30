@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<MasterDetailPage xmlns="http://xamarin.com/schemas/2014/forms" 
+                  xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+                  x:Class="PopupPluginSample.Views.MDPRoot">
+
+    <MasterDetailPage.Master>
+        <ContentPage Title="Menu">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="1*" />
+                    <RowDefinition Height="2*" />
+                </Grid.RowDefinitions>
+
+                <BoxView Color="Navy"
+                         HorizontalOptions="FillAndExpand"
+                         VerticalOptions="FillAndExpand" />
+                <Label Text="A Menu" TextColor="White" />
+
+                <Label Text="You might have menu options here" Grid.Row="1" />
+            </Grid>
+        </ContentPage>
+    </MasterDetailPage.Master>
+    
+</MasterDetailPage>

@@ -47,7 +47,9 @@ namespace PopupPluginSample.ViewModels
 
         private async void OnNavigateBackCommandExecuted()
         {
-            await _navigationService.GoBackAsync();
+            await _navigationService.GoBackAsync(new NavigationParameters{
+                { "message", "Hello from the Popup View" }
+            });
         }
     }
 }
