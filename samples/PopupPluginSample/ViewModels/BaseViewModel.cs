@@ -23,19 +23,9 @@ namespace PopupPluginSample.ViewModels
             NavigateCommand.CanExecuteChanged += CanExecuteChanged;
         }
 
-        private string _title;
-        public string Title
-        {
-            get => _title;
-            set => SetProperty(ref _title, value);
-        }
+        public string Title { get; set; }
 
-        private string _message;
-        public string Message
-        {
-            get => _message;
-            set => SetProperty(ref _message, value);
-        }
+        public string Message { get; set; }
 
         public DelegateCommand<object> NavigateCommand { get; }
 
