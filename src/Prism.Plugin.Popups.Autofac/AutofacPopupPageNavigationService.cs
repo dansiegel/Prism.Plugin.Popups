@@ -8,17 +8,17 @@ namespace Prism.Plugin.Popups
 {
     public class AutofacPopupPageNavigationService : PopupPageNavigationServiceBase
     {
-        IContainer _container { get; }
+        IComponentContext _context { get; }
 
-        public AutofacPopupPageNavigationService( IPopupNavigation popupNavigation, IApplicationProvider applicationProvider, ILoggerFacade logger, IContainer container )
+        public AutofacPopupPageNavigationService( IPopupNavigation popupNavigation, IApplicationProvider applicationProvider, ILoggerFacade logger, IComponentContext context )
             : base( popupNavigation, applicationProvider, logger )
         {
-            _container = container;
+            _context = context;
         }
 
         protected override Page CreatePage(string segmentName)
         {
-            return _container.ResolveNamed<object>(segmentName) as Page;
+            return _context.ResolveNamed<object>(segmentName) as Page;
         }
     }
 }
