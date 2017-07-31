@@ -1,7 +1,9 @@
 ﻿{
   "dependencies": {
     "Fody": "2.1.2",
+    "Prism.DryIoc.Forms": "7.0.0.26-ci",
     "PropertyChanged.Fody": "2.1.3",
+    "Rg.Plugins.Popup": "1.1.0-pre2",
     "Xamarin.TestCloud.Agent": "0.20.6"
   },
   "frameworks": {
