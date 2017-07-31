@@ -6,6 +6,7 @@
     <VersionPrefix>2.0.0</VersionPrefix>
     <VersionSuffix>pre2</VersionSuffix>
     <RootNamespace>Prism.Plugin.Popups</RootNamespace>
+    <NeutralLanguage>en</NeutralLanguage>
     <LicenseUrl>https://github.com/dansiegel/Prism.Plugin.Popups/blob/master/LICENSE</LicenseUrl>
     <ProjectUrl>https://github.com/dansiegel/Prism.Plugin.Popups</ProjectUrl>
     <Tags>prism,popups,xamarin forms</Tags>
