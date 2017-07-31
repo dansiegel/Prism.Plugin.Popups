@@ -38,10 +38,7 @@ namespace Prism.Plugin.Popups
             // If the Popup Page is not going to dismiss we don't need to do anything
             if(!AssociatedObject.CloseWhenBackgroundIsClicked) return;
 
-            var parameters = new NavigationParameters()
-            {
-                { KnownNavigationParameters.NavigationMode, NavigationMode.Back }
-            };
+            var parameters = PopupUtilities.CreateBackNavigationParameters();
 
             InvokePageInterfaces(AssociatedObject, parameters, false);
             InvokePageInterfaces(TopPage(), parameters, true);

@@ -1,14 +1,10 @@
-﻿using System;
-using System.Linq;
-using System.Reflection;
+﻿using System.Linq;
 using System.Threading.Tasks;
 using Prism.Common;
 using Prism.Logging;
 using Prism.Navigation;
-using Prism.Plugin.Popups.Extensions;
 using Rg.Plugins.Popup.Contracts;
 using Rg.Plugins.Popup.Pages;
-using Rg.Plugins.Popup.Services;
 using Xamarin.Forms;
 
 namespace Prism.Plugin.Popups
@@ -28,43 +24,33 @@ namespace Prism.Plugin.Popups
             if(_popupNavigation.PopupStack.Count > 0)
             {
                 await _popupNavigation.PopAsync(animated);
-                return TopPage();
+                return PopupUtilities.TopPage(_popupNavigation, _applicationProvider);
             }
 
             return await base.DoPop(navigation, useModalNavigation, animated);
         }
 
-        protected virtual Page TopPage()
+        protected override Task DoPush(Page currentPage, Page page, bool? useModalNavigation, bool animated, bool insertBeforeLast = false, int navigationOffset = 0)
         {
-            Page page = null;
-            if(_popupNavigation.PopupStack.Count > 0)
-                page = _popupNavigation.PopupStack.LastOrDefault();
-            else if(_applicationProvider.MainPage.Navigation.ModalStack.Count > 0)
-                page = _applicationProvider.MainPage.Navigation.ModalStack.LastOrDefault();
-            else
-                page = _applicationProvider.MainPage.Navigation.NavigationStack.LastOrDefault();
-
-            if(page == null)
-                page = Application.Current.MainPage;
-
-            return page.GetDisplayedPage();
-        }
-
-        protected override Task DoPush(Page currentPage, Page page, bool? useModalNavigation, bool animated)
-        {
-            if(page is PopupPage)
-                return _popupNavigation.PushAsync(page as PopupPage, animated);
-
-            return base.DoPush(currentPage, page, useModalNavigation, animated);
+            switch(page)
+            {
+                case PopupPage popup:
+                    return _popupNavigation.PushAsync(popup, animated);
+                default:
+                    return base.DoPush(currentPage, page, useModalNavigation, animated, insertBeforeLast, navigationOffset);
+            }
         }
 
         protected override void ApplyPageBehaviors(Page page)
         {
-            base.ApplyPageBehaviors(page);
-
-            if(page.IsOrDerivesFrom<PopupPage>())
+            switch(page)
             {
-                page.Behaviors.Add(new BackgroundPopupDismissalBehavior(_popupNavigation, _applicationProvider));
+                case PopupPage popup:
+                    page.Behaviors.Add(new BackgroundPopupDismissalBehavior(_popupNavigation, _applicationProvider));
+                    break;
+                default:
+                    base.ApplyPageBehaviors(page);
+                    break;
             }
         }
     }

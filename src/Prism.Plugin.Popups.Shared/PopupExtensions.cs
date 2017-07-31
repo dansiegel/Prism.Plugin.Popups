@@ -47,7 +47,7 @@ namespace Prism.Navigation
 
             var page = s_popupStack.Last();
 
-            EnsureParametersContainsMode( parameters ?? ( parameters = new NavigationParameters() ), NavigationMode.Back);
+            EnsureParametersContainsMode( parameters ?? ( parameters = PopupUtilities.CreateBackNavigationParameters() ), NavigationMode.Back);
 
             HandleINavigatedAware( page, parameters, navigatedTo: false );
             HandleIDestructiblePage( page );
@@ -77,7 +77,7 @@ namespace Prism.Navigation
                 
                 var currentPage = GetCurrentPage();
 
-                EnsureParametersContainsMode( parameters ?? ( parameters = new NavigationParameters() ), NavigationMode.New );
+                EnsureParametersContainsMode( parameters ?? ( parameters = PopupUtilities.CreateNewNavigationParameters() ), NavigationMode.New );
 
                 HandleINavigatingAware( page, parameters );
                 await s_popupNavigation.PushAsync( page, animated );
@@ -106,9 +106,12 @@ namespace Prism.Navigation
         private static void HandleINavigatedAware( Page page, NavigationParameters parameters, bool navigatedTo )
         {
             if( page == null ) return;
-            if(parameters == null) parameters = new NavigationParameters {
-                { KnownNavigationParameters.NavigationMode, navigatedTo ? NavigationMode.New : NavigationMode.Back }
-            };
+            if(parameters == null)
+            {
+                parameters = navigatedTo ? 
+                    PopupUtilities.CreateNewNavigationParameters() : 
+                    PopupUtilities.CreateBackNavigationParameters();
+            }
 
             PageUtilities.InvokeViewAndViewModelAction<INavigatedAware>(page, (view) => {
                 if(navigatedTo)
