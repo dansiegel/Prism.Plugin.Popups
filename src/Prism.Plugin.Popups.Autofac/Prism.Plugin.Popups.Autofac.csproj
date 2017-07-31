@@ -18,27 +18,4 @@
     </Compile>
   </ItemGroup>
 
-  <ItemGroup>
-    <Compile Update="..\Prism.Plugin.Popups.Shared\AssemblyInfo-Shared.cs">
-      <Link>AssemblyInfo-Shared.cs</Link>
-    </Compile>
-    <Compile Update="..\Prism.Plugin.Popups.Shared\BackgroundPopupDismissalBehavior.cs">
-      <Link>BackgroundPopupDismissalBehavior.cs</Link>
-    </Compile>
-    <Compile Update="..\Prism.Plugin.Popups.Shared\PopupExtensions.cs">
-      <Link>PopupExtensions.cs</Link>
-    </Compile>
-    <Compile Update="..\Prism.Plugin.Popups.Shared\PopupPageMissingException.cs">
-      <Link>PopupPageMissingException.cs</Link>
-    </Compile>
-    <Compile Update="..\Prism.Plugin.Popups.Shared\PopupPageNavigationServiceBase.cs">
-      <Link>PopupPageNavigationServiceBase.cs</Link>
-    </Compile>
-    <Compile Update="..\Prism.Plugin.Popups.Shared\PopupUtilities.cs">
-      <Link>PopupUtilities.cs</Link>
-    </Compile>
-    <Compile Update="..\Prism.Plugin.Popups.Shared\Extensions\PageExtensions.cs">
-      <Link>Extensions\PageExtensions.cs</Link>
-    </Compile>
-  </ItemGroup>
 </Project>
