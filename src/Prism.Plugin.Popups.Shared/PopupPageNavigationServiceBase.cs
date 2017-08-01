@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using System.Threading.Tasks;
 using Prism.Common;
 using Prism.Logging;
@@ -19,12 +20,55 @@ namespace Prism.Plugin.Popups
             _popupNavigation = popupNavigation;
         }
 
+        public override async Task<bool> GoBackAsync(NavigationParameters parameters = null, bool? useModalNavigation = default(bool?), bool animated = true)
+        {
+            try
+            {
+                NavigationSource = PageNavigationSource.NavigationService;
+
+                switch(PopupUtilities.TopPage(_popupNavigation, _applicationProvider))
+                {
+                    case PopupPage popupPage:
+                        var segmentParameters = UriParsingHelper.GetSegmentParameters(null, parameters);
+                        segmentParameters.Add(KnownNavigationParameters.NavigationMode, NavigationMode.Back);
+                        var previousPage = PopupUtilities.GetOnNavigatedToTarget(_popupNavigation, _applicationProvider);
+
+                        PageUtilities.OnNavigatingTo(previousPage, segmentParameters);
+                        await DoPop(popupPage.Navigation, false, animated);
+
+                        if(popupPage != null)
+                        {
+                            PageUtilities.InvokeViewAndViewModelAction<IActiveAware>(popupPage, a => a.IsActive = false);
+                            PageUtilities.OnNavigatedFrom(popupPage, segmentParameters);
+                            PageUtilities.OnNavigatedTo(previousPage, segmentParameters);
+                            PageUtilities.InvokeViewAndViewModelAction<IActiveAware>(previousPage, a => a.IsActive = true);
+                            PageUtilities.DestroyPage(popupPage);
+                            return true;
+                        }
+                        break;
+                    default:
+                        return await base.GoBackAsync(parameters, useModalNavigation, animated);
+                }
+            }
+            catch(Exception e)
+            {
+                _logger.Log(e.ToString(), Category.Exception, Priority.High);
+                return false;
+            }
+            finally
+            {
+                NavigationSource = PageNavigationSource.Device;
+            }
+
+            return false;
+        }
+
         protected override async Task<Page> DoPop(INavigation navigation, bool useModalNavigation, bool animated)
         {
             if(_popupNavigation.PopupStack.Count > 0)
             {
                 await _popupNavigation.PopAsync(animated);
-                return PopupUtilities.TopPage(_popupNavigation, _applicationProvider);
+                return null;
             }
 
             return await base.DoPop(navigation, useModalNavigation, animated);
@@ -52,6 +96,16 @@ namespace Prism.Plugin.Popups
                     base.ApplyPageBehaviors(page);
                     break;
             }
+        }
+
+        protected override Page GetCurrentPage()
+        {
+            if(_popupNavigation.PopupStack.Any())
+            {
+                return _popupNavigation.PopupStack.LastOrDefault();
+            }
+
+            return base.GetCurrentPage();
         }
     }
 }
