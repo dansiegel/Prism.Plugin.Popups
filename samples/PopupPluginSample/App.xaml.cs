@@ -33,7 +33,6 @@ namespace PopupPluginSample
 
         protected override void RegisterTypes()
         {
-            Container.RegisterInstance(PopupNavigation.Instance);
             Container.RegisterTypeForNavigation<MenuPage>();
             Container.RegisterTypeForNavigation<MainPage>();
             Container.RegisterTypeForNavigation<PopupView>();
