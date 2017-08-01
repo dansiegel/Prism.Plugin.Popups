@@ -33,7 +33,7 @@ namespace Prism.Plugin.Popups
                 page = applicationProvider.MainPage.Navigation.NavigationStack.LastOrDefault();
 
             if(page == null)
-                page = Application.Current.MainPage;
+                page = applicationProvider.MainPage;
 
             return page.GetDisplayedPage();
         }
