@@ -22,6 +22,9 @@ namespace PopupPluginSample
         {
         }
 
+        protected override ILoggerFacade CreateLogger() =>
+            new Logging.DebugLogger();
+
         protected override void OnInitialized()
         {
             InitializeComponent();
