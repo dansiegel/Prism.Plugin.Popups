@@ -8,7 +8,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Prism.Unity.Forms" Version="7.0.0.26-ci" />
+    <PackageReference Include="Prism.Unity.Forms" Version="7.0.0.30-ci" />
     <PackageReference Include="Rg.Plugins.Popup" Version="1.1.0-pre2" />
   </ItemGroup>
 

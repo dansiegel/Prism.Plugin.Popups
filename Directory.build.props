@@ -21,6 +21,8 @@ v2.0.0-pre2
 -Updates to Prism 7
 -Ensures that `IPopupNavigation` is registered when registering the PopupNavigationService
 -Various refractorings &amp; fixes to the PopupNavigationService
+-Fixes issue where the BindingContext would be null after calling GoBackAsync()
+-Requires NuGet source https://www.myget.org/F/prism/api/v3/index.json
 v2.0.0-pre1
 -Adds PopupPageNavigationService
 -Marks `PopupGoBackAsync` and `PushPopupAsync` extension methods as obsolete in favor of directly using the `INavigationService.GoBackAsync` &amp; `INavigationService.NavigateAsync` methods

@@ -3,21 +3,21 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.26430.16
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Prism.Plugin.Popups.Unity", "src\Prism.Plugin.Popups.Unity\Prism.Plugin.Popups.Unity.csproj", "{A04B12E0-7559-4683-ABB8-B84D15F5352F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Prism.Plugin.Popups.Unity", "src\Prism.Plugin.Popups.Unity\Prism.Plugin.Popups.Unity.csproj", "{A04B12E0-7559-4683-ABB8-B84D15F5352F}"
 EndProject
 Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Prism.Plugin.Popups.Shared", "src\Prism.Plugin.Popups.Shared\Prism.Plugin.Popups.Shared.shproj", "{7A133469-C47F-4EB1-A6B9-FF6E3474B2E4}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Prism.Plugin.Popups.Autofac", "src\Prism.Plugin.Popups.Autofac\Prism.Plugin.Popups.Autofac.csproj", "{9E12D69F-C10C-459B-B343-54CEEF4C2B74}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Prism.Plugin.Popups.Autofac", "src\Prism.Plugin.Popups.Autofac\Prism.Plugin.Popups.Autofac.csproj", "{9E12D69F-C10C-459B-B343-54CEEF4C2B74}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Prism.Plugin.Popups.Ninject", "src\Prism.Plugin.Popups.Ninject\Prism.Plugin.Popups.Ninject.csproj", "{321823D9-C437-449A-AAEF-034732CD4E62}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Prism.Plugin.Popups.Ninject", "src\Prism.Plugin.Popups.Ninject\Prism.Plugin.Popups.Ninject.csproj", "{321823D9-C437-449A-AAEF-034732CD4E62}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Prism.Plugin.Popups.DryIoc", "src\Prism.Plugin.Popups.DryIoc\Prism.Plugin.Popups.DryIoc.csproj", "{3FDA1E44-650F-497F-9A73-CC042D76C7B5}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Prism.Plugin.Popups.DryIoc", "src\Prism.Plugin.Popups.DryIoc\Prism.Plugin.Popups.DryIoc.csproj", "{3FDA1E44-650F-497F-9A73-CC042D76C7B5}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{91D9075B-51A0-461B-B197-2DB95A392BFF}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "sample", "sample", "{513D48FE-B45D-431E-90A4-D48991B229CF}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PopupPluginSample", "samples\PopupPluginSample\PopupPluginSample.csproj", "{07451EFF-A330-4D3B-9F25-28E4CBE6FED0}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PopupPluginSample", "samples\PopupPluginSample\PopupPluginSample.csproj", "{07451EFF-A330-4D3B-9F25-28E4CBE6FED0}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PopupPluginSample.iOS", "samples\PopupPluginSample.iOS\PopupPluginSample.iOS.csproj", "{D4355843-7329-48E0-B757-5A068F9BFAA5}"
 EndProject
