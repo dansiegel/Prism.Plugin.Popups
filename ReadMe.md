@@ -23,14 +23,18 @@ If this project helped you reduce time to develop and made your app better, plea
 
 Version 2.X deprecates the use of all but the `ClearPopupStackAsync` extension method. You can now register a `PopupNavigationService` which uses the base Prism PageNavigationService and adds support for Pushing and Popping PopupPage's. To use the `PopupNavigationService` see the registration example below for the DI container of your choice.
 
+Because 2.X simply uses INavigationService one of the benefits you will get is support for Deep Linking like shown here:
+
+```cs
+NavigationService.NavigateAsync("MainPage/PopupPageA/PopupPageB");
+```
+
 #### Autofac
 
 ```cs
 protected override void RegisterTypes()
 {
-    var builder = new ContainerBuilder();
-    builder.RegisterPopupNavigatioService();
-    builder.UpdateContainer( Container );
+    Builder.RegisterPopupNavigatioService();
 }
 ```
 
@@ -43,7 +47,7 @@ protected override void RegisterTypes()
 }
 ```
 
-It's worth noting that there is a generic overload for the registration method that accepts any type that inherits from `PopupPageNavigationServiceBase` in the event that you have custom logic you need to execute in the NavigationService.
+It's worth noting that there is a generic overload for the registration method that accepts any type that inherits from `PopupPageNavigationServiceBase` in the event that you have custom logic you need to execute in the NavigationService. The `RegisterPopupNavigationService` method will also register `IPopupNavigation` if it has not yet been registered.
 
 ### Version 1.X
 
@@ -97,4 +101,4 @@ public class MyPageViewModel : BindableBase
 [23]: https://img.shields.io/nuget/vpre/Prism.Plugin.Popups.Ninject.svg
 [24]: https://img.shields.io/nuget/vpre/Prism.Plugin.Popups.Unity.svg
 
-[buildStatus]: https://avantipoint.visualstudio.com/_apis/public/build/definitions/9ae3c52d-a8d5-4184-b4fe-94f6625d7f93/10/badge
+[buildStatus]: https://avantipoint.visualstudio.com/_apis/public/build/definitions/9ae3c52d-a8d5-4184-b4fe-94f6625d7f93/27/badge
