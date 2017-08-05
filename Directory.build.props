@@ -12,6 +12,8 @@
     <PackageOutputPath Condition=" '$(BUILD_BUILDNUMBER)' == '' ">$(MSBuildThisFileDirectory)Build</PackageOutputPath>
     <PackageOutputPath Condition=" '$(BUILD_BUILDNUMBER)' != '' ">$(BUILD_ARTIFACTSTAGINGDIRECTORY)</PackageOutputPath>
     <NeutralLanguage>en</NeutralLanguage>
+    <IncludeSymbols>True</IncludeSymbols>
+    <IncludeSource>True</IncludeSource>
     <LicenseUrl>https://github.com/dansiegel/Prism.Plugin.Popups/blob/master/LICENSE</LicenseUrl>
     <ProjectUrl>https://github.com/dansiegel/Prism.Plugin.Popups</ProjectUrl>
     <Tags>prism,popups,xamarin forms</Tags>
