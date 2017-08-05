@@ -4,12 +4,18 @@ The Popups plugin provides an extremely lightweight framework for implementing P
 
 ![Current Build][buildStatus]
 
-| Package | Version |
-| ------- | ------- |
-| [Prism.Plugin.Popups.Autofac][11] | [![21]][11] |
-| [Prism.Plugin.Popups.DryIoc][12] | [![22]][12] |
-| [Prism.Plugin.Popups.Ninject][13] | [![23]][13] |
-| [Prism.Plugin.Popups.Unity][14] | [![24]][14] |
+| Package | Version | MyGet |
+| ------- | ------- | ----- |
+| [Prism.Plugin.Popups.Autofac][AutofacNuGet] | [![AutofacNuGetShield]][AutofacNuGet] | [![AutofacMyGetShield]][AutofacMyGet] |
+| [Prism.Plugin.Popups.DryIoc][DryIocNuGet] | [![DryIocNuGetShield]][DryIocNuGet] | [![DryIocMyGetShield]][DryIocMyGet] |
+| [Prism.Plugin.Popups.Ninject][NinjectNuGet] | [![NinjectNuGetShield]][NinjectNuGet] | [![NinjectMyGetShield]][NinjectMyGet] |
+| [Prism.Plugin.Popups.Unity][UnityNuGet] | [![UnityNuGetShield]][UnityNuGet] | [![UnityMyGetShield]][UnityMyGet] |
+
+## Symbols
+
+Builds are now generated with a symbols package. This will allow users to better debug code when using our symbol server feed. Packages published to NuGet prior to (and including) 2.0.0-pre2 do not have symbols available. You can add the following Symbol Server for all Prism Plugins.
+
+[https://www.myget.org/F/prism-plugins/symbols/](https://www.myget.org/F/prism-plugins/symbols/)
 
 ## Support
 
@@ -87,18 +93,27 @@ public class MyPageViewModel : BindableBase
 }
 ```
 
-
 [1]: https://github.com/rotorgames/Rg.Plugins.Popup
 [2]: https://github.com/PrismLibrary/Prism
 
-[11]: https://www.nuget.org/packages/Prism.Plugin.Popups.Autofac
-[12]: https://www.nuget.org/packages/Prism.Plugin.Popups.DryIoc
-[13]: https://www.nuget.org/packages/Prism.Plugin.Popups.Ninject
-[14]: https://www.nuget.org/packages/Prism.Plugin.Popups.Unity
+[AutofacNuGet]: https://www.nuget.org/packages/Prism.Plugin.Popups.Autofac
+[DryIocNuGet]: https://www.nuget.org/packages/Prism.Plugin.Popups.DryIoc
+[NinjectNuGet]: https://www.nuget.org/packages/Prism.Plugin.Popups.Ninject
+[UnityNuGet]: https://www.nuget.org/packages/Prism.Plugin.Popups.Unity
 
-[21]: https://img.shields.io/nuget/vpre/Prism.Plugin.Popups.Autofac.svg
-[22]: https://img.shields.io/nuget/vpre/Prism.Plugin.Popups.DryIoc.svg
-[23]: https://img.shields.io/nuget/vpre/Prism.Plugin.Popups.Ninject.svg
-[24]: https://img.shields.io/nuget/vpre/Prism.Plugin.Popups.Unity.svg
+[AutofacNuGetShield]: https://img.shields.io/nuget/vpre/Prism.Plugin.Popups.Autofac.svg
+[DryIocNuGetShield]: https://img.shields.io/nuget/vpre/Prism.Plugin.Popups.DryIoc.svg
+[NinjectNuGetShield]: https://img.shields.io/nuget/vpre/Prism.Plugin.Popups.Ninject.svg
+[UnityNuGetShield]: https://img.shields.io/nuget/vpre/Prism.Plugin.Popups.Unity.svg
+
+[AutofacMyGet]: https://www.myget.org/feed/prism-plugins/package/nuget/Prism.Plugin.Popups.Autofac
+[DryIocMyGet]: https://www.myget.org/feed/prism-plugins/package/nuget/Prism.Plugin.Popups.DryIoc
+[NinjectMyGet]: https://www.myget.org/feed/prism-plugins/package/nuget/Prism.Plugin.Popups.Ninject
+[UnityMyGet]: https://www.myget.org/feed/prism-plugins/package/nuget/Prism.Plugin.Popups.Unity
+
+[AutofacMyGetShield]: https://img.shields.io/myget/prism-plugins/vpre/Prism.Plugin.Popups.Autofac.svg
+[DryIocMyGetShield]: https://img.shields.io/myget/prism-plugins/vpre/Prism.Plugin.Popups.DryIoc.svg
+[NinjectMyGetShield]: https://img.shields.io/myget/prism-plugins/vpre/Prism.Plugin.Popups.Ninject.svg
+[UnityMyGetShield]: https://img.shields.io/myget/prism-plugins/vpre/Prism.Plugin.Popups.Unity.svg
 
 [buildStatus]: https://avantipoint.visualstudio.com/_apis/public/build/definitions/9ae3c52d-a8d5-4184-b4fe-94f6625d7f93/27/badge
