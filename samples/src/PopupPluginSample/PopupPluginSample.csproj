@@ -15,7 +15,6 @@
     <PackageReference Include="Refractored.MvvmHelpers" Version="1.*" />
     <PackageReference Include="Xamarin.FFImageLoading.Forms" Version="2.*" />
     <PackageReference Include="Xamarin.FFImageLoading.Transformations" Version="2.*" />
-    <PackageReference Include="Mobile.BuildTools" Version="*" PrivateAssets="all" />
     <PackageReference Include="Prism.QuickStart.MFractor.Config" Version="*" PrivateAssets="all" />
   </ItemGroup>
 

@@ -8,8 +8,7 @@
     "PropertyChanged.Fody": "2.*",
     "Fody":"2.*",
     "Xamarin.FFImageLoading.Forms": "2.*",
-    "Xamarin.FFImageLoading.Transformations": "2.*",
-    "Mobile.BuildTools": "1.*"
+    "Xamarin.FFImageLoading.Transformations": "2.*"
   },
   "frameworks": {
     "uap10.0": {}
