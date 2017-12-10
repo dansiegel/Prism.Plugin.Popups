@@ -1,21 +1,14 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netstandard1.1</TargetFramework>
-    <PackageTargetFallback>$(PackageTargetFallback);portable-net45+win8+wpa81+wp8</PackageTargetFallback>
+    <TargetFrameworks>netstandard1.1;netstandard2.0</TargetFrameworks>
+    <AssetTargetFallback>$(AssetTargetFallback);portable-net45+win8+wpa81+wp8</AssetTargetFallback>
     <DebugType>full</DebugType>
     <Description>Prism Autofac Plugin for Xamarin Forms to provide Popup Navigation</Description>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Prism.Autofac.Forms" Version="7.0.0-pre1" />
-    <PackageReference Include="Rg.Plugins.Popup" Version="1.1.0-pre2" />
+    <PackageReference Include="Prism.Autofac.Forms" Version="7.0.0.336-pre" />
+    <ProjectReference Include="../Prism.Plugin.Popups/Prism.Plugin.Popups.csproj" />
   </ItemGroup>
-
-  <ItemGroup>
-    <Compile Include="../Prism.Plugin.Popups.Shared/**/*.cs">
-      <Link>%(RecursiveDir)%(Filename)%(Extension)</Link>
-    </Compile>
-  </ItemGroup>
-
 </Project>

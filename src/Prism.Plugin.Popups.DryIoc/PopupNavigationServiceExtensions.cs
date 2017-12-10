@@ -9,20 +9,19 @@ namespace Prism.DryIoc
 {
     public static class PopupNavigationServiceExtensions
     {
-        const string _navigationServiceName = "DryIocPageNavigationService";
-
         public static IContainer RegisterPopupNavigationService<TService>(this IContainer container)
-            where TService : PopupPageNavigationServiceBase
+            where TService : PopupPageNavigationService
         {
             container.Register<IPopupNavigation>(reuse: Reuse.Singleton,
                                                  made: Made.Of(() => PopupNavigation.Instance),
                                                  ifAlreadyRegistered: IfAlreadyRegistered.Keep);
 
-            container.Register<INavigationService, TService>(ifAlreadyRegistered: IfAlreadyRegistered.Replace, serviceKey: _navigationServiceName);
+            container.Register<INavigationService, TService>(ifAlreadyRegistered: IfAlreadyRegistered.Replace,
+                                                             serviceKey: PrismApplicationBase.NavigationServiceName);
             return container;
         }
 
         public static IContainer RegisterPopupNavigationService(this IContainer container) =>
-            container.RegisterPopupNavigationService<DryIocPopupPageNavigationService>();
+            container.RegisterPopupNavigationService<PopupPageNavigationService>();
     }
 }

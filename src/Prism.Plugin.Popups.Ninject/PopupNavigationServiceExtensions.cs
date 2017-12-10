@@ -11,9 +11,9 @@ namespace Prism.Ninject
         const string _navigationServiceName = "NinjectPageNavigationService";
 
         public static IKernel RegisterPopupNavigationService<TService>(this IKernel kernel)
-            where TService : PopupPageNavigationServiceBase
+            where TService : PopupPageNavigationService
         {
-            if(!kernel.CanResolve<IPopupNavigation>())
+            if (!kernel.CanResolve<IPopupNavigation>())
             {
                 kernel.Bind<IPopupNavigation>().ToConstant(PopupNavigation.Instance).InSingletonScope();
             }
@@ -23,6 +23,6 @@ namespace Prism.Ninject
         }
 
         public static IKernel RegisterPopupNavigationService(this IKernel kernel) =>
-            kernel.RegisterPopupNavigationService<NinjectPopupPageNavigationService>();
+            kernel.RegisterPopupNavigationService<PopupPageNavigationService>();
     }
 }

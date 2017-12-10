@@ -8,17 +8,15 @@ namespace Prism.Autofac
 {
     public static class PopupNavigationServiceExtensions
     {
-        const string _navigationServiceName = "AutofacPageNavigationService";
-
         public static ContainerBuilder RegisterPopupNavigationService<TService>(this ContainerBuilder builder)
-            where TService : PopupPageNavigationServiceBase
+            where TService : PopupPageNavigationService
         {
             builder.RegisterInstance(PopupNavigation.Instance).As<IPopupNavigation>().IfNotRegistered(typeof(IPopupNavigation));
-            builder.RegisterType<TService>().Named<INavigationService>(_navigationServiceName);
+            builder.RegisterType<TService>().Named<INavigationService>(PrismApplicationBase.NavigationServiceName);
             return builder;
         }
 
         public static ContainerBuilder RegisterPopupNavigationService(this ContainerBuilder builder) =>
-            builder.RegisterPopupNavigationService<AutofacPopupPageNavigationService>();
+            builder.RegisterPopupNavigationService<PopupPageNavigationService>();
     }
 }
