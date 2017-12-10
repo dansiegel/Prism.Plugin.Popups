@@ -1,0 +1,23 @@
+﻿{
+  "dependencies": {
+    "Xamarin.Android.Support.Design": "26.*",
+    "Xamarin.Android.Support.v4": "26.*",
+    "Xamarin.Android.Support.v7.AppCompat": "26.*",
+    "Xamarin.Android.Support.v7.CardView": "26.*",
+    "Xamarin.Android.Support.v7.MediaRouter": "26.*",
+    "Prism.DryIoc.Forms": "7.0.0.336-pre",
+    "Xamarin.Forms": "2.5.*",
+    "Prism.Forms.Extensions": "1.0.0-pre*",
+    "PropertyChanged.Fody": "2.*",
+    "Fody": "2.*",
+    "Xamarin.FFImageLoading.Forms": "2.*",
+    "Xamarin.FFImageLoading.Transformations": "2.*",
+    "Mobile.BuildTools": "1.*"
+  },
+  "frameworks": {
+    "MonoAndroid,Version=v8.0": {}
+  },
+  "runtimes": {
+    "win": {}
+  }
+}

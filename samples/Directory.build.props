@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Project>
+  <!-- Workaround -->
+  <Target Name="GetPackagingOutputs" />
+
+  <PropertyGroup>
+    <IsWindows Condition=" '$(OS)' == 'Windows_NT'">true</IsWindows>
+    <IsWindows Condition=" '$(IsWindows)' == '' ">false</IsWindows>
+    <IsUnix Condition=" '$(OS)' == 'Unix' ">true</IsUnix>
+    <IsUnix Condition=" '$(IsUnix)' == '' ">false</IsUnix>
+    <IsOSX>false</IsOSX>
+    <IsLinux>false</IsLinux>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <PowerShellExe Condition=" '$(PowerShellExe)'=='' And '$(IsWindows)' == 'true' ">powershell.exe</PowerShellExe>
+    <PowerShellExe Condition=" '$(PowerShellExe)'=='' And '$(IsUnix)' == 'true' ">\usr\local\bin\powershell</PowerShellExe>
+    <EnableDefaultItems Condition=" '$(EnableDefaultItems)' == '' ">true</EnableDefaultItems>
+    <EnableDefaultNoneItems Condition=" '$(EnableDefaultNoneItems)' == '' ">true</EnableDefaultNoneItems>
+    <EnableDefaultXamlItems Condition=" '$(EnableDefaultXamlItems)' == '' ">true</EnableDefaultXamlItems>
+    <EnableDefaultEmbeddedResourceItems Condition=" '$(EnableDefaultEmbeddedResourceItems)' == '' ">true</EnableDefaultEmbeddedResourceItems>
+  </PropertyGroup>
+
+  <!-- VS4Mac executes using the Mono Runtime & provides no way for us to know -->
+  <PropertyGroup Condition=" '$(MSBuildRuntimeType)' == 'Mono' ">
+    <IsOSX>Unknown</IsOSX>
+    <IsLinux>Unknown</IsLinux>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(MSBuildRuntimeType)' == 'Core'">
+    <IsOSX Condition="'$([System.Runtime.InteropServices.RuntimeInformation]::IsOSPlatform($([System.Runtime.InteropServices.OSPlatform]::OSX)))' == 'true'">true</IsOSX>
+    <IsLinux Condition="'$([System.Runtime.InteropServices.RuntimeInformation]::IsOSPlatform($([System.Runtime.InteropServices.OSPlatform]::Linux)))' == 'true'">true</IsLinux>
+  </PropertyGroup>
+
+  <PropertyGroup Condition=" '$(Configuration)' == 'Mock' ">
+    <DefineConstants>$(DefineConstants);DEBUG</DefineConstants>
+  </PropertyGroup>
+
+
+</Project>

@@ -1,0 +1,33 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <AssetTargetFallback>$(PackageTargetFallback);portable-net45+win8+wpa81+wp8</AssetTargetFallback>
+    <DebugType>full</DebugType>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Fody" Version="*" PrivateAssets="all" />
+    <PackageReference Include="PropertyChanged.Fody" Version="*" PrivateAssets="all" />
+    <PackageReference Include="Prism.Forms.Extensions" Version="1.0.0-pre*" />
+    <PackageReference Include="Prism.DryIoc.Forms" Version="7.0.0.336-pre" />
+    <PackageReference Include="Xamarin.Forms" Version="2.5.*" />
+    <PackageReference Include="Refractored.MvvmHelpers" Version="1.*" />
+    <PackageReference Include="Xamarin.FFImageLoading.Forms" Version="2.*" />
+    <PackageReference Include="Xamarin.FFImageLoading.Transformations" Version="2.*" />
+    <PackageReference Include="Mobile.BuildTools" Version="*" PrivateAssets="all" />
+    <PackageReference Include="Prism.QuickStart.MFractor.Config" Version="*" PrivateAssets="all" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="Strings\*.resx" Generator="ResXFileCodeGenerator" LastGenOutput="%(Filename).Designer.cs" />
+    <Compile Update="Strings\Resources.Designer.cs" DesignTime="true" AutoGen="true" DependentUpon="Resources.resx" />
+    <EmbeddedResource Condition=" '$(EnableDefaultEmbeddedResourceItems)' == 'true' " Update="Strings\Resources.resx">
+      <LastGenOutput>Strings\Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\src\Prism.Plugin.Popups\Prism.Plugin.Popups.csproj" />
+  </ItemGroup>
+</Project>

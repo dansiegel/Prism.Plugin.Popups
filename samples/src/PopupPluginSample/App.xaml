@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<prism:PrismApplication xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:prism="clr-namespace:Prism.DryIoc;assembly=Prism.DryIoc.Forms"
+             xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+             xmlns:android="clr-namespace:Xamarin.Forms.PlatformConfiguration.AndroidSpecific;assembly=Xamarin.Forms.Core"
+             xmlns:windows="clr-namespace:Xamarin.Forms.PlatformConfiguration.WindowsSpecific;assembly=Xamarin.Forms.Core"
+             x:Class="PopupPluginSample.App">
+    <prism:PrismApplication.Resources>
+        <!-- Application resource dictionary -->
+        <ResourceDictionary>
+            <!-- See https://material.io/color for more help choosing a Material Design Color scheme -->
+            <Color x:Key="Primary">#78909c</Color>
+            <Color x:Key="PrimaryDark">#4b636e</Color>
+            <Color x:Key="PrimaryDarkTranslucent">#9926213C</Color>
+            <Color x:Key="Accent">#a7c0cd</Color>
+            <Color x:Key="NavigationText">White</Color>
+            <Color x:Key="LabelSectionText">#6D6D72</Color>
+            <Color x:Key="DetailTextColor">#979797</Color>
+
+            <Style TargetType="NavigationPage" ApplyToDerivedTypes="true">
+                <Setter Property="BarTextColor" Value="{StaticResource NavigationText}" />
+                <Setter Property="BarBackgroundColor" Value="{StaticResource PrimaryDark}" />
+            </Style>
+
+            <Style TargetType="TabbedPage" ApplyToDerivedTypes="true">
+                <Setter Property="BarTextColor" Value="{StaticResource NavigationText}" />
+                <Setter Property="BarBackgroundColor" Value="{StaticResource PrimaryDark}" />
+            </Style>
+        </ResourceDictionary>
+    </prism:PrismApplication.Resources>
+</prism:PrismApplication>
