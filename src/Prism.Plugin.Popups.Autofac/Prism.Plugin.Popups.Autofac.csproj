@@ -1,10 +1,11 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
+    <Title>$(PackageId) (DEPRECATED)</Title>
     <TargetFrameworks>netstandard1.1;netstandard2.0</TargetFrameworks>
     <AssetTargetFallback>$(AssetTargetFallback);portable-net45+win8+wpa81+wp8</AssetTargetFallback>
     <DebugType>full</DebugType>
-    <Description>Prism Autofac Plugin for Xamarin Forms to provide Popup Navigation</Description>
+    <Description>[DEPRECATED] Please use Prism.Plugin.Popups instead. Prism Autofac Plugin for Xamarin Forms to provide Popup Navigation</Description>
   </PropertyGroup>
 
   <ItemGroup>
