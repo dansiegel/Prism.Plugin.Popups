@@ -3,7 +3,6 @@
   <PropertyGroup>
     <Title>$(PackageId) (DEPRECATED)</Title>
     <TargetFramework>netstandard2.0</TargetFramework>
-    <AssetTargetFallback>$(AssetTargetFallback);portable-net45+win8+wpa81+wp8</AssetTargetFallback>
     <DebugType>full</DebugType>
     <Description>[DEPRECATED] Please use Prism.Plugin.Popups instead. Prism Ninject Plugin for Xamarin Forms to provide Popup Navigation</Description>
   </PropertyGroup>
