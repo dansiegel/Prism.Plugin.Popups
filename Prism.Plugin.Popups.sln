@@ -1,11 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.27004.2010
+VisualStudioVersion = 15.0.27130.2010
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Prism.Plugin.Popups.Unity", "src\Prism.Plugin.Popups.Unity\Prism.Plugin.Popups.Unity.csproj", "{A04B12E0-7559-4683-ABB8-B84D15F5352F}"
-EndProject
-Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Prism.Plugin.Popups.Shared", "src\Prism.Plugin.Popups.Shared\Prism.Plugin.Popups.Shared.shproj", "{7A133469-C47F-4EB1-A6B9-FF6E3474B2E4}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Prism.Plugin.Popups.Autofac", "src\Prism.Plugin.Popups.Autofac\Prism.Plugin.Popups.Autofac.csproj", "{9E12D69F-C10C-459B-B343-54CEEF4C2B74}"
 EndProject
@@ -35,7 +33,6 @@ Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
 		src\Prism.Plugin.Popups.Shared\Prism.Plugin.Popups.Shared.projitems*{321823d9-c437-449a-aaef-034732cd4e62}*SharedItemsImports = 4
 		src\Prism.Plugin.Popups.Shared\Prism.Plugin.Popups.Shared.projitems*{3fda1e44-650f-497f-9a73-cc042d76c7b5}*SharedItemsImports = 4
-		src\Prism.Plugin.Popups.Shared\Prism.Plugin.Popups.Shared.projitems*{7a133469-c47f-4eb1-a6b9-ff6e3474b2e4}*SharedItemsImports = 13
 		src\Prism.Plugin.Popups.Shared\Prism.Plugin.Popups.Shared.projitems*{9e12d69f-c10c-459b-b343-54ceef4c2b74}*SharedItemsImports = 4
 		src\Prism.Plugin.Popups.Shared\Prism.Plugin.Popups.Shared.projitems*{a04b12e0-7559-4683-abb8-b84d15f5352f}*SharedItemsImports = 4
 	EndGlobalSection
@@ -305,7 +302,6 @@ Global
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{A04B12E0-7559-4683-ABB8-B84D15F5352F} = {91D9075B-51A0-461B-B197-2DB95A392BFF}
-		{7A133469-C47F-4EB1-A6B9-FF6E3474B2E4} = {91D9075B-51A0-461B-B197-2DB95A392BFF}
 		{9E12D69F-C10C-459B-B343-54CEEF4C2B74} = {91D9075B-51A0-461B-B197-2DB95A392BFF}
 		{321823D9-C437-449A-AAEF-034732CD4E62} = {91D9075B-51A0-461B-B197-2DB95A392BFF}
 		{3FDA1E44-650F-497F-9A73-CC042D76C7B5} = {91D9075B-51A0-461B-B197-2DB95A392BFF}
