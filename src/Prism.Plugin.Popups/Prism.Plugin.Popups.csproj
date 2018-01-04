@@ -6,8 +6,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Rg.Plugins.Popup" Version="1.1.0-pre8" />
     <PackageReference Include="Prism.Forms" Version="7.0.0.336-pre" />
+    <PackageReference Include="Rg.Plugins.Popup" Version="1.1.3.73-pre" />
   </ItemGroup>
 
 </Project>
