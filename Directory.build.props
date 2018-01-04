@@ -7,7 +7,7 @@
     <VersionPrefix Condition=" '$(BUILD_BUILDNUMBER)' == '' Or '$(RELEASEBUILD)' == 'True' ">2.0.0</VersionPrefix>
     <VersionSuffix Condition=" '$(BUILD_BUILDNUMBER)' != '' ">CI$(BUILD_BUILDNUMBER)</VersionSuffix>
     <VersionSuffix Condition=" '$(PREVIEW_NUMBER)' != '' ">pre$(PREVIEW_NUMBER)</VersionSuffix>
-    <VersionSuffix Condition=" '$(VersionSuffix)' == '' ">pre3</VersionSuffix>
+    <VersionSuffix Condition=" '$(VersionSuffix)' == '' ">pre4</VersionSuffix>
     <PackageOutputPath Condition=" '$(BUILD_BUILDNUMBER)' == '' ">$(MSBuildThisFileDirectory)Build</PackageOutputPath>
     <PackageOutputPath Condition=" '$(BUILD_BUILDNUMBER)' != '' ">$(BUILD_ARTIFACTSTAGINGDIRECTORY)</PackageOutputPath>
     <NeutralLanguage>en</NeutralLanguage>
@@ -17,6 +17,10 @@
     <ProjectUrl>https://github.com/dansiegel/Prism.Plugin.Popups</ProjectUrl>
     <Tags>prism,popups,xamarin forms</Tags>
     <ReleaseNotes>
+v2.0.0-pre4
+- Targets Prism 7.0.0-pre5 with IOC abstraction
+- Deprecates Container Specific pacakges
+- Updates to NetStandard version of Rg.Plugins.Popup (1.1.3.73-pre)
 v2.0.0-pre3
 -Targets Prism 7.0.0-pre1
 v2.0.0-pre2
