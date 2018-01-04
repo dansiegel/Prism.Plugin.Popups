@@ -8,7 +8,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Prism.Unity.Forms" Version="7.0.0.336-pre" />
+    <PackageReference Include="Prism.Unity.Forms" Version="7.0.0.344-ci" />
     <ProjectReference Include="../Prism.Plugin.Popups/Prism.Plugin.Popups.csproj" />
   </ItemGroup>
 </Project>
