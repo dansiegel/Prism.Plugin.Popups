@@ -14,9 +14,14 @@
                 <BoxView Color="Navy"
                          HorizontalOptions="FillAndExpand"
                          VerticalOptions="FillAndExpand" />
-                <Label Text="A Menu" TextColor="White" />
+                <Label Text="A Menu" 
+                       TextColor="White"
+                       HorizontalOptions="CenterAndExpand"
+                       VerticalOptions="CenterAndExpand"
+                       Grid.Row="0" />
 
-                <StackLayout Padding="40">
+                <StackLayout Padding="40"
+                             Grid.Row="1">
                     <Label Text="You might have menu options here" Grid.Row="1" />
                     <Button Text="Back to Menu" 
                             Command="{Binding NavigateCommand}"
