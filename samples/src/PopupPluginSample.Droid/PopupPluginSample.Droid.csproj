@@ -1,9 +1,9 @@
-<?xml version="1.0" encoding="utf-8"?>
-    <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
-        <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-        <ProductVersion>8.0.30703</ProductVersion>
+    <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{596F0CCC-53CF-42B0-B56A-7B902C38BB0F}</ProjectGuid>
     <ProjectTypeGuids>{EFBA0AD7-5A72-4C68-AF49-83D382785DCF};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -102,6 +102,10 @@
     <AndroidResource Include="Resources\values\strings.xml" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\..\src\Prism.Plugin.Popups\Prism.Plugin.Popups.csproj">
+      <Project>{997811d1-08f5-4688-88b2-a93e6bf5aa1e}</Project>
+      <Name>Prism.Plugin.Popups</Name>
+    </ProjectReference>
     <ProjectReference Include="..\PopupPluginSample\PopupPluginSample.csproj">
       <Name>PopupPluginSample</Name>
       <Project>{C3C45AC1-0BE6-4387-9E61-5E49BBA01E1A}</Project>
