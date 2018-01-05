@@ -87,7 +87,7 @@ namespace PopupPluginSample
         {
             TaskScheduler.UnobservedTaskException += (sender, e) =>
             {
-                Container.Resolve<ILoggerFacade>().Log(e.Exception);
+                Container.Resolve<ILoggerFacade>().Log($"{e.Exception}", Category.Exception, Priority.None);
             };
         }
     }
