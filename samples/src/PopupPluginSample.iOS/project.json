@@ -1,12 +1,11 @@
 ﻿{
   "dependencies": {
-    "Fody": "2.3.15",
-    "Prism.DryIoc.Forms": "7.0.0.344-ci",
-    "PropertyChanged.Fody": "2.2.4",
-    "Rg.Plugins.Popup": "1.1.3.73-pre",
-    "Xamarin.FFImageLoading.Forms": "2.3.3",
-    "Xamarin.FFImageLoading.Transformations": "2.3.3",
-    "Xamarin.Forms": "2.5.0.121934"
+    "Prism.DryIoc.Forms": "7.0.0.396",
+    "PropertyChanged.Fody": "2.2.5",
+    "Rg.Plugins.Popup": "1.1.4.145-pre",
+    "Xamarin.FFImageLoading.Forms": "2.3.4",
+    "Xamarin.FFImageLoading.Transformations": "2.3.4",
+    "Xamarin.Forms": "2.5.0.122203"
   },
   "frameworks": {
     "Xamarin.iOS,Version=v1.0": {}
