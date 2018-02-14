@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.27130.2010
+VisualStudioVersion = 15.0.27130.2027
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Prism.Plugin.Popups.Unity", "src\Prism.Plugin.Popups.Unity\Prism.Plugin.Popups.Unity.csproj", "{A04B12E0-7559-4683-ABB8-B84D15F5352F}"
 EndProject
@@ -229,7 +229,6 @@ Global
 		{C3C45AC1-0BE6-4387-9E61-5E49BBA01E1A}.Mock|iPhoneSimulator.ActiveCfg = Release|Any CPU
 		{C3C45AC1-0BE6-4387-9E61-5E49BBA01E1A}.Mock|iPhoneSimulator.Build.0 = Release|Any CPU
 		{C3C45AC1-0BE6-4387-9E61-5E49BBA01E1A}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C3C45AC1-0BE6-4387-9E61-5E49BBA01E1A}.Release|Any CPU.Build.0 = Release|Any CPU
 		{C3C45AC1-0BE6-4387-9E61-5E49BBA01E1A}.Release|iPhone.ActiveCfg = Release|Any CPU
 		{C3C45AC1-0BE6-4387-9E61-5E49BBA01E1A}.Release|iPhone.Build.0 = Release|Any CPU
 		{C3C45AC1-0BE6-4387-9E61-5E49BBA01E1A}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
@@ -263,7 +262,6 @@ Global
 		{596F0CCC-53CF-42B0-B56A-7B902C38BB0F}.Mock|iPhoneSimulator.ActiveCfg = Mock|Any CPU
 		{596F0CCC-53CF-42B0-B56A-7B902C38BB0F}.Mock|iPhoneSimulator.Build.0 = Mock|Any CPU
 		{596F0CCC-53CF-42B0-B56A-7B902C38BB0F}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{596F0CCC-53CF-42B0-B56A-7B902C38BB0F}.Release|Any CPU.Build.0 = Release|Any CPU
 		{596F0CCC-53CF-42B0-B56A-7B902C38BB0F}.Release|iPhone.ActiveCfg = Release|Any CPU
 		{596F0CCC-53CF-42B0-B56A-7B902C38BB0F}.Release|iPhone.Build.0 = Release|Any CPU
 		{596F0CCC-53CF-42B0-B56A-7B902C38BB0F}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
@@ -291,7 +289,6 @@ Global
 		{0675FAF6-30EC-4565-B591-A9ECA3C1B22A}.Mock|iPhoneSimulator.ActiveCfg = Mock|iPhoneSimulator
 		{0675FAF6-30EC-4565-B591-A9ECA3C1B22A}.Mock|iPhoneSimulator.Build.0 = Mock|iPhoneSimulator
 		{0675FAF6-30EC-4565-B591-A9ECA3C1B22A}.Release|Any CPU.ActiveCfg = Release|iPhoneSimulator
-		{0675FAF6-30EC-4565-B591-A9ECA3C1B22A}.Release|Any CPU.Build.0 = Release|iPhoneSimulator
 		{0675FAF6-30EC-4565-B591-A9ECA3C1B22A}.Release|iPhone.ActiveCfg = Release|iPhone
 		{0675FAF6-30EC-4565-B591-A9ECA3C1B22A}.Release|iPhone.Build.0 = Release|iPhone
 		{0675FAF6-30EC-4565-B591-A9ECA3C1B22A}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
