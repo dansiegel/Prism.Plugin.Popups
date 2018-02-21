@@ -1,6 +1,6 @@
 ﻿{
   "dependencies": {
-    "Prism.DryIoc.Forms": "7.0.0.396",
+    "Prism.DryIoc.Forms": "7.0.0.423-ci",
     "PropertyChanged.Fody": "2.2.5",
     "Rg.Plugins.Popup": "1.1.4.145-pre",
     "Xamarin.FFImageLoading.Forms": "2.3.4",

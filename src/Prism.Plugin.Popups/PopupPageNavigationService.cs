@@ -14,7 +14,10 @@ namespace Prism.Plugin.Popups
 {
     public class PopupPageNavigationService : PageNavigationService
     {
-        protected IPopupNavigation _popupNavigation { get; }
+        protected IPopupNavigation _popupNavigation
+        {
+            get;
+        }
 
         public PopupPageNavigationService(IPopupNavigation popupNavigation, IContainerExtension container,
                                           IApplicationProvider applicationProvider, IPageBehaviorFactory pageBehaviorFactor,
@@ -24,7 +27,7 @@ namespace Prism.Plugin.Popups
             _popupNavigation = popupNavigation;
         }
 
-        public override async Task<bool> GoBackAsync(NavigationParameters parameters)
+        public override async Task<INavigationResult> GoBackAsync(INavigationParameters parameters)
         {
             try
             {
@@ -47,7 +50,7 @@ namespace Prism.Plugin.Popups
                             PageUtilities.OnNavigatedTo(previousPage, segmentParameters);
                             PageUtilities.InvokeViewAndViewModelAction<IActiveAware>(previousPage, a => a.IsActive = true);
                             PageUtilities.DestroyPage(popupPage);
-                            return true;
+                            return new NavigationResult() { Success = true };
                         }
                         break;
                     default:
@@ -57,14 +60,14 @@ namespace Prism.Plugin.Popups
             catch (Exception e)
             {
                 _logger.Log(e.ToString(), Category.Exception, Priority.High);
-                return false;
+                return new NavigationResult() { Success = false, Exception = e };
             }
             finally
             {
                 NavigationSource = PageNavigationSource.Device;
             }
 
-            return false;
+            return new NavigationResult() { Success = false };
         }
 
         protected override async Task<Page> DoPop(INavigation navigation, bool useModalNavigation, bool animated)
