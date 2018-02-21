@@ -31,14 +31,14 @@ namespace PopupPluginSample.ViewModels
 
         public DelegateCommand GoBackCommand { get; }
 
-        public void OnNavigatedFrom(NavigationParameters parameters)
+        public void OnNavigatedFrom(INavigationParameters parameters)
         {
             parameters.Add("message", $"Hello from {GetType().Name}");
             WriteLine($"{Title} OnNavigatedFrom");
             WriteLine($"Parameters: {parameters.GetValue<string>("message")}");
         }
 
-        public void OnNavigatedTo(NavigationParameters parameters)
+        public void OnNavigatedTo(INavigationParameters parameters)
         {
             WriteLine($"{Title} OnNavigatedTo");
             Message = parameters.GetValue<string>("message");
@@ -47,7 +47,7 @@ namespace PopupPluginSample.ViewModels
             WriteLine($"NavigationService Page: {(_navigationService as IPageAware).Page.GetType().Name}");
         }
 
-        public void OnNavigatingTo(NavigationParameters parameters)
+        public void OnNavigatingTo(INavigationParameters parameters)
         {
             WriteLine($"{Title} OnNavigatingTo");
             Message = parameters.GetValue<string>("message");
