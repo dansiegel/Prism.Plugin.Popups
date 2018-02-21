@@ -12,10 +12,10 @@ build:
   project: '%path_to_sln%'
   verbosity: minimal
 after_build:
-- cmd: msbuild Prism.Plugin.Popups/Prism.Plugin.Popups.csproj /t:Pack /p:PackageVersion=%GitVersion_FullSemVer%
-- cmd: msbuild Prism.Plugin.Popups.Autofac/Prism.Plugin.Popups.Autofac.csproj /t:Pack /p:PackageVersion=%GitVersion_FullSemVer%
-- cmd: msbuild Prism.Plugin.Popups.DryIoc/Prism.Plugin.Popups.DryIoc.csproj /t:Pack /p:PackageVersion=%GitVersion_FullSemVer%
-- cmd: msbuild Prism.Plugin.Popups.Ninject/Prism.Plugin.Popups.Ninject.csproj /t:Pack /p:PackageVersion=%GitVersion_FullSemVer%
-- cmd: msbuild Prism.Plugin.Popups.Unity/Prism.Plugin.Popups.Unity.csproj /t:Pack /p:PackageVersion=%GitVersion_FullSemVer%
+- cmd: msbuild src/Prism.Plugin.Popups/Prism.Plugin.Popups.csproj /t:Pack /p:PackageVersion=%GitVersion_FullSemVer%
+- cmd: msbuild src/Prism.Plugin.Popups.Autofac/Prism.Plugin.Popups.Autofac.csproj /t:Pack /p:PackageVersion=%GitVersion_FullSemVer%
+- cmd: msbuild src/Prism.Plugin.Popups.DryIoc/Prism.Plugin.Popups.DryIoc.csproj /t:Pack /p:PackageVersion=%GitVersion_FullSemVer%
+- cmd: msbuild src/.Plugin.Popups.Ninject/Prism.Plugin.Popups.Ninject.csproj /t:Pack /p:PackageVersion=%GitVersion_FullSemVer%
+- cmd: msbuild src/Prism.Plugin.Popups.Unity/Prism.Plugin.Popups.Unity.csproj /t:Pack /p:PackageVersion=%GitVersion_FullSemVer%
 artifacts:
 - path: '**/Prism.Plugin.Popups.*.nupkg'
