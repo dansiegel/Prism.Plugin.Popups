@@ -17,7 +17,6 @@ namespace PopupPluginSample.Droid
               Icon = "@mipmap/ic_launcher",
               Theme = "@style/SplashTheme",
               MainLauncher = true)]
-    //[MetaData ("android.app.shortcuts", Resource ="@xml/shortcuts")]
     public class SplashActivity : AppCompatActivity
     {
         protected override void OnCreate(Bundle savedInstanceState)

@@ -3,11 +3,11 @@
 <plist version="1.0">
 <dict>
     <key>CFBundleDisplayName</key>
-    <string>PopupPluginSample</string>
+    <string>Popup Sample</string>
     <key>CFBundleName</key>
-    <string>PopupPluginSample</string>
+    <string>Popup Sample</string>
     <key>CFBundleIdentifier</key>
-    <string>com.prismplugin.popup</string>
+    <string>com.prismlib.popups</string>
     <key>CFBundleShortVersionString</key>
     <string>1.0</string>
     <key>CFBundleVersion</key>

@@ -3,8 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using Prism;
 using Prism.Ioc;
-using DryIoc;
-using Prism.DryIoc;
 
 namespace PopupPluginSample.iOS
 {

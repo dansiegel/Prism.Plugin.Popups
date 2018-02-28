@@ -1,19 +1,24 @@
-﻿using System;
-using System.Threading.Tasks;
-using PopupPluginSample.Services;
+﻿using System.Threading.Tasks;
 using PopupPluginSample.Views;
 using Prism;
 using Prism.Ioc;
+#if AUTOFAC
+using Autofac;
+using Prism.Autofac;
+#elif DRYIOC
 using DryIoc;
 using Prism.DryIoc;
+#elif UNITY
+using Unity;
+using Prism.Unity;
+#endif
 using Prism.Logging;
 using Xamarin.Forms;
 using Prism.Plugin.Popups;
-using DebugLogger = PopupPluginSample.Services.DebugLogger;
 
 namespace PopupPluginSample
 {
-    public partial class App : PrismApplication
+    public class App : PrismApplication
     {
         /* 
          * NOTE: 
@@ -33,7 +38,7 @@ namespace PopupPluginSample
 
         protected override async void OnInitialized()
         {
-            InitializeComponent();
+            //InitializeComponent();
             LogUnobservedTaskExceptions();
 
             await NavigationService.NavigateAsync("MenuPage");
@@ -42,13 +47,13 @@ namespace PopupPluginSample
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
         {
             containerRegistry.RegisterPopupNavigationService();
-            containerRegistry.RegisterInstance(CreateLogger());
+            //containerRegistry.GetContainer().Unregister<INavigationService>(NavigationServiceName);
+            //containerRegistry.RegisterInstance(Rg.Plugins.Popup.Services.PopupNavigation.Instance);
+            //containerRegistry.GetContainer().Register<INavigationService, PopupPageNavigationService>(reuse: Reuse.Transient,
+            //                                                                                          //ifAlreadyRegistered: IfAlreadyRegistered.Replace,
+            //                                                                                          serviceKey: NavigationServiceName);
 
 
-
-            // Navigating to "TabbedPage?createTab=ViewA&createTab=ViewB&createTab=ViewC will generate a TabbedPage
-            // with three tabs for ViewA, ViewB, & ViewC
-            // Adding `selectedTab=ViewB` will set the current tab to ViewB
             containerRegistry.RegisterForNavigation<TabbedPage>();
             containerRegistry.RegisterForNavigation<NavigationPage>();
             containerRegistry.RegisterForNavigation<MainPage>();
@@ -79,9 +84,6 @@ namespace PopupPluginSample
 
             // Handle when your app resumes
         }
-
-        private ILoggerFacade CreateLogger() =>
-            new DebugLogger();
 
         private void LogUnobservedTaskExceptions()
         {

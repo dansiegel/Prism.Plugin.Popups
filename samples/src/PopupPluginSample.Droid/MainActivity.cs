@@ -6,7 +6,6 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using Android.OS;
-using PopupPluginSample.Helpers;
 using Xamarin.Forms.Platform.Android;
 
 namespace PopupPluginSample.Droid
@@ -24,13 +23,9 @@ namespace PopupPluginSample.Droid
 
             base.OnCreate(savedInstanceState);
 
-            global::Rg.Plugins.Popup.Popup.Init(this, savedInstanceState);
+            global::Rg.Plugins.Popup.Popup.Init(this, bundle);
+            global::Xamarin.Forms.Forms.SetFlags("FastRenderers_Experimental");
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
-            global::FFImageLoading.Forms.Droid.CachedImageRenderer.Init(true);
-            global::FFImageLoading.ImageService.Instance.Initialize(new FFImageLoading.Config.Configuration()
-            {
-                Logger = new Services.DebugLogger()
-            });
 
             LoadApplication(new App(new AndroidInitializer()));
         }

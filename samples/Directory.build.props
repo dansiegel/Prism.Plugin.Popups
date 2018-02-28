@@ -4,6 +4,11 @@
   <Target Name="GetPackagingOutputs" />
 
   <PropertyGroup>
+    <Configurations>Debug;Release;Autofac;DryIoc;Unity</Configurations>
+    <DIContainer>$(Configuration)</DIContainer>
+    <DIContainer Condition=" '$(Configuration)' == 'Debug' Or '$(Configuration)' == 'Release' ">DryIoc</DIContainer>
+    <DefineConstants Condition=" '$(Configuration)' != 'Debug' And '$(Configuration)' != 'Release' ">$(DefineConstants);DEBUG;</DefineConstants>
+    <DefineConstants Condition=" '$(Configuration)' == 'Debug' Or '$(Configuration)' == 'Release' ">$(DefineConstants);$(DIContainer.ToUpper());</DefineConstants>
     <IsWindows Condition=" '$(OS)' == 'Windows_NT'">true</IsWindows>
     <IsWindows Condition=" '$(IsWindows)' == '' ">false</IsWindows>
     <IsUnix Condition=" '$(OS)' == 'Unix' ">true</IsUnix>

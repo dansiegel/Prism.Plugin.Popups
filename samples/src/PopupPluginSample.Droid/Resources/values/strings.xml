@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8" ?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 <resources>
-    <string name="ApplicationName">PopupPluginSample</string>
+	<string name="ApplicationName">Popup Plugin Sample</string>
 </resources>

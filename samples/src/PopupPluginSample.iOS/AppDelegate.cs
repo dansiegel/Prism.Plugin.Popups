@@ -14,11 +14,6 @@ namespace PopupPluginSample.iOS
         {
             global::Rg.Plugins.Popup.Popup.Init();
             global::Xamarin.Forms.Forms.Init();
-            global::FFImageLoading.Forms.Touch.CachedImageRenderer.Init();
-            global::FFImageLoading.ImageService.Instance.Initialize(new FFImageLoading.Config.Configuration()
-            {
-                Logger = new Services.DebugLogger()
-            });
 
             LoadApplication(new App(new iOSInitializer()));
 
