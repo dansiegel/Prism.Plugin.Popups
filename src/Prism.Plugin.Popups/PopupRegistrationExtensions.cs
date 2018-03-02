@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Reflection;
 using Prism.Ioc;
 using Prism.Navigation;
 using Rg.Plugins.Popup.Contracts;
@@ -12,11 +13,19 @@ namespace Prism.Plugin.Popups
             where TService : PopupPageNavigationService
         {
             containerRegistry.RegisterInstance<IPopupNavigation>(PopupNavigation.Instance);
-
             containerRegistry.Register<INavigationService, TService>(PrismApplicationBase.NavigationServiceName);
+            if (IsDryIocContainer(containerRegistry))
+                containerRegistry.Register<INavigationService, TService>();
         }
 
         public static void RegisterPopupNavigationService(this IContainerRegistry containerRegistry) =>
             containerRegistry.RegisterPopupNavigationService<PopupPageNavigationService>();
+
+        public static bool IsDryIocContainer(IContainerRegistry containerRegistry)
+        {
+            var regType = containerRegistry.GetType();
+            var propInfo = regType.GetRuntimeProperty("Instance");
+            return propInfo?.PropertyType.FullName.Equals("DryIoc.IContainer", StringComparison.InvariantCultureIgnoreCase) ?? false;
+        }
     }
 }
