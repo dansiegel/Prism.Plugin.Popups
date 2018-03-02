@@ -27,15 +27,19 @@ namespace Prism.Navigation
 
         static IReadOnlyList<PopupPage> s_popupStack => s_popupNavigation.PopupStack;
 
-        public static Task ClearPopupStackAsync(this INavigationService navigationService, string key, object param, bool animated = true) =>
+        public static Task<INavigationResult> ClearPopupStackAsync(this INavigationService navigationService, string key, object param, bool animated = true) =>
             navigationService.ClearPopupStackAsync(GetNavigationParameters(key, param, NavigationMode.Back), animated);
 
-        public static async Task ClearPopupStackAsync(this INavigationService navigationService, NavigationParameters parameters = null, bool animated = true)
+        public static async Task<INavigationResult> ClearPopupStackAsync(this INavigationService navigationService, INavigationParameters parameters = null, bool animated = true)
         {
             while (s_popupStack.Count > 0)
             {
-                await navigationService.GoBackAsync(parameters, animated: animated);
+                var result = await navigationService.GoBackAsync(parameters, animated: animated);
+                if (result.Exception != null)
+                    return result;
             }
+
+            return new NavigationResult { Success = true };
         }
 
         //[Obsolete("This method is being deprecated in favor of Registering the PopupNavigationService and using INavigationService.GoBackAsync")]
@@ -105,7 +109,7 @@ namespace Prism.Navigation
             HandleINavigatedAware(pageTo, parameters, navigatedTo: true);
         }
 
-        private static void HandleINavigatedAware(Page page, NavigationParameters parameters, bool navigatedTo)
+        private static void HandleINavigatedAware(Page page, INavigationParameters parameters, bool navigatedTo)
         {
             if (page == null) return;
             if (parameters == null)
@@ -152,7 +156,7 @@ namespace Prism.Navigation
         //    parameters.Add( KnownNavigationParameters.NavigationMode, mode );
         //}
 
-        private static NavigationParameters GetNavigationParameters(string key, object param, NavigationMode mode) =>
+        private static INavigationParameters GetNavigationParameters(string key, object param, NavigationMode mode) =>
             new NavigationParameters()
             {
                 { key, param }

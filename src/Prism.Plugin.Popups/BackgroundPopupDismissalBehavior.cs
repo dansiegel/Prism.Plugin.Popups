@@ -44,7 +44,7 @@ namespace Prism.Plugin.Popups
             InvokePageInterfaces(TopPage(), parameters, true);
         }
 
-        private void InvokePageInterfaces(Page page, NavigationParameters parameters, bool navigatedTo)
+        private void InvokePageInterfaces(Page page, INavigationParameters parameters, bool navigatedTo)
         {
             PageUtilities.InvokeViewAndViewModelAction<INavigatedAware>(page, (view) => {
                 if(navigatedTo)

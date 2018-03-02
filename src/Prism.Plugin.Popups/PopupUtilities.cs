@@ -12,15 +12,15 @@ namespace Prism.Plugin.Popups
     {
         public const string NavigationModeKey = "__NavigationMode";
 
-        public static NavigationParameters CreateNewNavigationParameters() =>
+        public static INavigationParameters CreateNewNavigationParameters() =>
             new NavigationParameters().AddNavigationMode(NavigationMode.New);
 
-        public static NavigationParameters CreateBackNavigationParameters() =>
+        public static INavigationParameters CreateBackNavigationParameters() =>
             new NavigationParameters().AddNavigationMode(NavigationMode.Back);
 
-        public static NavigationParameters AddNavigationMode(this NavigationParameters parameters, NavigationMode mode)
+        public static INavigationParameters AddNavigationMode(this INavigationParameters parameters, NavigationMode mode)
         {
-            parameters.AddInternalParameter(NavigationModeKey, mode);
+            ((INavigationParametersInternal)parameters).Add(NavigationModeKey, mode);
             return parameters;
         }
 

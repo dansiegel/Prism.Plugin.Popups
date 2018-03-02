@@ -9,7 +9,7 @@ namespace PopupPluginSample.ViewModels
     {
         private INavigationService _navigationService { get; }
 
-        public PopupViewModel( INavigationService navigationService )
+        public PopupViewModel(INavigationService navigationService)
         {
             System.Diagnostics.Debug.WriteLine( "Hello from the PopupViewViewModel" );
             _navigationService = navigationService;
@@ -25,17 +25,17 @@ namespace PopupPluginSample.ViewModels
 
         public DelegateCommand NavigateBackCommand { get; }
 
-        public void OnNavigatingTo( NavigationParameters parameters )
+        public void OnNavigatingTo(INavigationParameters parameters)
         {
             System.Diagnostics.Debug.WriteLine( $"{GetType().Name} Navigating To" );
         }
 
-        public void OnNavigatedFrom( NavigationParameters parameters )
+        public void OnNavigatedFrom(INavigationParameters parameters)
         {
             System.Diagnostics.Debug.WriteLine( $"{GetType().Name} Navigated From" );
         }
 
-        public void OnNavigatedTo( NavigationParameters parameters )
+        public void OnNavigatedTo(INavigationParameters parameters)
         {
             System.Diagnostics.Debug.WriteLine( $"{GetType().Name} Navigated To" );
 
