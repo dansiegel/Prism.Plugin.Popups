@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Reflection;
+using Prism.Behaviors;
 using Prism.Ioc;
 using Prism.Navigation;
 using Rg.Plugins.Popup.Contracts;
@@ -14,6 +15,7 @@ namespace Prism.Plugin.Popups
         {
             containerRegistry.RegisterInstance<IPopupNavigation>(PopupNavigation.Instance);
             containerRegistry.Register<INavigationService, TService>(PrismApplicationBase.NavigationServiceName);
+            containerRegistry.RegisterSingleton<IPageBehaviorFactory, PopupPageBehaviorFactory>();
             if (IsDryIocContainer(containerRegistry))
                 containerRegistry.Register<INavigationService, TService>();
         }
