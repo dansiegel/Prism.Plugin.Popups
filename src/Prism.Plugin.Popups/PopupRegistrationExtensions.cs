@@ -27,7 +27,11 @@ namespace Prism.Plugin.Popups
         {
             var regType = containerRegistry.GetType();
             var propInfo = regType.GetRuntimeProperty("Instance");
-            return propInfo?.PropertyType.FullName.Equals("DryIoc.IContainer", StringComparison.InvariantCultureIgnoreCase) ?? false;
+#if NETSTANDARD1_0
+            return propInfo?.PropertyType.FullName.Equals("DryIoc.IContainer", StringComparison.OrdinalIgnoreCase) ?? false;
+#else
+			return propInfo?.PropertyType.FullName.Equals("DryIoc.IContainer", StringComparison.InvariantCultureIgnoreCase) ?? false;
+#endif
         }
     }
 }
