@@ -7,7 +7,7 @@
     <VersionPrefix>2.0.0</VersionPrefix>
     <VersionSuffix Condition=" '$(BUILD_BUILDNUMBER)' != '' ">CI$(BUILD_BUILDNUMBER)</VersionSuffix>
     <VersionSuffix Condition=" '$(PREVIEW_NUMBER)' != '' ">pre$(PREVIEW_NUMBER)</VersionSuffix>
-    <VersionSuffix Condition=" '$(VersionSuffix)' == '' Or '$(RELEASEBUILD)' == 'True' ">pre5</VersionSuffix>
+    <VersionSuffix Condition=" '$(VersionSuffix)' == '' Or '$(RELEASEBUILD)' == 'True' ">pre6</VersionSuffix>
     <PackageOutputPath Condition=" '$(BUILD_BUILDNUMBER)' == '' ">$(MSBuildThisFileDirectory)Build</PackageOutputPath>
     <PackageOutputPath Condition=" '$(BUILD_BUILDNUMBER)' != '' ">$(BUILD_ARTIFACTSTAGINGDIRECTORY)</PackageOutputPath>
     <NeutralLanguage>en</NeutralLanguage>
