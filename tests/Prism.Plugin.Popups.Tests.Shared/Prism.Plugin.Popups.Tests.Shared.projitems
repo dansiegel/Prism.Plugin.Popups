@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <HasSharedItems>true</HasSharedItems>
+    <SharedGUID>1eac05e0-f11d-47f3-a01a-a7a3912f8c1c</SharedGUID>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration">
+    <Import_RootNamespace>Prism.Plugin.Popups.Tests</Import_RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)Fixtures\FixtureBase.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Fixtures\NavigationServiceFixture.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Fixtures\RegistrationFixture.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Mocks\AppMock.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Mocks\Events\NavigatedFromEvent.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Mocks\ViewModels\MainPageViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Mocks\ViewModels\PopupPageMockViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Mocks\Views\MainPage.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Mocks\Views\PopupPageMock.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Mocks\XUnitLogger.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Mocks\XUnityPlatformInitializer.cs" />
+  </ItemGroup>
+</Project>

@@ -2,12 +2,22 @@
 
   <PropertyGroup>
     <TargetFrameworks>netstandard1.0;netstandard2.0</TargetFrameworks>
+    <Configurations>Debug;Release;Test</Configurations>
     <Description>Prism Forms Plugin to provide Popup Navigation working with the Rg.Plugins.Popup library</Description>
+  </PropertyGroup>
+
+  <PropertyGroup Condition=" '$(Configuration)' == 'Test' ">
+    <DefineConstants>$(DefineConstants);DEBUG</DefineConstants>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="Rg.Plugins.Popup" Version="1.1.4.145-pre" />
     <PackageReference Include="Prism.Forms" Version="7.0.0.396" />
+  </ItemGroup>
+
+  <ItemGroup Condition=" '$(Configuration)' != 'Test' ">
+    <Compile Remove="PluginNavigationMock.cs" />
+    <None Include="PluginNavigationMock.cs" />
   </ItemGroup>
 
 </Project>

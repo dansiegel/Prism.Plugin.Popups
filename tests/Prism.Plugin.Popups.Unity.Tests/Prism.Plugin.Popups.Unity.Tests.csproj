@@ -1,0 +1,25 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.0</TargetFramework>
+    <IsPackable>false</IsPackable>
+    <DefineConstants>$(DefineConstants);UNITY</DefineConstants>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.5.0" />
+    <PackageReference Include="Prism.Unity.Forms" Version="7.0.0.438-ci" />
+    <PackageReference Include="Rg.Plugins.Popup" Version="1.1.4.145-pre" />
+    <PackageReference Include="Xamarin.Forms.Mocks" Version="2.5.0.4" />
+    <PackageReference Include="xunit" Version="2.3.1" />
+    <PackageReference Include="xunit.runner.visualstudio" Version="2.3.1" />
+    <DotNetCliToolReference Include="dotnet-xunit" Version="2.3.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\Prism.Plugin.Popups\Prism.Plugin.Popups.csproj" />
+  </ItemGroup>
+
+  <Import Project="..\Prism.Plugin.Popups.Tests.Shared\Prism.Plugin.Popups.Tests.Shared.projitems" Label="Shared" />
+
+</Project>
