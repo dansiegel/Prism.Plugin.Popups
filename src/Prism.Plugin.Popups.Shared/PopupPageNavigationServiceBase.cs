@@ -20,7 +20,7 @@ namespace Prism.Plugin.Popups
             _popupNavigation = popupNavigation;
         }
 
-        public override async Task<bool> GoBackAsync(NavigationParameters parameters = null, bool? useModalNavigation = default(bool?), bool animated = true)
+        public override async Task<bool> GoBackAsync(INavigationParameters parameters = null, bool? useModalNavigation = default(bool?), bool animated = true)
         {
             try
             {

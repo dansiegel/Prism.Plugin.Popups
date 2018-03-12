@@ -40,7 +40,6 @@ namespace PopupPluginSample
 
         protected override async void OnInitialized()
         {
-            //InitializeComponent();
             LogUnobservedTaskExceptions();
 
             await NavigationService.NavigateAsync("MenuPage");

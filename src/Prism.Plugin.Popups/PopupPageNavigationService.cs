@@ -24,7 +24,7 @@ namespace Prism.Plugin.Popups
             _popupNavigation = popupNavigation;
         }
 
-        public override async Task<bool> GoBackAsync(NavigationParameters parameters)
+        public override async Task<INavigationResult> GoBackAsync(INavigationParameters parameters)
         {
             try
             {
@@ -34,7 +34,7 @@ namespace Prism.Plugin.Popups
                 {
                     case PopupPage popupPage:
                         var segmentParameters = UriParsingHelper.GetSegmentParameters(null, parameters);
-                        segmentParameters.AddNavigationMode(NavigationMode.Back);
+                        ((INavigationParametersInternal)segmentParameters).Add("__NavigationMode", NavigationMode.Back);
                         var previousPage = PopupUtilities.GetOnNavigatedToTarget(_popupNavigation, _applicationProvider);
 
                         PageUtilities.OnNavigatingTo(previousPage, segmentParameters);
@@ -47,9 +47,9 @@ namespace Prism.Plugin.Popups
                             PageUtilities.OnNavigatedTo(previousPage, segmentParameters);
                             PageUtilities.InvokeViewAndViewModelAction<IActiveAware>(previousPage, a => a.IsActive = true);
                             PageUtilities.DestroyPage(popupPage);
-                            return true;
+                            return new NavigationResult { Success = true };
                         }
-                        break;
+                        throw new NullReferenceException("The PopupPage was null following the Pop");
                     default:
                         return await base.GoBackAsync(parameters);
                 }
@@ -57,14 +57,12 @@ namespace Prism.Plugin.Popups
             catch (Exception e)
             {
                 _logger.Log(e.ToString(), Category.Exception, Priority.High);
-                return false;
+                return new NavigationResult { Success = false, Exception = e }; ;
             }
             finally
             {
                 NavigationSource = PageNavigationSource.Device;
             }
-
-            return false;
         }
 
         protected override async Task<Page> DoPop(INavigation navigation, bool useModalNavigation, bool animated)
