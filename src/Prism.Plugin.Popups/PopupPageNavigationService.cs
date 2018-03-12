@@ -89,19 +89,6 @@ namespace Prism.Plugin.Popups
             }
         }
 
-        //protected override void ApplyPageBehaviors(Page page)
-        //{
-        //    switch (page)
-        //    {
-        //        case PopupPage popup:
-        //            page.Behaviors.Add(new BackgroundPopupDismissalBehavior(_popupNavigation, _applicationProvider));
-        //            break;
-        //        default:
-        //            base.ApplyPageBehaviors(page);
-        //            break;
-        //    }
-        //}
-
         protected override Page GetCurrentPage()
         {
             if (_popupNavigation.PopupStack.Any())

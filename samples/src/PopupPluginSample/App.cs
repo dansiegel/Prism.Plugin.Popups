@@ -15,6 +15,8 @@ using Prism.Unity;
 using Prism.Logging;
 using Xamarin.Forms;
 using Prism.Plugin.Popups;
+using Prism.Navigation;
+using Prism.Common;
 
 namespace PopupPluginSample
 {
@@ -47,12 +49,6 @@ namespace PopupPluginSample
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
         {
             containerRegistry.RegisterPopupNavigationService();
-            //containerRegistry.GetContainer().Unregister<INavigationService>(NavigationServiceName);
-            //containerRegistry.RegisterInstance(Rg.Plugins.Popup.Services.PopupNavigation.Instance);
-            //containerRegistry.GetContainer().Register<INavigationService, PopupPageNavigationService>(reuse: Reuse.Transient,
-            //                                                                                          //ifAlreadyRegistered: IfAlreadyRegistered.Replace,
-            //                                                                                          serviceKey: NavigationServiceName);
-
 
             containerRegistry.RegisterForNavigation<TabbedPage>();
             containerRegistry.RegisterForNavigation<NavigationPage>();
@@ -62,27 +58,6 @@ namespace PopupPluginSample
             containerRegistry.RegisterForNavigation<NavigationRoot>();
             containerRegistry.RegisterForNavigation<PopupView>();
             containerRegistry.RegisterForNavigation<TabbedRoot>();
-        }
-
-        protected override void OnStart()
-        {
-            // Handle when your app starts
-        }
-
-        protected override void OnSleep()
-        {
-            // Handle IApplicationLifecycle
-            base.OnSleep();
-
-            // Handle when your app sleeps
-        }
-
-        protected override void OnResume()
-        {
-            // Handle IApplicationLifecycle
-            base.OnResume();
-
-            // Handle when your app resumes
         }
 
         private void LogUnobservedTaskExceptions()
