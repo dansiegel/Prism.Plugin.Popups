@@ -6,7 +6,7 @@
     <Authors>Dan Siegel</Authors>
     <VersionPrefix>2.0.0</VersionPrefix>
     <VersionPrefix Condition=" '$(BUILD_BUILDNUMBER)' != '' ">$(VersionPrefix).$(BUILD_BUILDNUMBER)</VersionPrefix>
-    <VersionSuffix Condition=" '$(BUILD_BUILDNUMBER)' != '' ">CI</VersionSuffix>
+    <VersionSuffix Condition=" '$(BUILD_BUILDNUMBER)' != '' ">ci</VersionSuffix>
     <VersionSuffix Condition=" '$(IS_PREVIEW)' == 'true' ">pre</VersionSuffix>
     <VersionSuffix Condition=" '$(IS_RELEASE)' == 'true' "></VersionSuffix>
     <PackageOutputPath Condition=" '$(BUILD_BUILDNUMBER)' == '' ">$(MSBuildThisFileDirectory)Build</PackageOutputPath>
@@ -20,6 +20,9 @@
     <ReleaseNotes>
 v2.0.0-pre6
 - Fixes issue that prevented PopupNavigationService from properly being registered on DryIoc
+- Fixes registration to include missing registration for PopupPageBehaviorFactory
+- Adds Unit Tests
+- Updates Sample Application
 v2.0.0-pre4
 - Targets Prism 7.0.0-pre5 with IOC abstraction
 - Deprecates Container Specific pacakges
