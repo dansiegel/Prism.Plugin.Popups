@@ -18,6 +18,8 @@
     <ProjectUrl>https://github.com/dansiegel/Prism.Plugin.Popups</ProjectUrl>
     <Tags>prism,popups,xamarin forms</Tags>
     <ReleaseNotes>
+v2.0.0-pre7
+- Updates for Prism 7.1 compatibility
 v2.0.0-pre6
 - Fixes issue that prevented PopupNavigationService from properly being registered on DryIoc
 - Fixes registration to include missing registration for PopupPageBehaviorFactory
