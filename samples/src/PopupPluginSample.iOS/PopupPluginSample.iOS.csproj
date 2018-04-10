@@ -172,7 +172,6 @@
   <ItemGroup>
     <ITunesArtwork Include="Resources\iTunesArtwork@1x.png" />
     <ITunesArtwork Include="Resources\iTunesArtwork@2x.png" />
-    <ITunesArtwork Include="Resources\iTunesArtwork@3x.png" />
   </ItemGroup>
   <ItemGroup>
     <ImageAsset Include="Assets.xcassets\Contents.json">
