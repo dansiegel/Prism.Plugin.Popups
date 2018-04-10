@@ -27,6 +27,7 @@
     <JavaOptions />
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+    <AutomaticVersionBehavior>PreferBuildNumber</AutomaticVersionBehavior>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -101,7 +102,7 @@
     <PackageReference Condition=" '$(DIContainer)' == 'DryIoc' " Include="Prism.DryIoc.Forms" Version="7.1.0.123-pre" />
     <PackageReference Condition=" '$(DIContainer)' == 'Unity' " Include="Prism.Unity.Forms" Version="7.1.0.123-pre" />
     <PackageReference Include="Xamarin.Forms" Version="2.5.0.280555" />
-    <PackageReference Include="Mobile.BuildTools" Version="1.0.10" PrivateAssets="all" />
+    <PackageReference Include="Mobile.BuildTools" Version="1.1.0.534-pre" PrivateAssets="all" />
     <PackageReference Include="Prism.QuickStart.MFractor.Config" Version="1.0.3" PrivateAssets="all" />
     <PackageReference Include="Xamarin.Android.Support.Design" Version="26.1.0.1" />
     <PackageReference Include="Xamarin.Android.Support.v7.AppCompat" Version="26.1.0.1" />
