@@ -2,13 +2,15 @@
 
 The Popups plugin provides an extremely lightweight framework for implementing Popup Pages using the [Rg.Plugin.Popup][1] package with [Prism.Forms][2]. To do this we simply provide you with some friendly extensions for the INavigationService so that you can navigate in a Prism friendly manner. Note that this does not currently support deep linking.
 
-![Current Build][buildStatus]
+| Platform | Build Status |
+| -------- | ------ |
+| VSTS Build | ![Current Build][buildStatus] |
+| AppCenter iOS | [![Build status](https://build.appcenter.ms/v0.1/apps/0a60407d-a075-41cd-a211-31c92d07ec86/branches/master/badge)](https://appcenter.ms) |
 
 | Package | Version | MyGet |
 | ------- | ------- | ----- |
 | [Prism.Plugin.Popups.Autofac][AutofacNuGet] | [![AutofacNuGetShield]][AutofacNuGet] | [![AutofacMyGetShield]][AutofacMyGet] |
 | [Prism.Plugin.Popups.DryIoc][DryIocNuGet] | [![DryIocNuGetShield]][DryIocNuGet] | [![DryIocMyGetShield]][DryIocMyGet] |
-| [Prism.Plugin.Popups.Ninject][NinjectNuGet] | [![NinjectNuGetShield]][NinjectNuGet] | [![NinjectMyGetShield]][NinjectMyGet] |
 | [Prism.Plugin.Popups.Unity][UnityNuGet] | [![UnityNuGetShield]][UnityNuGet] | [![UnityMyGetShield]][UnityMyGet] |
 
 ## Symbols
