@@ -9,7 +9,6 @@ using Android.Runtime;
 using Android.Support.V7.App;
 using Android.Views;
 using Android.Widget;
-using PopupPluginSample.Helpers;
 
 namespace PopupPluginSample.Droid
 {
