@@ -12,7 +12,7 @@
     <RootNamespace>PopupPluginSample.Droid</RootNamespace>
     <AssemblyName>PopupPluginSample.Droid</AssemblyName>
     <FileAlignment>512</FileAlignment>
-    <TargetFrameworkVersion>v8.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v8.1</TargetFrameworkVersion>
     <AndroidApplication>True</AndroidApplication>
     <AndroidResgenFile>Resources\Resource.designer.cs</AndroidResgenFile>
     <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
@@ -38,6 +38,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <AndroidLinkMode>None</AndroidLinkMode>
+    <AndroidUseSharedRuntime>false</AndroidUseSharedRuntime>
+    <EmbedAssembliesIntoApk>true</EmbedAssembliesIntoApk>
+    <AndroidSupportedAbis>armeabi-v7a</AndroidSupportedAbis>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Mock|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -68,6 +71,9 @@
     <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
     <ErrorReport>prompt</ErrorReport>
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <AndroidUseSharedRuntime>false</AndroidUseSharedRuntime>
+    <EmbedAssembliesIntoApk>true</EmbedAssembliesIntoApk>
+    <AndroidSupportedAbis>armeabi-v7a</AndroidSupportedAbis>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Autofac|AnyCPU'">
     <DebugSymbols>true</DebugSymbols>
@@ -78,6 +84,9 @@
     <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
     <ErrorReport>prompt</ErrorReport>
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <AndroidUseSharedRuntime>false</AndroidUseSharedRuntime>
+    <EmbedAssembliesIntoApk>true</EmbedAssembliesIntoApk>
+    <AndroidSupportedAbis>armeabi-v7a</AndroidSupportedAbis>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'DryIoc|AnyCPU'">
     <DebugSymbols>true</DebugSymbols>
@@ -88,6 +97,9 @@
     <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
     <ErrorReport>prompt</ErrorReport>
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <AndroidUseSharedRuntime>false</AndroidUseSharedRuntime>
+    <EmbedAssembliesIntoApk>true</EmbedAssembliesIntoApk>
+    <AndroidSupportedAbis>armeabi-v7a</AndroidSupportedAbis>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Mono.Android" />
@@ -98,11 +110,11 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="PropertyChanged.Fody" Version="2.2.9" PrivateAssets="all" />
-    <PackageReference Condition=" '$(DIContainer)' == 'Autofac' " Include="Prism.Autofac.Forms" Version="7.1.0.123-pre" />
-    <PackageReference Condition=" '$(DIContainer)' == 'DryIoc' Or '$(DIContainer)' == '' " Include="Prism.DryIoc.Forms" Version="7.1.0.123-pre" />
-    <PackageReference Condition=" '$(DIContainer)' == 'Unity' " Include="Prism.Unity.Forms" Version="7.1.0.123-pre" />
+    <PackageReference Include="Prism.Autofac.Forms" Version="7.1.0.123-pre" />
+    <PackageReference Include="Prism.DryIoc.Forms" Version="7.1.0.123-pre" />
+    <PackageReference Include="Prism.Unity.Forms" Version="7.1.0.123-pre" />
     <PackageReference Include="Xamarin.Forms" Version="2.5.0.280555" />
-    <PackageReference Include="Mobile.BuildTools" Version="1.1.0.534-pre" PrivateAssets="all" />
+    <PackageReference Include="Mobile.BuildTools" Version="1.1.0.544" PrivateAssets="all" />
     <PackageReference Include="Prism.QuickStart.MFractor.Config" Version="1.0.3" PrivateAssets="all" />
     <PackageReference Include="Xamarin.Android.Support.Design" Version="26.1.0.1" />
     <PackageReference Include="Xamarin.Android.Support.v7.AppCompat" Version="26.1.0.1" />
