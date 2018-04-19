@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Product>$(AssemblyName) ($(TargetFramework))</Product>
     <Authors>Dan Siegel</Authors>
-    <VersionPrefix>2.0.0</VersionPrefix>
+    <VersionPrefix>2.1.0</VersionPrefix>
     <VersionPrefix Condition=" '$(BUILD_BUILDNUMBER)' != '' ">$(VersionPrefix).$(BUILD_BUILDNUMBER)</VersionPrefix>
     <VersionSuffix Condition=" '$(BUILD_BUILDNUMBER)' != '' ">ci</VersionSuffix>
     <VersionSuffix Condition=" '$(IS_PREVIEW)' == 'true' ">pre</VersionSuffix>
@@ -18,6 +18,9 @@
     <ProjectUrl>https://github.com/dansiegel/Prism.Plugin.Popups</ProjectUrl>
     <Tags>prism,popups,xamarin forms</Tags>
     <ReleaseNotes>
+v2.1.0-pre1
+- Updates to Rg.Plugins.Popup 1.1.4.154
+- Bumping to 2.1 to make it clearer that this targets Prism 7.1
 v2.0.0-pre7
 - Updates for Prism 7.1 compatibility
 v2.0.0-pre6
