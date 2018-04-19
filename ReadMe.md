@@ -5,6 +5,7 @@ The Popups plugin provides an extremely lightweight framework for implementing P
 | Platform | Build Status |
 | -------- | ------ |
 | VSTS Build | ![Current Build][buildStatus] |
+| AppCenter Android | [![Build status](https://build.appcenter.ms/v0.1/apps/0c92b88f-fe1b-42cf-a714-240a0704d184/branches/master/badge)](https://appcenter.ms) |
 | AppCenter iOS | [![Build status](https://build.appcenter.ms/v0.1/apps/0a60407d-a075-41cd-a211-31c92d07ec86/branches/master/badge)](https://appcenter.ms) |
 
 | Package | Version | MyGet |
@@ -37,27 +38,25 @@ Because 2.X simply uses INavigationService one of the benefits you will get is s
 NavigationService.NavigateAsync("MainPage/PopupPageA/PopupPageB");
 ```
 
-#### Autofac
+**NOTE** All Container Specific packages have been deprecated due to Prism 7 offering an IOC Abstraction. You only need to install Prism.Plugin.Popups.
+
+#### Getting Started
+
+This plugin does not remove any platform initialization requirements that Rg.Plugins.Popup has. To use the plugin you will need to update the Registration for INavigationService. To do this you simply need to add the following:
 
 ```cs
-protected override void RegisterTypes()
+protected override void RegisterTypes(IContainerRegistry containerRegistry)
 {
-    Builder.RegisterPopupNavigatioService();
+    // This updates INavigationService and registers PopupNavigation.Instance
+    containerRegistry.RegisterPopupNavigationService();
 }
 ```
 
-#### All other containers
-
-```cs
-protected override void RegisterTypes()
-{
-    Container.RegisterPopupNavigationService();
-}
-```
-
-It's worth noting that there is a generic overload for the registration method that accepts any type that inherits from `PopupPageNavigationServiceBase` in the event that you have custom logic you need to execute in the NavigationService. The `RegisterPopupNavigationService` method will also register `IPopupNavigation` if it has not yet been registered.
+It's worth noting that there is a generic overload for the registration method that accepts any type that inherits from `PopupPageNavigationService` in the event that you have custom logic you need to execute in the NavigationService. The `RegisterPopupNavigationService` method will also register `IPopupNavigation` from `PopupNavigation.Instance` for you.
 
 ### Version 1.X
+
+**NOTE** This version is deprecated, please use the 2.0 preview. This is not compatible with Prism 7.1
 
 There are three primary extensions added for working with Navigation.
 
