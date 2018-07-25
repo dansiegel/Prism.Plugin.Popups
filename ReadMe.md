@@ -10,9 +10,10 @@ The Popups plugin provides an extremely lightweight framework for implementing P
 
 | Package | Version | MyGet |
 | ------- | ------- | ----- |
-| [Prism.Plugin.Popups.Autofac][AutofacNuGet] | [![AutofacNuGetShield]][AutofacNuGet] | [![AutofacMyGetShield]][AutofacMyGet] |
-| [Prism.Plugin.Popups.DryIoc][DryIocNuGet] | [![DryIocNuGetShield]][DryIocNuGet] | [![DryIocMyGetShield]][DryIocMyGet] |
-| [Prism.Plugin.Popups.Unity][UnityNuGet] | [![UnityNuGetShield]][UnityNuGet] | [![UnityMyGetShield]][UnityMyGet] |
+| [Prism.Plugin.Popups][PluginNuGet] | [![PluginNuGetShield]][PluginNuGet] | [![PluginMyGetShield]][PluginMyGet] |
+| [Prism.Plugin.Popups.Autofac][AutofacNuGet](DEPRECATED) | [![AutofacNuGetShield]][AutofacNuGet] | [![AutofacMyGetShield]][AutofacMyGet] |
+| [Prism.Plugin.Popups.DryIoc][DryIocNuGet](DEPRECATED) | [![DryIocNuGetShield]][DryIocNuGet] | [![DryIocMyGetShield]][DryIocMyGet] |
+| [Prism.Plugin.Popups.Unity][UnityNuGet](DEPRECATED) | [![UnityNuGetShield]][UnityNuGet] | [![UnityMyGetShield]][UnityMyGet] |
 
 ## Symbols
 
@@ -42,7 +43,9 @@ NavigationService.NavigateAsync("MainPage/PopupPageA/PopupPageB");
 
 #### Getting Started
 
-This plugin does not remove any platform initialization requirements that Rg.Plugins.Popup has. To use the plugin you will need to update the Registration for INavigationService. To do this you simply need to add the following:
+This plugin does not remove any platform initialization requirements that [Rg.Plugins.Popup][1] has. Be sure that you have followed all of the [Rg.Plugins.Popup][1] guidelines for initializing each Platform (iOS/Android,etc).
+
+To use the plugin you will need to update the Registration for INavigationService. To do this you simply need to add the following:
 
 ```cs
 protected override void RegisterTypes(IContainerRegistry containerRegistry)
@@ -54,9 +57,13 @@ protected override void RegisterTypes(IContainerRegistry containerRegistry)
 
 It's worth noting that there is a generic overload for the registration method that accepts any type that inherits from `PopupPageNavigationService` in the event that you have custom logic you need to execute in the NavigationService. The `RegisterPopupNavigationService` method will also register `IPopupNavigation` from `PopupNavigation.Instance` for you.
 
+Prism's underlying Page Navigation Service has a dependency on `IPageBehaviorFactory`. In order to handle navigation events from tapping outside of (and closing) the PopupPage, this plugin relies on the `PopupPageBehaviorFactory` which is also registered by the registration method shown above. If you are registering your own custom implementation, be sure to either add the `BackgroundPopupDismissalBehavior` to PopupPages, or simply inherit from the `PopupPageBehaviorFactory`.
+
+**NOTE**: All initializations for Rg.Plugins.Popup should be done in Platform code, the Registrations for the NavigationService should be done in your PrismApplication. No additional initialization is required inside of Prism Modules.
+
 ### Version 1.X
 
-**NOTE** This version is deprecated, please use the 2.0 preview. This is not compatible with Prism 7.1
+**NOTE** This version is DEPRECATED, please use the 2.0 preview. This is not compatible with Prism 7.
 
 There are three primary extensions added for working with Navigation.
 
@@ -97,21 +104,25 @@ public class MyPageViewModel : BindableBase
 [1]: https://github.com/rotorgames/Rg.Plugins.Popup
 [2]: https://github.com/PrismLibrary/Prism
 
+[PluginNuGet]: https://www.nuget.org/packages/Prism.Plugin.Popups
 [AutofacNuGet]: https://www.nuget.org/packages/Prism.Plugin.Popups.Autofac
 [DryIocNuGet]: https://www.nuget.org/packages/Prism.Plugin.Popups.DryIoc
 [NinjectNuGet]: https://www.nuget.org/packages/Prism.Plugin.Popups.Ninject
 [UnityNuGet]: https://www.nuget.org/packages/Prism.Plugin.Popups.Unity
 
+[PluginNuGetShield]: https://img.shields.io/nuget/vpre/Prism.Plugin.Popups.svg
 [AutofacNuGetShield]: https://img.shields.io/nuget/vpre/Prism.Plugin.Popups.Autofac.svg
 [DryIocNuGetShield]: https://img.shields.io/nuget/vpre/Prism.Plugin.Popups.DryIoc.svg
 [NinjectNuGetShield]: https://img.shields.io/nuget/vpre/Prism.Plugin.Popups.Ninject.svg
 [UnityNuGetShield]: https://img.shields.io/nuget/vpre/Prism.Plugin.Popups.Unity.svg
 
+[PluginMyGet]: https://www.myget.org/feed/prism-plugins/package/nuget/Prism.Plugin.Popups
 [AutofacMyGet]: https://www.myget.org/feed/prism-plugins/package/nuget/Prism.Plugin.Popups.Autofac
 [DryIocMyGet]: https://www.myget.org/feed/prism-plugins/package/nuget/Prism.Plugin.Popups.DryIoc
 [NinjectMyGet]: https://www.myget.org/feed/prism-plugins/package/nuget/Prism.Plugin.Popups.Ninject
 [UnityMyGet]: https://www.myget.org/feed/prism-plugins/package/nuget/Prism.Plugin.Popups.Unity
 
+[PluginMyGetShield]: https://img.shields.io/myget/prism-plugins/vpre/Prism.Plugin.Popups.svg
 [AutofacMyGetShield]: https://img.shields.io/myget/prism-plugins/vpre/Prism.Plugin.Popups.Autofac.svg
 [DryIocMyGetShield]: https://img.shields.io/myget/prism-plugins/vpre/Prism.Plugin.Popups.DryIoc.svg
 [NinjectMyGetShield]: https://img.shields.io/myget/prism-plugins/vpre/Prism.Plugin.Popups.Ninject.svg
