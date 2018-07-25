@@ -18,7 +18,7 @@ $nupkgs = gci $env:BUILD_ARTIFACTSTAGINGDIRECTORY\*.nupkg -recurse | Select-Obje
 foreach ($nupkg in $nupkgs){
    Write-Host "Submitting $nupkg for signing"
 
-    .\SignClient 'sign' -c $appSettings -i $nupkg -f $fileList -r $env:SignClientUser -s $env:SignClientSecret -n 'Prism' -d 'Prism' -u 'https://github.com/PrismLibrary/Prism' 
+    .\SignClient 'sign' -c $appSettings -i $nupkg -f $fileList -r $env:SignClientUser -s $env:SignClientSecret -n 'Prism.Plugin.Popups' -d 'Prism.Plugin.Popups' -u 'https://github.com/dansiegel/Prism.Plugin.Popups' 
 
     Write-Host "Finished signing $nupkg"
 }
