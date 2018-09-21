@@ -18,6 +18,7 @@ namespace Prism.Plugin.Popups.Tests.Mocks
 
         public void RegisterTypes(IContainerRegistry containerRegistry)
         {
+            containerRegistry.RegisterInstance(_testOutputHelper);
             containerRegistry.Register<ILoggerFacade, XUnitLogger>();
         }
     }

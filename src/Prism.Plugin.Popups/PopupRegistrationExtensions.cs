@@ -5,9 +5,6 @@ using Prism.Ioc;
 using Prism.Navigation;
 using Rg.Plugins.Popup.Contracts;
 using Rg.Plugins.Popup.Services;
-#if TEST
-using PopupNavigation = Prism.Plugin.Popups.PluginNavigationMock;
-#endif
 
 namespace Prism.Plugin.Popups
 {

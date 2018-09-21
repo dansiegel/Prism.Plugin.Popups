@@ -2,7 +2,10 @@
 using Prism.Navigation;
 using Prism.Plugin.Popups.Tests.Fixtures;
 using Prism.Plugin.Popups.Tests.Mocks;
+using Prism.Plugin.Popups.Tests.Mocks.Services;
 using Prism.Plugin.Popups.Tests.Mocks.ViewModels;
+using Rg.Plugins.Popup.Contracts;
+using Rg.Plugins.Popup.Services;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -22,10 +25,21 @@ namespace Prism.Plugin.Popups.Unity.Tests.Fixtures
         public RegistrationFixture(ITestOutputHelper testOutputHelper) 
             : base(testOutputHelper)
         {
+            
         }
 
         [Fact]
-        public void Foo()
+        public void MockPopupNavigation_IsSet()
+        {
+            IPopupNavigation popupNavigation = null;
+            var ex = Record.Exception(() => popupNavigation = PopupNavigation.Instance);
+            Assert.Null(ex);
+            Assert.NotNull(popupNavigation);
+            Assert.IsType<PluginNavigationMock>(popupNavigation);
+        }
+
+        [Fact]
+        public void CreateApp_DoesNotThrowException()
         {
             AppMock app = null;
 
@@ -36,7 +50,7 @@ namespace Prism.Plugin.Popups.Unity.Tests.Fixtures
         }
 
         [Fact]
-        public void Bar()
+        public void CreateApp_DoesNotThrowExceptionWithNoPlatformInitializer()
         {
             AppMock app = null;
             var exceptions = Record.Exception(() => app = new AppMock(null));

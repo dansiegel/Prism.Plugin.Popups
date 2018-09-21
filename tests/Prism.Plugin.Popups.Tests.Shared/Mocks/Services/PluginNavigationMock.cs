@@ -1,12 +1,12 @@
-﻿using Rg.Plugins.Popup.Contracts;
-using Rg.Plugins.Popup.Pages;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Rg.Plugins.Popup.Contracts;
+using Rg.Plugins.Popup.Pages;
 
-namespace Prism.Plugin.Popups
+namespace Prism.Plugin.Popups.Tests.Mocks.Services
 {
     public class PluginNavigationMock : IPopupNavigation
     {
@@ -14,7 +14,7 @@ namespace Prism.Plugin.Popups
         private static IPopupNavigation _instance;
         public static IPopupNavigation Instance => _instance ?? (_instance = _lazyNavigation.Value);
 
-        private PluginNavigationMock() { }
+        internal PluginNavigationMock() { }
 
         private List<PopupPage> _popupStack { get; } = new List<PopupPage>();
         public IReadOnlyList<PopupPage> PopupStack => _popupStack;
@@ -23,11 +23,7 @@ namespace Prism.Plugin.Popups
         {
             _popupStack.Clear();
 
-#if NETSTANDARD1_0
-            return Task.FromResult(0);
-#else
             return Task.CompletedTask;
-#endif
         }
 
         public Task PopAsync(bool animate = true)
@@ -37,33 +33,21 @@ namespace Prism.Plugin.Popups
                 _popupStack.Remove(_popupStack.Last());
             }
 
-#if NETSTANDARD1_0
-            return Task.FromResult(0);
-#else
             return Task.CompletedTask;
-#endif
         }
 
         public Task PushAsync(PopupPage page, bool animate = true)
         {
             _popupStack.Add(page);
 
-#if NETSTANDARD1_0
-            return Task.FromResult(0);
-#else
             return Task.CompletedTask;
-#endif
         }
 
         public Task RemovePageAsync(PopupPage page, bool animate = true)
         {
             _popupStack.Remove(page);
 
-#if NETSTANDARD1_0
-            return Task.FromResult(0);
-#else
             return Task.CompletedTask;
-#endif
         }
     }
 }
