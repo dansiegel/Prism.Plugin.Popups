@@ -51,6 +51,6 @@ steps:
 - task: DotNetCoreCLI@2
   inputs:
     command: test
-    projects: .\tests\**\*.csproj
+    projects: **\*.Tests.csproj
     arguments: -c $(BuildConfiguration) --collect:"Code Coverage" -s $(System.DefaultWorkingDirectory)/CodeCoverage.runsettings /p:DebugType=portable --no-build
   displayName: Run Tests
