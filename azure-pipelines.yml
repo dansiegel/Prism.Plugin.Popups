@@ -49,9 +49,8 @@ steps:
   condition: and(succeeded(), eq(variables['system.pullrequest.isfork'], false))
 
 - task: DotNetCoreCLI@2
-  displayName: Run Unit Tests
   inputs:
     command: test
-    projects: |
-     tests/**/*.csproj
-    arguments: -c $(BuildConfiguration) --collect:"Code Coverage" -s $(System.DefaultWorkingDirectory)\CodeCoverage.runsettings --no-build
+    projects: .\tests\**\*.csproj
+    arguments: -c $(BuildConfiguration) --collect:"Code Coverage" -s $(System.DefaultWorkingDirectory)/CodeCoverage.runsettings /p:DebugType=portable --no-build
+  displayName: Run Tests
