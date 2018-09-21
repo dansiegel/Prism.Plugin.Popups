@@ -12,7 +12,7 @@
 
   <ItemGroup>
     <PackageReference Include="Rg.Plugins.Popup" Version="1.1.4.168" />
-    <PackageReference Include="Prism.Forms" Version="7.1.0.172-pre" />
+    <PackageReference Include="Prism.Forms" Version="7.1.0.279-pre" />
   </ItemGroup>
 
   <ItemGroup Condition=" '$(Configuration)' != 'Test' ">
