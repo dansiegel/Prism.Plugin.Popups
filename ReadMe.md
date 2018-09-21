@@ -4,7 +4,7 @@ The Popups plugin provides an extremely lightweight framework for implementing P
 
 | Platform | Build Status |
 | -------- | ------ |
-| VSTS Build | ![Current Build][buildStatus] |
+| VSTS Build | [![Build Status](https://dev.azure.com/dansiegel/Prism.Plugins/_apis/build/status/Prism.Plugin.Popups)](https://dev.azure.com/dansiegel/Prism.Plugins/_build/latest?definitionId=25) |
 | AppCenter Android | [![Build status](https://build.appcenter.ms/v0.1/apps/0c92b88f-fe1b-42cf-a714-240a0704d184/branches/master/badge)](https://appcenter.ms) |
 | AppCenter iOS | [![Build status](https://build.appcenter.ms/v0.1/apps/0a60407d-a075-41cd-a211-31c92d07ec86/branches/master/badge)](https://appcenter.ms) |
 
@@ -127,5 +127,3 @@ public class MyPageViewModel : BindableBase
 [DryIocMyGetShield]: https://img.shields.io/myget/prism-plugins/vpre/Prism.Plugin.Popups.DryIoc.svg
 [NinjectMyGetShield]: https://img.shields.io/myget/prism-plugins/vpre/Prism.Plugin.Popups.Ninject.svg
 [UnityMyGetShield]: https://img.shields.io/myget/prism-plugins/vpre/Prism.Plugin.Popups.Unity.svg
-
-[buildStatus]: https://avantipoint.visualstudio.com/_apis/public/build/definitions/9ae3c52d-a8d5-4184-b4fe-94f6625d7f93/27/badge
