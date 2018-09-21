@@ -54,4 +54,4 @@ steps:
     command: test
     projects: |
      tests/**/*.csproj
-    arguments: -c $(BuildConfiguration) --collect:"Code Coverage" -s $(System.DefaultWorkingDirectory)/Source/CodeCoverage.runsettings --no-build
+    arguments: -c $(BuildConfiguration) --collect:"Code Coverage" -s $(System.DefaultWorkingDirectory)\CodeCoverage.runsettings --no-build
