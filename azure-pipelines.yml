@@ -1,0 +1,56 @@
+trigger:
+- master
+- rel/*
+
+name: $(Build.BuildId)
+
+pool:
+  vmImage: vs2017-win2016
+
+variables:
+  BuildPlatform: 'Any CPU'
+  BuildConfiguration: 'Release'
+
+steps:
+- task: NuGetToolInstaller@0
+  displayName: Use NuGet 4.7.1
+  inputs:
+    versionSpec: 4.7.1
+
+- task: NuGetCommand@2
+  displayName: 'NuGet restore'
+  inputs:
+    feedsToUse: config
+    nugetConfigPath: NuGet.config
+
+- task: MSBuild@1
+  displayName: Build Prism.Plugin.Popups
+  inputs:
+    solution: Prism.Plugin.Popups.sln
+    platform: '$(BuildPlatform)'
+    configuration: '$(BuildConfiguration)'
+
+- powershell: ./Sign-Packages.ps1
+  workingDirectory: build
+  displayName: Authenticode Sign Artifacts
+  env:
+    SignClientUser: $(SignClientUser)
+    SignClientSecret: $(SignClientSecret)
+    SignClientClientId: $(SignClientClientId)
+    SignClientTenantId: $(SignClientTenantId)
+    SignServiceResourceId: $(SignServiceResourceId)
+  condition: and(succeeded(), eq(variables['system.pullrequest.isfork'], false))
+
+- task: PublishBuildArtifacts@1
+  displayName: Publish Package Artifacts
+  inputs:
+    PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+    ArtifactName: NuGet
+  condition: and(succeeded(), eq(variables['system.pullrequest.isfork'], false))
+
+- task: DotNetCoreCLI@2
+  displayName: Run Unit Tests
+  inputs:
+    command: test
+    projects: tests/**/*.csproj
+    arguments: -c $(BuildConfiguration) --collect:"Code Coverage" -s $(System.DefaultWorkingDirectory)/CodeCoverage.runsettings --no-build
