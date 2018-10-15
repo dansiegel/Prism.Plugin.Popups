@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionCode="1530735310" android:versionName="1.0.1530735310" package="com.prismlib.popups">
-  <uses-sdk android:minSdkVersion="21" />
+  <uses-sdk android:minSdkVersion="21" android:targetSdkVersion="27" />
   <uses-permission android:name="android.permission.INTERNET" />
   <application android:label="Popup Plugin Sample"></application>
 </manifest>
