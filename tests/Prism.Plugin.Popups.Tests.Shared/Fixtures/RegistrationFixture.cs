@@ -1,4 +1,5 @@
-﻿using Prism.Ioc;
+﻿using Prism.Behaviors;
+using Prism.Ioc;
 using Prism.Navigation;
 using Prism.Plugin.Popups.Tests.Fixtures;
 using Prism.Plugin.Popups.Tests.Mocks;
@@ -83,6 +84,30 @@ namespace Prism.Plugin.Popups.Unity.Tests.Fixtures
             var navService = app.Container.Resolve<INavigationService>(PrismApplicationBase.NavigationServiceName);
             Assert.NotNull(navService);
             Assert.IsType<PopupPageNavigationService>(navService);
+        }
+
+        [Fact]
+        public void PopupPageBehaviorFactory_IsRegistered()
+        {
+            var app = GetApp();
+
+            IPageBehaviorFactory behaviorFactory = null;
+            var ex = Record.Exception(() => behaviorFactory = app.Container.Resolve<IPageBehaviorFactory>());
+
+            Assert.Null(ex);
+            Assert.NotNull(behaviorFactory);
+            Assert.IsType<PopupPageBehaviorFactory>(behaviorFactory);
+        }
+
+        [Fact]
+        public void IPopupNavigation_IsRegistered()
+        {
+            var app = GetApp();
+            IPopupNavigation popupNavigation = null;
+            var ex = Record.Exception(() => popupNavigation = app.Container.Resolve<IPopupNavigation>());
+
+            Assert.Null(ex);
+            Assert.NotNull(popupNavigation);
         }
     }
 }
