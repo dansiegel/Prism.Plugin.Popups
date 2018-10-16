@@ -4,62 +4,53 @@
   <PropertyGroup>
     <Product>$(AssemblyName) ($(TargetFramework))</Product>
     <Authors>Dan Siegel</Authors>
+    <Copyright>© Dan Siegel. All rights reserved.</Copyright>
     <VersionPrefix>2.1.0</VersionPrefix>
-    <VersionPrefix Condition=" '$(BUILD_BUILDNUMBER)' != '' ">$(VersionPrefix).$(BUILD_BUILDNUMBER)</VersionPrefix>
-    <VersionSuffix Condition=" '$(BUILD_BUILDNUMBER)' != '' ">ci</VersionSuffix>
-    <VersionSuffix Condition=" '$(IS_PREVIEW)' == 'true' ">pre</VersionSuffix>
-    <VersionSuffix Condition=" '$(IS_RELEASE)' == 'true' "></VersionSuffix>
-    <PackageOutputPath Condition=" '$(BUILD_BUILDNUMBER)' == '' ">$(MSBuildThisFileDirectory)Build</PackageOutputPath>
-    <PackageOutputPath Condition=" '$(BUILD_BUILDNUMBER)' != '' ">$(BUILD_ARTIFACTSTAGINGDIRECTORY)</PackageOutputPath>
-    <NeutralLanguage>en</NeutralLanguage>
+    <NeutralLanguage>en-US</NeutralLanguage>
     <IncludeSymbols>True</IncludeSymbols>
     <IncludeSource>True</IncludeSource>
-    <LicenseUrl>https://github.com/dansiegel/Prism.Plugin.Popups/blob/master/LICENSE</LicenseUrl>
-    <ProjectUrl>https://github.com/dansiegel/Prism.Plugin.Popups</ProjectUrl>
-    <Tags>prism,popups,xamarin forms</Tags>
-    <ReleaseNotes>
-v2.1.0-pre1
-- Updates to Rg.Plugins.Popup 1.1.4.154
-- Bumping to 2.1 to make it clearer that this targets Prism 7.1
-v2.0.0-pre7
-- Updates for Prism 7.1 compatibility
-v2.0.0-pre6
-- Fixes issue that prevented PopupNavigationService from properly being registered on DryIoc
-- Fixes registration to include missing registration for PopupPageBehaviorFactory
-- Adds Unit Tests
-- Updates Sample Application
-v2.0.0-pre4
-- Targets Prism 7.0.0-pre5 with IOC abstraction
-- Deprecates Container Specific pacakges
-- Updates to NetStandard version of Rg.Plugins.Popup (1.1.3.73-pre)
-v2.0.0-pre3
--Targets Prism 7.0.0-pre1
-v2.0.0-pre2
--Adds NetStandard support
--Updates to Prism 7
--Ensures that `IPopupNavigation` is registered when registering the PopupNavigationService
--Various refractorings &amp; fixes to the PopupNavigationService
--Fixes issue where the BindingContext would be null after calling GoBackAsync()
--Requires NuGet source https://www.myget.org/F/prism/api/v3/index.json
-v2.0.0-pre1
--Adds PopupPageNavigationService
--Marks `PopupGoBackAsync` and `PushPopupAsync` extension methods as obsolete in favor of directly using the `INavigationService.GoBackAsync` &amp; `INavigationService.NavigateAsync` methods
--Adds Registration extension for all DI Containers with overload so that users can add custom logic to the `PopupPageNavigationService`
-v1.1.0
--Adds support for Prism.Forms IDestructible
--Adds support for new INavigationAware paradigm with `INavigatingAware` and `INavigatedAware`
--Breaking Change: Removes Non-Async version of ClearPopupStack
--Ensures OnNavigatingTo will fire on the 'Current Page' of any `NavigationPage`, `MasterDetailPage`, or `TabbedPage`
--Ensures OnNavigatingFrom will be called when pushing a PopupPage
-v1.0.1: 
-- Fixes issue where the appropriate ViewModel was not being loaded 
-- Adds overload to PushPopupAsync to directly add a single navigation parameter 
-v1.0.0: 
-- Initial Prerelease Package
-    </ReleaseNotes>
+    <PackageIconUrl>http://prismlibrary.github.io/images/prism-logo-graphic-128.png</PackageIconUrl>
+    <PackageProjectUrl>https://github.com/dansiegel/Prism.Plugin.Popups</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/dansiegel/Prism.Plugin.Popups.git</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageLicenseUrl>https://github.com/dansiegel/Prism.Plugin.Popups/blob/master/LICENSE</PackageLicenseUrl>
+    <PackageTags>prism popups xamarin.forms</PackageTags>
+    <PackageReleaseNotes>- Targets Prism 7.1
+- Targets Rg.Plugins.Popup 1.1.4.154
+- Deprecates all container specific packages in favor of abstracted Prism.Plugin.Popups package
+- v1 Navigation Extensions `PopupGoBackAsync` &amp; `PushPopupAsync` have been removed in favor of new PopupPage NavigationService
+- Adds IContainerRegistry extension to register the PopupPageNavigationService, IPopupNavigation and PopupPageBehaviorFactory
+    </PackageReleaseNotes>
   </PropertyGroup>
 
-  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+  <!-- CI Helpers -->
+  <PropertyGroup>
+    <PackageOutputPath>$(MSBuildThisFileDirectory)/Artifacts</PackageOutputPath>
+    <PackageOutputPath Condition=" $(BUILD_ARTIFACTSTAGINGDIRECTORY) != '' ">$(BUILD_ARTIFACTSTAGINGDIRECTORY)</PackageOutputPath>
+    <IsPackable>true</IsPackable>
+    <IsPackable Condition=" $(ProjectName.Contains('Sample')) ">false</IsPackable>
+    <IsPackable Condition=" $(ProjectName.Contains('Test')) ">false</IsPackable>
+    <GeneratePackageOnBuild>$(IsPackable)</GeneratePackageOnBuild>
+    <IS_PREVIEW Condition=" $(IS_PREVIEW) == '' ">false</IS_PREVIEW>
+    <IS_RELEASE Condition=" $(IS_RELEASE) == '' ">false</IS_RELEASE>
+    <VersionPrefix Condition=" $(BUILD_BUILDNUMBER) != '' ">$(VersionPrefix).$(BUILD_BUILDNUMBER)</VersionPrefix>
+    <VersionSuffix>ci</VersionSuffix>
+    <VersionSuffix Condition=" $(IS_PREVIEW) ">pre</VersionSuffix>
+    <VersionSuffix Condition=" $(IS_RELEASE) "></VersionSuffix>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <!-- Nuget source link -->
+    <PublishRepositoryUrl>true</PublishRepositoryUrl>
+    <EmbedUntrackedSources>true</EmbedUntrackedSources>
+    <AllowedOutputExtensionsInPackageBuildOutputFolder>$(AllowedOutputExtensionsInPackageBuildOutputFolder);.pdb</AllowedOutputExtensionsInPackageBuildOutputFolder>
+  </PropertyGroup>
+
+  <ItemGroup Condition=" $(IsPackable) ">
+    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.0.0-beta-63127-02" PrivateAssets="All" />
+  </ItemGroup>
+
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' And '$(IsPackable)' ">
     <GenerateDocumentationFile>True</GenerateDocumentationFile>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
   </PropertyGroup>

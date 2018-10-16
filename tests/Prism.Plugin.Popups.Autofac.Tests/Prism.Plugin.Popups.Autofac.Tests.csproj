@@ -8,7 +8,7 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.8.0" />
-    <PackageReference Include="Prism.Autofac.Forms" Version="7.1.0.279-pre" />
+    <PackageReference Include="Prism.Autofac.Forms" Version="7.1.0.431" />
     <PackageReference Include="Rg.Plugins.Popup" Version="1.1.4.168" />
     <PackageReference Include="Xamarin.Forms.Mocks" Version="3.0.0.2" />
     <PackageReference Include="xunit" Version="2.4.0" />

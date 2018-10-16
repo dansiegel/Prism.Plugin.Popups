@@ -8,7 +8,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Prism.DryIoc.Forms" Version="7.1.0.279-pre" />
+    <PackageReference Include="Prism.DryIoc.Forms" Version="7.1.0.431" />
     <ProjectReference Include="../Prism.Plugin.Popups/Prism.Plugin.Popups.csproj" />
   </ItemGroup>
 
