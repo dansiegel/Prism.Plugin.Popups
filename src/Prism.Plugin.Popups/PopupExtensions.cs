@@ -27,7 +27,7 @@ namespace Prism.Navigation
         {
             while (s_popupStack.Count > 0)
             {
-                var result = await navigationService.GoBackAsync(parameters, animated: animated);
+                var result = await ((PopupPageNavigationService)navigationService).GoBackAsync(parameters, animated: animated);
                 if (result.Exception != null)
                     return result;
             }

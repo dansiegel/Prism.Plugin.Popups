@@ -5,11 +5,13 @@
              prism:ViewModelLocator.AutowireViewModel="True"
              Title="MainPage"
              x:Class="PopupPluginSample.Views.MainPage">
-    <StackLayout HorizontalOptions="Center" VerticalOptions="Center">
+    <StackLayout HorizontalOptions="Center" VerticalOptions="End">
         <Label Text="{Binding Message}" />
         <Button Text="Launch Popup" Command="{Binding LaunchPopupCommand}" />
         <Button Text="Back to Menu"
                 Command="{Binding NavigateCommand}"
                 CommandParameter="/MenuPage" />
+        <Button Text="ClearPopupStackAsync"
+                Command="{Binding LaunchClearPopupStackAsyncCommand}"/>
     </StackLayout>
 </ContentPage>

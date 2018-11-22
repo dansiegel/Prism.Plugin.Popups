@@ -18,6 +18,11 @@ namespace PopupPluginSample.ViewModels
 
         private async void OnLaunchPopupCommandExecuted() =>
             await _navigationService.NavigateAsync("PopupView");
+
+        public DelegateCommand LaunchClearPopupStackAsyncCommand => new DelegateCommand(OnLaunchClearPopupStackAsyncExecuted);
+
+        private async void OnLaunchClearPopupStackAsyncExecuted() =>
+            await _navigationService.ClearPopupStackAsync();
     }
 }
 
