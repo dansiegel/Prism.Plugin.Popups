@@ -5,7 +5,8 @@
                  xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms" 
                  prism:ViewModelLocator.AutowireViewModel="True"
                  Padding="100"
-                 x:Class="PopupPluginSample.Views.PopupView">
+                 x:Class="PopupPluginSample.Views.PopupView"
+                 BackgroundInputTransparent="True">
     <StackLayout HorizontalOptions="Center" 
                 VerticalOptions="Center"
                 MinimumWidthRequest="300"

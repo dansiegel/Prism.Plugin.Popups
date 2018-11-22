@@ -26,6 +26,11 @@ namespace Prism.Plugin.Popups
 
         public override async Task<INavigationResult> GoBackAsync(INavigationParameters parameters)
         {
+            return await GoBackAsync(parameters, true);
+        }
+
+        public async Task<INavigationResult> GoBackAsync(INavigationParameters parameters, bool animated)
+        {
             try
             {
                 NavigationSource = PageNavigationSource.NavigationService;
@@ -38,7 +43,7 @@ namespace Prism.Plugin.Popups
                         var previousPage = PopupUtilities.GetOnNavigatedToTarget(_popupNavigation, _applicationProvider);
 
                         PageUtilities.OnNavigatingTo(previousPage, segmentParameters);
-                        await DoPop(popupPage.Navigation, false, true);
+                        await DoPop(popupPage.Navigation, false, animated);
 
                         if (popupPage != null)
                         {
