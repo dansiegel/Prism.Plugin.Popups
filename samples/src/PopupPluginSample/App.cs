@@ -1,22 +1,14 @@
-﻿using System.Threading.Tasks;
+﻿using DryIoc;
 using PopupPluginSample.Views;
 using Prism;
-using Prism.Ioc;
-#if AUTOFAC
-using Autofac;
-using Prism.Autofac;
-#elif DRYIOC
-using DryIoc;
 using Prism.DryIoc;
-#elif UNITY
-using Unity;
-using Prism.Unity;
-#endif
+using Prism.Ioc;
 using Prism.Logging;
-using Xamarin.Forms;
 using Prism.Plugin.Popups;
-using Prism.Navigation;
-using Prism.Common;
+using System.Diagnostics;
+using System.Threading.Tasks;
+using Xamarin.Forms;
+using Xamarin.Forms.Internals;
 
 namespace PopupPluginSample
 {
@@ -40,7 +32,7 @@ namespace PopupPluginSample
 
         protected override async void OnInitialized()
         {
-            LogUnobservedTaskExceptions();
+            SetupLoggingListeners();
 
             await NavigationService.NavigateAsync("MenuPage");
         }
@@ -59,12 +51,19 @@ namespace PopupPluginSample
             containerRegistry.RegisterForNavigation<TabbedRoot>();
         }
 
-        private void LogUnobservedTaskExceptions()
+        private void SetupLoggingListeners()
         {
+            Log.Listeners.Add(new FormsLoggingListener());
             TaskScheduler.UnobservedTaskException += (sender, e) =>
             {
                 Container.Resolve<ILoggerFacade>().Log($"{e.Exception}", Category.Exception, Priority.None);
             };
+        }
+
+        private class FormsLoggingListener : LogListener
+        {
+            public override void Warning(string category, string message) =>
+                Trace.WriteLine($"    {category}: {message}");
         }
     }
 }
