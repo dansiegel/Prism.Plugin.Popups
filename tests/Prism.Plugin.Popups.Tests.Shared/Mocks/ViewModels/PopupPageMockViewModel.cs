@@ -12,9 +12,12 @@ namespace Prism.Plugin.Popups.Tests.Mocks.ViewModels
     {
         private IEventAggregator _eventAggregator { get; }
 
-        public PopupPageMockViewModel(IEventAggregator eventAggregator)
+        public INavigationService NavigationService { get; }
+
+        public PopupPageMockViewModel(INavigationService navigationService, IEventAggregator eventAggregator)
         {
             _eventAggregator = eventAggregator;
+            NavigationService = navigationService;
         }
 
         public bool NavigatedTo { get; set; }

@@ -1,6 +1,7 @@
 ﻿using Prism.Ioc;
 using Prism.Plugin.Popups.Tests.Mocks.Views;
 using Prism.Navigation;
+using Xamarin.Forms;
 #if AUTOFAC
 using Prism.Autofac;
 #elif DRYIOC
@@ -27,6 +28,7 @@ namespace Prism.Plugin.Popups.Tests.Mocks
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
         {
             containerRegistry.RegisterPopupNavigationService();
+            containerRegistry.RegisterForNavigation<NavigationPage>();
             containerRegistry.RegisterForNavigation<MainPage>();
             containerRegistry.RegisterForNavigation<PopupPageMock>();
         }

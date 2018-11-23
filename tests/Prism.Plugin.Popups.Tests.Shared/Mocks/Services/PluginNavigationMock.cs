@@ -19,18 +19,19 @@ namespace Prism.Plugin.Popups.Tests.Mocks.Services
         private List<PopupPage> _popupStack { get; } = new List<PopupPage>();
         public IReadOnlyList<PopupPage> PopupStack => _popupStack;
 
-        public Task PopAllAsync(bool animate = true)
+        public async Task PopAllAsync(bool animate = true)
         {
-            _popupStack.Clear();
-
-            return Task.CompletedTask;
+            while(_popupStack.Any())
+            {
+                await PopAsync(animate);
+            }
         }
 
         public Task PopAsync(bool animate = true)
         {
-            if (_popupStack.Any())
+            if (_popupStack.Count > 0)
             {
-                _popupStack.Remove(_popupStack.Last());
+                _popupStack.RemoveAt(_popupStack.Count - 1);
             }
 
             return Task.CompletedTask;
