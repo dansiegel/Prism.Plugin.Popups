@@ -10,6 +10,11 @@ using Xamarin.Forms;
 
 namespace Prism.Plugin.Popups
 {
+#if __IOS__
+    [Foundation.Preserve(AllMembers = true)]
+#elif __ANDROID__
+    [Android.Runtime.Preserve(AllMembers = true)]
+#endif
     public sealed class BackgroundPopupDismissalBehavior : BehaviorBase<PopupPage>
     {
         private IPopupNavigation _popupNavigation { get; }

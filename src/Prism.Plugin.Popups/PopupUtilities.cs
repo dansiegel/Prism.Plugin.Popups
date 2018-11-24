@@ -1,9 +1,8 @@
-﻿using System;
-using System.Linq;
-using Prism.Common;
+﻿using Prism.Common;
 using Prism.Navigation;
 using Prism.Plugin.Popups.Extensions;
 using Rg.Plugins.Popup.Contracts;
+using System.Linq;
 using Xamarin.Forms;
 
 namespace Prism.Plugin.Popups

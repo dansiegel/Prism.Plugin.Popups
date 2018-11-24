@@ -15,11 +15,7 @@
     <RepositoryType>git</RepositoryType>
     <PackageLicenseUrl>https://github.com/dansiegel/Prism.Plugin.Popups/blob/master/LICENSE</PackageLicenseUrl>
     <PackageTags>prism popups xamarin.forms</PackageTags>
-    <PackageReleaseNotes>- Targets Prism 7.1
-- Targets Rg.Plugins.Popup 1.1.4.154
-- Deprecates all container specific packages in favor of abstracted Prism.Plugin.Popups package
-- v1 Navigation Extensions `PopupGoBackAsync` &amp; `PushPopupAsync` have been removed in favor of new PopupPage NavigationService
-- Adds IContainerRegistry extension to register the PopupPageNavigationService, IPopupNavigation and PopupPageBehaviorFactory
+    <PackageReleaseNotes>- Adds Linker Preserve Attribute for iOS/Android
     </PackageReleaseNotes>
   </PropertyGroup>
 
