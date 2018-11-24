@@ -16,6 +16,7 @@
     <PackageLicenseUrl>https://github.com/dansiegel/Prism.Plugin.Popups/blob/master/LICENSE</PackageLicenseUrl>
     <PackageTags>prism popups xamarin.forms</PackageTags>
     <PackageReleaseNotes>- Adds Linker Preserve Attribute for iOS/Android
+- Will now clear the Popup Stack when a non-Popup Page is pushed onto the Navigation Stack
     </PackageReleaseNotes>
   </PropertyGroup>
 

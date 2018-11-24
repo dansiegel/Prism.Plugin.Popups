@@ -81,14 +81,18 @@ namespace Prism.Plugin.Popups
             return await base.DoPop(navigation, useModalNavigation, animated);
         }
 
-        protected override Task DoPush(Page currentPage, Page page, bool? useModalNavigation, bool animated, bool insertBeforeLast = false, int navigationOffset = 0)
+        protected override async Task DoPush(Page currentPage, Page page, bool? useModalNavigation, bool animated, bool insertBeforeLast = false, int navigationOffset = 0)
         {
             switch (page)
             {
                 case PopupPage popup:
-                    return _popupNavigation.PushAsync(popup, animated);
+                    await _popupNavigation.PushAsync(popup, animated);
+                    break;
                 default:
-                    return base.DoPush(currentPage, page, useModalNavigation, animated, insertBeforeLast, navigationOffset);
+                    await base.DoPush(currentPage, page, useModalNavigation, animated, insertBeforeLast, navigationOffset);
+                    if (_popupNavigation.PopupStack.Any())
+                        await _popupNavigation.PopAllAsync(false);
+                    break;
             }
         }
 
