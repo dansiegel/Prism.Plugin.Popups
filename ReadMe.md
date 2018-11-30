@@ -11,9 +11,6 @@ The Popups plugin provides an extremely lightweight framework for implementing P
 | Package | Version | MyGet |
 | ------- | ------- | ----- |
 | [Prism.Plugin.Popups][PluginNuGet] | [![PluginNuGetShield]][PluginNuGet] | [![PluginMyGetShield]][PluginMyGet] |
-| [Prism.Plugin.Popups.Autofac][AutofacNuGet](DEPRECATED) | [![AutofacNuGetShield]][AutofacNuGet] | [![AutofacMyGetShield]][AutofacMyGet] |
-| [Prism.Plugin.Popups.DryIoc][DryIocNuGet](DEPRECATED) | [![DryIocNuGetShield]][DryIocNuGet] | [![DryIocMyGetShield]][DryIocMyGet] |
-| [Prism.Plugin.Popups.Unity][UnityNuGet](DEPRECATED) | [![UnityNuGetShield]][UnityNuGet] | [![UnityMyGetShield]][UnityMyGet] |
 
 ## Symbols
 
@@ -105,25 +102,6 @@ public class MyPageViewModel : BindableBase
 [2]: https://github.com/PrismLibrary/Prism
 
 [PluginNuGet]: https://www.nuget.org/packages/Prism.Plugin.Popups
-[AutofacNuGet]: https://www.nuget.org/packages/Prism.Plugin.Popups.Autofac
-[DryIocNuGet]: https://www.nuget.org/packages/Prism.Plugin.Popups.DryIoc
-[NinjectNuGet]: https://www.nuget.org/packages/Prism.Plugin.Popups.Ninject
-[UnityNuGet]: https://www.nuget.org/packages/Prism.Plugin.Popups.Unity
-
 [PluginNuGetShield]: https://img.shields.io/nuget/vpre/Prism.Plugin.Popups.svg
-[AutofacNuGetShield]: https://img.shields.io/nuget/vpre/Prism.Plugin.Popups.Autofac.svg
-[DryIocNuGetShield]: https://img.shields.io/nuget/vpre/Prism.Plugin.Popups.DryIoc.svg
-[NinjectNuGetShield]: https://img.shields.io/nuget/vpre/Prism.Plugin.Popups.Ninject.svg
-[UnityNuGetShield]: https://img.shields.io/nuget/vpre/Prism.Plugin.Popups.Unity.svg
-
 [PluginMyGet]: https://www.myget.org/feed/prism-plugins/package/nuget/Prism.Plugin.Popups
-[AutofacMyGet]: https://www.myget.org/feed/prism-plugins/package/nuget/Prism.Plugin.Popups.Autofac
-[DryIocMyGet]: https://www.myget.org/feed/prism-plugins/package/nuget/Prism.Plugin.Popups.DryIoc
-[NinjectMyGet]: https://www.myget.org/feed/prism-plugins/package/nuget/Prism.Plugin.Popups.Ninject
-[UnityMyGet]: https://www.myget.org/feed/prism-plugins/package/nuget/Prism.Plugin.Popups.Unity
-
 [PluginMyGetShield]: https://img.shields.io/myget/prism-plugins/vpre/Prism.Plugin.Popups.svg
-[AutofacMyGetShield]: https://img.shields.io/myget/prism-plugins/vpre/Prism.Plugin.Popups.Autofac.svg
-[DryIocMyGetShield]: https://img.shields.io/myget/prism-plugins/vpre/Prism.Plugin.Popups.DryIoc.svg
-[NinjectMyGetShield]: https://img.shields.io/myget/prism-plugins/vpre/Prism.Plugin.Popups.Ninject.svg
-[UnityMyGetShield]: https://img.shields.io/myget/prism-plugins/vpre/Prism.Plugin.Popups.Unity.svg
