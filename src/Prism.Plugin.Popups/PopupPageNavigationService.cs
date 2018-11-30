@@ -31,7 +31,7 @@ namespace Prism.Plugin.Popups
             _popupNavigation = popupNavigation;
         }
 
-        public override async Task<INavigationResult> GoBackAsync(INavigationParameters parameters)
+        protected override async Task<INavigationResult> GoBackInternal(INavigationParameters parameters, bool? useModalNavigation, bool animated)
         {
             INavigationResult result = null;
             try
@@ -46,7 +46,7 @@ namespace Prism.Plugin.Popups
                         var previousPage = PopupUtilities.GetOnNavigatedToTarget(_popupNavigation, _applicationProvider);
 
                         PageUtilities.OnNavigatingTo(previousPage, segmentParameters);
-                        await DoPop(popupPage.Navigation, false, true);
+                        await DoPop(popupPage.Navigation, false, animated);
 
                         if (popupPage != null)
                         {
@@ -60,7 +60,7 @@ namespace Prism.Plugin.Popups
                         }
                         throw new NullReferenceException("The PopupPage was null following the Pop");
                     default:
-                        result = await base.GoBackAsync(parameters);
+                        result = await base.GoBackInternal(parameters, useModalNavigation, animated);
                         break;
                 }
             }
