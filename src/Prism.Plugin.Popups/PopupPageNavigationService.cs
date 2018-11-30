@@ -7,6 +7,7 @@ using Prism.Behaviors;
 using Prism.Common;
 using Prism.Ioc;
 using Prism.Logging;
+using Prism.Mvvm;
 using Prism.Navigation;
 using Rg.Plugins.Popup.Contracts;
 using Rg.Plugins.Popup.Pages;
@@ -53,6 +54,7 @@ namespace Prism.Plugin.Popups
                             PageUtilities.InvokeViewAndViewModelAction<IActiveAware>(popupPage, a => a.IsActive = false);
                             PageUtilities.OnNavigatedFrom(popupPage, segmentParameters);
                             PageUtilities.OnNavigatedTo(previousPage, segmentParameters);
+                            await InvokeOnNavigatedToAsync(previousPage, segmentParameters);
                             PageUtilities.InvokeViewAndViewModelAction<IActiveAware>(previousPage, a => a.IsActive = true);
                             PageUtilities.DestroyPage(popupPage);
                             result = new NavigationResult { Success = true };
@@ -113,6 +115,31 @@ namespace Prism.Plugin.Popups
             }
 
             return base.GetCurrentPage();
+        }
+
+        private async Task InvokeOnNavigatedToAsync(object view, INavigationParameters parameters)
+        {
+            if(view is INavigatedAwareAsync navigatedAware)
+            {
+                await navigatedAware.OnNavigatedToAsync(parameters);
+            }
+
+            if(view is BindableObject bindable && bindable.BindingContext is INavigatedAwareAsync vm)
+            {
+                await vm.OnNavigatedToAsync(parameters);
+            }
+
+#if !NETSTANDARD1_0
+            if(view is Page page)
+            {
+                BindableProperty partialViewsProperty = typeof(ViewModelLocator).GetProperty("PartialViewsProperty", BindingFlags.Static & BindingFlags.NonPublic).GetValue(null) as BindableProperty;
+                var partials = (List<BindableObject>)page.GetValue(partialViewsProperty);
+                foreach (var partial in partials ?? new List<BindableObject>())
+                {
+                    await InvokeOnNavigatedToAsync(partial, parameters);
+                }
+            }
+#endif
         }
     }
 }
