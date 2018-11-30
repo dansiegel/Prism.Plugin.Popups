@@ -17,6 +17,7 @@
     <PackageTags>prism popups xamarin.forms</PackageTags>
     <PackageReleaseNotes>- Adds Linker Preserve Attribute for iOS/Android
 - Will now clear the Popup Stack when a non-Popup Page is pushed onto the Navigation Stack
+- Will now properly handle all calls to GoBackAsync in which the animated option has been set
     </PackageReleaseNotes>
   </PropertyGroup>
 
