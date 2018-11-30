@@ -16,7 +16,7 @@ using Xunit.Abstractions;
 #if AUTOFAC
 namespace Prism.Plugin.Popups.Autofac.Tests.Fixtures
 #elif DRYIOC
-namespace Prism.Plugin.Popups.Autofac.Tests.Fixtures
+namespace Prism.Plugin.Popups.DryIoc.Tests.Fixtures
 #else
 namespace Prism.Plugin.Popups.Unity.Tests.Fixtures
 #endif
