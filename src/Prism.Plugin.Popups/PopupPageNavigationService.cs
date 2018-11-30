@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Threading.Tasks;
 using Prism.Behaviors;
 using Prism.Common;
@@ -31,6 +33,7 @@ namespace Prism.Plugin.Popups
 
         public override async Task<INavigationResult> GoBackAsync(INavigationParameters parameters)
         {
+            INavigationResult result = null;
             try
             {
                 NavigationSource = PageNavigationSource.NavigationService;
@@ -52,22 +55,28 @@ namespace Prism.Plugin.Popups
                             PageUtilities.OnNavigatedTo(previousPage, segmentParameters);
                             PageUtilities.InvokeViewAndViewModelAction<IActiveAware>(previousPage, a => a.IsActive = true);
                             PageUtilities.DestroyPage(popupPage);
-                            return new NavigationResult { Success = true };
+                            result = new NavigationResult { Success = true };
+                            break;
                         }
                         throw new NullReferenceException("The PopupPage was null following the Pop");
                     default:
-                        return await base.GoBackAsync(parameters);
+                        result = await base.GoBackAsync(parameters);
+                        break;
                 }
             }
             catch (Exception e)
             {
+#if DEBUG
+                System.Diagnostics.Debugger.Break();
+#endif
                 _logger.Log(e.ToString(), Category.Exception, Priority.High);
-                return new NavigationResult { Success = false, Exception = e }; ;
+                result = new NavigationResult { Success = false, Exception = e }; ;
             }
             finally
             {
                 NavigationSource = PageNavigationSource.Device;
             }
+            return result;
         }
 
         protected override async Task<Page> DoPop(INavigation navigation, bool useModalNavigation, bool animated)

@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Prism.Plugin.Popups;
 using Rg.Plugins.Popup.Contracts;
@@ -25,7 +26,7 @@ namespace Prism.Navigation
 
         public static async Task<INavigationResult> ClearPopupStackAsync(this INavigationService navigationService, INavigationParameters parameters = null, bool animated = true)
         {
-            while (s_popupStack.Count > 0)
+            while (s_popupStack.Any())
             {
                 var result = await navigationService.GoBackAsync(parameters, animated: animated);
                 if (result.Exception != null)
