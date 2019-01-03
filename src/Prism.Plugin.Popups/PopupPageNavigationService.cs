@@ -132,7 +132,7 @@ namespace Prism.Plugin.Popups
 #if !NETSTANDARD1_0
             if(view is Page page)
             {
-                BindableProperty partialViewsProperty = typeof(ViewModelLocator).GetProperty("PartialViewsProperty", BindingFlags.Static & BindingFlags.NonPublic).GetValue(null) as BindableProperty;
+                BindableProperty partialViewsProperty = typeof(ViewModelLocator).GetField("PartialViewsProperty", BindingFlags.Static | BindingFlags.NonPublic).GetValue(null) as BindableProperty;
                 var partials = (List<BindableObject>)page.GetValue(partialViewsProperty);
                 foreach (var partial in partials ?? new List<BindableObject>())
                 {
