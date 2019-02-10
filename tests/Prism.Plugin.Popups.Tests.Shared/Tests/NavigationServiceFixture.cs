@@ -13,11 +13,11 @@ using Xunit.Abstractions;
 using Prism.Navigation;
 
 #if AUTOFAC
-namespace Prism.Plugin.Popups.Autofac.Tests.Fixtures
+namespace Prism.Plugin.Popups.Autofac.Tests
 #elif DRYIOC
-namespace Prism.Plugin.Popups.DryIoc.Tests.Fixtures
+namespace Prism.Plugin.Popups.DryIoc.Tests
 #else
-namespace Prism.Plugin.Popups.Unity.Tests.Fixtures
+namespace Prism.Plugin.Popups.Unity.Tests
 #endif
 {
     public class NavigationServiceFixture : FixtureBase
@@ -27,14 +27,14 @@ namespace Prism.Plugin.Popups.Unity.Tests.Fixtures
         {
         }
 
-        //[Fact]
-        //public void PopupNavigationService_SetsStandardPages()
-        //{
-        //    var app = GetApp();
-        //    Assert.Empty(PopupNavigation.Instance.PopupStack);
-        //    Assert.NotNull(app.MainPage);
-        //    Assert.IsType<MainPage>(app.MainPage);
-        //}
+        [Fact]
+        public void PopupNavigationService_SetsStandardPages()
+        {
+            var app = GetApp();
+            Assert.Empty(PopupNavigation.Instance.PopupStack);
+            Assert.NotNull(app.MainPage);
+            Assert.IsType<MainPage>(app.MainPage);
+        }
 
         //[Fact]
         //public async Task PushingPopupPage_PushesToPopupStack()

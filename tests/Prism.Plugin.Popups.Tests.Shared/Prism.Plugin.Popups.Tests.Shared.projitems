@@ -9,9 +9,9 @@
     <Import_RootNamespace>Prism.Plugin.Popups.Tests</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="$(MSBuildThisFileDirectory)Fixtures\FixtureBase.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Fixtures\NavigationServiceFixture.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Fixtures\RegistrationFixture.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Tests\FixtureBase.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Tests\NavigationServiceFixture.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Tests\RegistrationFixture.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Mocks\AppMock.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Mocks\Events\NavigatedFromEvent.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Mocks\Services\PluginNavigationMock.cs" />
