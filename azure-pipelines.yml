@@ -16,10 +16,14 @@ variables:
   BuildConfiguration: 'Release'
 
 steps:
-- task: NuGetToolInstaller@0
-  displayName: Use NuGet 4.8.1
+- task: DotNetCoreInstaller@0
   inputs:
-    versionSpec: 4.8.1
+    version: '3.0.100-preview-009812'
+
+- task: NuGetToolInstaller@0
+  displayName: Use NuGet 4.9.2
+  inputs:
+    versionSpec: 4.9.2
 
 - task: NuGetCommand@2
   displayName: 'NuGet restore'
