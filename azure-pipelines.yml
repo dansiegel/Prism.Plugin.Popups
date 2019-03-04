@@ -27,9 +27,9 @@ steps:
 
 - task: NuGetCommand@2
   displayName: 'NuGet restore'
-  inputs:
-    feedsToUse: config
-    nugetConfigPath: NuGet.config
+#  inputs:
+#    feedsToUse: config
+#    nugetConfigPath: NuGet.config
 
 - task: MSBuild@1
   displayName: Build Prism.Plugin.Popups
