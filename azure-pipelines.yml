@@ -17,7 +17,7 @@ variables:
 
 steps:
 - task: DotNetCoreInstaller@0
- inputs:
+  inputs:
    version: '3.0.100-preview-009812'
 
 - task: NuGetToolInstaller@0
@@ -27,7 +27,7 @@ steps:
 
 - task: NuGetCommand@2
   displayName: 'NuGet restore'
- inputs:
+  inputs:
    feedsToUse: config
    nugetConfigPath: NuGet.config
 
