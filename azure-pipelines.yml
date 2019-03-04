@@ -16,9 +16,9 @@ variables:
   BuildConfiguration: 'Release'
 
 steps:
-#- task: DotNetCoreInstaller@0
-#  inputs:
-#    version: '3.0.100-preview-010184'
+- task: DotNetCoreInstaller@0
+ inputs:
+   version: '3.0.100-preview-009812'
 
 - task: NuGetToolInstaller@0
   displayName: Use NuGet 4.9.3
@@ -27,9 +27,9 @@ steps:
 
 - task: NuGetCommand@2
   displayName: 'NuGet restore'
-#  inputs:
-#    feedsToUse: config
-#    nugetConfigPath: NuGet.config
+ inputs:
+   feedsToUse: config
+   nugetConfigPath: NuGet.config
 
 - task: MSBuild@1
   displayName: Build Prism.Plugin.Popups
