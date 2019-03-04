@@ -8,8 +8,8 @@
 
   <ItemGroup>
     <PackageReference Include="PropertyChanged.Fody" Version="2.6.0" PrivateAssets="all" />
-    <PackageReference Include="Prism.DryIoc.Forms" Version="7.1.0.431" />
-    <PackageReference Include="Xamarin.Forms" Version="3.5.0.129452" />
+    <PackageReference Include="Prism.DryIoc.Forms" Version="7.2.0.1038-pre" />
+    <PackageReference Include="Xamarin.Forms" Version="3.5.0.169047" />
     <PackageReference Include="Mobile.BuildTools" Version="1.4.0.638" PrivateAssets="all" />
     <PackageReference Include="Prism.QuickStart.MFractor.Config" Version="1.0.3" PrivateAssets="all" />
   </ItemGroup>
