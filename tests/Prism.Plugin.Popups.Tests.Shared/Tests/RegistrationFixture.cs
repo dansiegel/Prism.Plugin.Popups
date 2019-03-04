@@ -29,7 +29,7 @@ namespace Prism.Plugin.Popups.Unity.Tests.Fixtures
             
         }
 
-        [Fact]
+        [Retry]
         public void MockPopupNavigation_IsSet()
         {
             IPopupNavigation popupNavigation = null;
@@ -39,7 +39,7 @@ namespace Prism.Plugin.Popups.Unity.Tests.Fixtures
             Assert.IsType<PluginNavigationMock>(popupNavigation);
         }
 
-        [Fact]
+        [Retry]
         public void CreateApp_DoesNotThrowException()
         {
             AppMock app = null;
@@ -50,7 +50,7 @@ namespace Prism.Plugin.Popups.Unity.Tests.Fixtures
             Assert.NotNull(app);
         }
 
-        [Fact]
+        [Retry]
         public void CreateApp_DoesNotThrowExceptionWithNoPlatformInitializer()
         {
             AppMock app = null;
@@ -60,15 +60,15 @@ namespace Prism.Plugin.Popups.Unity.Tests.Fixtures
             Assert.NotNull(app);
         }
 
-        [Fact]
+        [Retry]
         public void Application_Has_PopupNavigationService()
         {
             var app = GetApp();
             Assert.IsType<PopupPageNavigationService>(app.GetNavigationService());
         }
 
-        [Fact]
         public void MainPage_Has_PopupNavigationService()
+        [Retry]
         {
             var app = GetApp();
             var vm = app.MainPage.BindingContext as MainPageViewModel;
@@ -77,7 +77,7 @@ namespace Prism.Plugin.Popups.Unity.Tests.Fixtures
             Assert.IsType<PopupPageNavigationService>(vm.NavigationService);
         }
 
-        [Fact]
+        [Retry]
         public void Container_Resolves_PopupNavigationService()
         {
             var app = GetApp();
@@ -86,7 +86,7 @@ namespace Prism.Plugin.Popups.Unity.Tests.Fixtures
             Assert.IsType<PopupPageNavigationService>(navService);
         }
 
-        [Fact]
+        [Retry]
         public void PopupPageBehaviorFactory_IsRegistered()
         {
             var app = GetApp();
@@ -99,7 +99,7 @@ namespace Prism.Plugin.Popups.Unity.Tests.Fixtures
             Assert.IsType<PopupPageBehaviorFactory>(behaviorFactory);
         }
 
-        [Fact]
+        [Retry]
         public void IPopupNavigation_IsRegistered()
         {
             var app = GetApp();

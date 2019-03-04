@@ -5,12 +5,13 @@ using System.Linq;
 using System.Reflection;
 using Rg.Plugins.Popup.Services;
 using Prism.Plugin.Popups.Tests.Mocks.Services;
+using Prism.Navigation;
 
 namespace Prism.Plugin.Popups.Tests.Fixtures
 {
     public abstract class FixtureBase
     {
-        private ITestOutputHelper _testOutputHelper { get; }
+        protected ITestOutputHelper _testOutputHelper { get; }
 
         public FixtureBase(ITestOutputHelper testOutputHelper)
         {
@@ -23,7 +24,10 @@ namespace Prism.Plugin.Popups.Tests.Fixtures
 
         }
 
-        protected AppMock GetApp() =>
-            new AppMock(new XUnitPlatformInitializer(_testOutputHelper));
+        protected AppMock GetApp()
+        {
+            PageNavigationRegistry.ClearRegistrationCache();
+            return new AppMock(new XUnitPlatformInitializer(_testOutputHelper));
+        }
     }
 }

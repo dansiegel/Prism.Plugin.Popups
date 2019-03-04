@@ -27,8 +27,8 @@ namespace Prism.Plugin.Popups.Unity.Tests
         {
         }
 
-        [Fact]
         public void PopupNavigationService_SetsStandardPages()
+        [Retry]
         {
             var app = GetApp();
             Assert.Empty(PopupNavigation.Instance.PopupStack);
