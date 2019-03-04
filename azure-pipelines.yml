@@ -9,7 +9,7 @@ trigger:
 name: $(Build.BuildId)
 
 pool:
-  vmImage: vs2017-win2016
+  vmImage: windows-2019
 
 variables:
   BuildPlatform: 'Any CPU'
@@ -18,12 +18,12 @@ variables:
 steps:
 - task: DotNetCoreInstaller@0
   inputs:
-    version: '3.0.100-preview-009812'
+    version: '3.0.100-preview-010184'
 
 - task: NuGetToolInstaller@0
-  displayName: Use NuGet 4.9.2
+  displayName: Use NuGet 4.9.3
   inputs:
-    versionSpec: 4.9.2
+    versionSpec: 4.9.3
 
 - task: NuGetCommand@2
   displayName: 'NuGet restore'
