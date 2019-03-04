@@ -9,16 +9,16 @@ trigger:
 name: $(Build.BuildId)
 
 pool:
-  vmImage: windows-2019
+  vmImage: vs2017-win2016
 
 variables:
   BuildPlatform: 'Any CPU'
   BuildConfiguration: 'Release'
 
 steps:
-- task: DotNetCoreInstaller@0
-  inputs:
-   version: '3.0.100-preview-009812'
+# - task: DotNetCoreInstaller@0
+#   inputs:
+#    version: '3.0.100-preview-009812'
 
 - task: NuGetToolInstaller@0
   displayName: Use NuGet 4.9.3
