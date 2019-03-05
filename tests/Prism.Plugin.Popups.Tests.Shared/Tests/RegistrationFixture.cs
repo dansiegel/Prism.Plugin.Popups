@@ -10,6 +10,7 @@ using Rg.Plugins.Popup.Services;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 using Xunit;
 using Xunit.Abstractions;
 
@@ -67,10 +68,12 @@ namespace Prism.Plugin.Popups.Unity.Tests.Fixtures
             Assert.IsType<PopupPageNavigationService>(app.GetNavigationService());
         }
 
-        public void MainPage_Has_PopupNavigationService()
         [Retry]
+        public async Task MainPage_Has_PopupNavigationService()
         {
             var app = GetApp();
+            await Task.Delay(150);
+
             var vm = app.MainPage.BindingContext as MainPageViewModel;
             Assert.NotNull(vm);
             Assert.NotNull(vm.NavigationService);

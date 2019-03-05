@@ -11,6 +11,7 @@ using Rg.Plugins.Popup.Services;
 using Xunit;
 using Xunit.Abstractions;
 using Prism.Navigation;
+using Prism.Common;
 
 #if AUTOFAC
 namespace Prism.Plugin.Popups.Autofac.Tests
@@ -27,11 +28,13 @@ namespace Prism.Plugin.Popups.Unity.Tests
         {
         }
 
-        public void PopupNavigationService_SetsStandardPages()
         [Retry]
+        public async Task PopupNavigationService_SetsStandardPages()
         {
             var app = GetApp();
             Assert.Empty(PopupNavigation.Instance.PopupStack);
+            await Task.Delay(150);
+
             Assert.NotNull(app.MainPage);
             Assert.IsType<MainPage>(app.MainPage);
         }

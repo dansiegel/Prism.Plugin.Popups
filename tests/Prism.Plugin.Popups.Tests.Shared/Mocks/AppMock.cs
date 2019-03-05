@@ -2,6 +2,7 @@
 using Prism.Plugin.Popups.Tests.Mocks.Views;
 using Prism.Navigation;
 using Xamarin.Forms;
+using Prism.Logging;
 #if AUTOFAC
 using Prism.Autofac;
 #elif DRYIOC
@@ -20,9 +21,13 @@ namespace Prism.Plugin.Popups.Tests.Mocks
 
         }
 
-        protected override void OnInitialized()
+        protected override async void OnInitialized()
         {
-            NavigationService.NavigateAsync("MainPage").ContinueWith(t => { });
+            var result = await NavigationService.NavigateAsync("MainPage");
+            if(!result.Success)
+            {
+                Container.Resolve<ILoggerFacade>().Log(result.Exception.ToString(), Category.Exception, Priority.High);
+            }
         }
 
         protected override void RegisterTypes(IContainerRegistry containerRegistry)

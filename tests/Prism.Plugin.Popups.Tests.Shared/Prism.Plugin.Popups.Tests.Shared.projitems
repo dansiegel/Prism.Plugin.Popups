@@ -9,6 +9,10 @@
     <Import_RootNamespace>Prism.Plugin.Popups.Tests</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)Helpers\DelayedMessageBus.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Helpers\RetryAttribute.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Helpers\RetryFactDiscoverer.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Helpers\RetryTestCase.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Tests\FixtureBase.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Tests\NavigationServiceFixture.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Tests\RegistrationFixture.cs" />
