@@ -13,6 +13,8 @@
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\RetryAttribute.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\RetryFactDiscoverer.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\RetryTestCase.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Mocks\MockForms.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Mocks\Views\MDP.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Tests\FixtureBase.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Tests\NavigationServiceFixture.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Tests\RegistrationFixture.cs" />

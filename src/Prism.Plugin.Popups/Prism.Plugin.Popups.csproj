@@ -1,13 +1,13 @@
-﻿<Project Sdk="MSBuild.Sdk.Extras/1.6.65">
+﻿<Project Sdk="MSBuild.Sdk.Extras">
 
   <PropertyGroup>
-    <TargetFrameworks>netstandard1.0;netstandard2.0;Xamarin.iOS10;MonoAndroid81</TargetFrameworks>
+    <TargetFrameworks>netstandard2.0;Xamarin.iOS10;MonoAndroid81</TargetFrameworks>
     <Description>Prism Forms Plugin to provide Popup Navigation working with the Rg.Plugins.Popup library</Description>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="Rg.Plugins.Popup" Version="1.1.5.188" />
-    <PackageReference Include="Prism.Forms" Version="7.2.0.1038-pre" />
+    <PackageReference Include="Prism.Forms" Version="7.2.0.1233-pre" />
   </ItemGroup>
 
   <ItemGroup>
