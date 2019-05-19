@@ -14,7 +14,7 @@
     <PackageProjectUrl>https://github.com/dansiegel/Prism.Plugin.Popups</PackageProjectUrl>
     <RepositoryUrl>https://github.com/dansiegel/Prism.Plugin.Popups.git</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
-    <PackageLicenseFile>$(MSBuildThisFileDirectory)LICENSE</PackageLicenseFile>
+    <PackageLicenseFile>License.md</PackageLicenseFile>
     <PackageTags>prism popups xamarin.forms</PackageTags>
     <PackageReleaseNotes>- Prism 7.2-pre3 support
     </PackageReleaseNotes>
@@ -58,5 +58,9 @@
     <GenerateDocumentationFile>True</GenerateDocumentationFile>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
   </PropertyGroup>
+
+  <ItemGroup>
+    <Content Include="$(MSBuildThisFileDirectory)LICENSE" Pack="true" PackagePath="License.md" />
+  </ItemGroup>
 
 </Project>
