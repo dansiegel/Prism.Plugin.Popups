@@ -1,65 +1,147 @@
 trigger:
+  batch: true
   branches:
     include:
     - master
   paths:
     exclude:
-    - ReadMe.md
+    - README.md
+    - .editorconfig
+    - .gitignore
 
-name: $(Build.BuildId)
+pr:
+  branches:
+    include:
+    - master
+  paths:
+    exclude:
+    - README.md
+    - .editorconfig
+    - .gitignore
 
-pool:
-  vmImage: vs2017-win2016
+name: 2.4.0.$(Build.BuildId)
 
 variables:
-  BuildPlatform: 'Any CPU'
-  BuildConfiguration: 'Release'
+- name: VMImage
+  value: 'windows-2019'
+- name: BuildPlatform
+  value: 'Any CPU'
+- name: BuildConfiguration
+  value: Release
+- group: 'Code Signing'
+- group: 'GitHub Release'
 
-steps:
-# - task: DotNetCoreInstaller@0
-#   inputs:
-#    version: '3.0.100-preview-009812'
 
-- task: NuGetToolInstaller@0
-  displayName: Use NuGet 4.9.3
-  inputs:
-    versionSpec: 4.9.3
+stages:
+- stage: build
+  displayName: Build NuGet Packages
+  jobs:
+  - job: buildJob
+    displayName: Build Prism.Plugin.Logging
+    pool:
+      vmImage: $(VMImage)
+      demands:
+      - MSBuild
+    steps:
+    - task: DotNetCoreInstaller@0
+      inputs:
+        version: '3.0.100-preview5-011568'
 
-- task: NuGetCommand@2
-  displayName: 'NuGet restore'
-  inputs:
-   feedsToUse: config
-   nugetConfigPath: NuGet.config
+    - task: NuGetToolInstaller@0
+      displayName: Use NuGet 5.0.2
+      inputs:
+        versionSpec: 5.0.2
 
-- task: MSBuild@1
-  displayName: Build Prism.Plugin.Popups
-  inputs:
-    solution: Prism.Plugin.Popups.sln
-    platform: '$(BuildPlatform)'
-    configuration: '$(BuildConfiguration)'
+    - task: NuGetCommand@2
+      displayName: 'NuGet restore'
+      inputs:
+        feedsToUse: config
+        nugetConfigPath: NuGet.config
 
-- powershell: ./Sign-Packages.ps1
-  workingDirectory: build
-  displayName: Authenticode Sign Artifacts
-  env:
-    SignClientUser: $(SignClientUser)
-    SignClientSecret: $(SignClientSecret)
-    SignClientClientId: $(SignClientClientId)
-    SignClientTenantId: $(SignClientTenantId)
-    SignServiceResourceId: $(SignServiceResourceId)
-  condition: and(succeeded(), eq(variables['system.pullrequest.isfork'], false))
+    - task: MSBuild@1
+      displayName: Build Prism.Plugin.Popups
+      inputs:
+        solution: Prism.Plugin.Popups.sln
+        platform: '$(BuildPlatform)'
+        configuration: '$(BuildConfiguration)'
 
-- task: PublishBuildArtifacts@1
-  displayName: Publish Package Artifacts
-  inputs:
-    PathtoPublish: '$(Build.ArtifactStagingDirectory)'
-    ArtifactName: NuGet
-  condition: and(succeeded(), eq(variables['system.pullrequest.isfork'], false))
+    - task: DotNetCoreCLI@2
+      inputs:
+        command: test
+        projects: |
+         **\*.Tests.csproj
+        arguments: -c $(BuildConfiguration) --collect:"Code Coverage" -s $(System.DefaultWorkingDirectory)/CodeCoverage.runsettings /p:DebugType=portable --no-build
+      displayName: Run Tests
 
-- task: DotNetCoreCLI@2
-  inputs:
-    command: test
-    projects: |
-     **\*.Tests.csproj
-    arguments: -c $(BuildConfiguration) --collect:"Code Coverage" -s $(System.DefaultWorkingDirectory)/CodeCoverage.runsettings /p:DebugType=portable --no-build
-  displayName: Run Tests
+    - powershell: ./Sign-Packages.ps1
+      workingDirectory: build
+      displayName: Authenticode Sign Artifacts
+      env:
+        SignClientUser: $(SignClientUser)
+        SignClientSecret: $(SignClientSecret)
+        SignClientClientId: $(SignClientClientId)
+        SignClientTenantId: $(SignClientTenantId)
+        SignServiceResourceId: $(SignServiceResourceId)
+      condition: and(succeeded(), not(eq(variables['build.reason'], 'PullRequest')), not(eq(variables['SignClientSecret'], '')), not(eq(variables['SignClientUser'], '')))
+
+    - task: PublishBuildArtifacts@1
+      displayName: Publish Package Artifacts
+      inputs:
+        PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+        ArtifactName: NuGet
+      condition: and(succeeded(), eq(variables['system.pullrequest.isfork'], false))
+- stage: deploy
+  displayName: Deploy NuGets
+  jobs:
+  - job: ProcessDeployment
+    pool:
+      vmImage: $(VMImage)
+    steps:
+    - task: DownloadPipelineArtifact@1
+      inputs:
+        artifactName: NuGet
+        downloadPath: $(Pipeline.Workspace)
+    - powershell: $(System.DefaultWorkingDirectory)/build/Process-Release.ps1
+      workingDirectory: $(Pipeline.Workspace)
+      displayName: Process Artifacts for Release
+  - deployment: MyGet
+    displayName: MyGet.org
+    environment: MyGet
+    strategy:
+      runOnce:
+        deploy:
+          steps:
+          - task: NuGetCommand@2
+            displayName: NuGet Push
+            inputs:
+              command: push
+              packagesToPush: '$(Pipeline.Workspace)/**/*.nupkg'
+              nuGetFeedType: external
+              publishFeedCredentials: 'Prism.Plugins - MyGet'
+  - deployment: NuGet
+    displayName: NuGet.org
+    environment: NuGet
+    dependsOn: ProcessDeployment
+    condition: and(succeeded(), eq(variables['DeployToNuGet'], 'true'))
+    strategy:
+      runOnce:
+        deploy:
+          steps:
+          - task: jakobehn.jakobehn-vsts-github-tasks.publish-github-release.PublishGitHubRelease@0
+            displayName: 'Publish GitHub Release'
+            inputs:
+              applicationName: AzureDevOps
+              token: '$(GitHubToken)'
+              repo: Prism.Container.Extensions
+              owner: dansiegel
+              tagName: 'v$(VersionName)'
+              releaseName: '$(ReleaseDisplayName)'
+              prerelease: $(IsPreview)
+              assetsPattern: '$(Pipeline.Workspace)/**/*.nupkg'
+          - task: NuGetCommand@2
+            displayName: NuGet Push
+            inputs:
+              command: push
+              packagesToPush: '$(Pipeline.Workspace)/**/*.nupkg;$(Pipeline.Workspace)/**/*.symbols.nupkg'
+              nuGetFeedType: external
+              publishFeedCredentials: 'NuGet'
