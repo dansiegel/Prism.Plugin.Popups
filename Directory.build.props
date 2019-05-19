@@ -30,7 +30,7 @@
     <GeneratePackageOnBuild>$(IsPackable)</GeneratePackageOnBuild>
     <IS_PREVIEW Condition=" $(IS_PREVIEW) == '' ">false</IS_PREVIEW>
     <IS_RELEASE Condition=" $(IS_RELEASE) == '' ">false</IS_RELEASE>
-    <VersionPrefix Condition=" $(BUILD_BUILDNUMBER) != '' ">$(VersionPrefix).$(BUILD_BUILDNUMBER)</VersionPrefix>
+    <VersionPrefix Condition=" $(BUILD_BUILDID) != '' ">$(VersionPrefix).$(BUILD_BUILDID)</VersionPrefix>
     <VersionSuffix>ci</VersionSuffix>
     <VersionSuffix Condition=" $(IS_PREVIEW) ">pre</VersionSuffix>
     <VersionSuffix Condition=" $(IS_RELEASE) "></VersionSuffix>
