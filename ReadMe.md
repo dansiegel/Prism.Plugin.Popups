@@ -4,7 +4,7 @@ The Popups plugin provides an extremely lightweight framework for implementing P
 
 | Platform | Build Status |
 | -------- | ------ |
-| VSTS Build | [![Build Status](https://dev.azure.com/dansiegel/Prism.Plugins/_apis/build/status/Prism.Plugin.Popups)](https://dev.azure.com/dansiegel/Prism.Plugins/_build/latest?definitionId=25) |
+| VSTS Build | [![Build Status](https://dev.azure.com/dansiegel/Prism.Plugins/_apis/build/status/dansiegel.Prism.Plugin.Popups?branchName=master)](https://dev.azure.com/dansiegel/Prism.Plugins/_build/latest?definitionId=43?branchName=master) |
 | AppCenter Android | [![Build status](https://build.appcenter.ms/v0.1/apps/0c92b88f-fe1b-42cf-a714-240a0704d184/branches/master/badge)](https://appcenter.ms) |
 | AppCenter iOS | [![Build status](https://build.appcenter.ms/v0.1/apps/0a60407d-a075-41cd-a211-31c92d07ec86/branches/master/badge)](https://appcenter.ms) |
 
