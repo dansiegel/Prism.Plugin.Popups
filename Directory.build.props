@@ -4,6 +4,7 @@
   <PropertyGroup>
     <Product>$(AssemblyName) ($(TargetFramework))</Product>
     <Authors>Dan Siegel</Authors>
+    <Company>AvantiPoint</Company>
     <Copyright>© Dan Siegel. All rights reserved.</Copyright>
     <VersionPrefix>2.4.0</VersionPrefix>
     <NeutralLanguage>en-US</NeutralLanguage>
@@ -13,11 +14,9 @@
     <PackageProjectUrl>https://github.com/dansiegel/Prism.Plugin.Popups</PackageProjectUrl>
     <RepositoryUrl>https://github.com/dansiegel/Prism.Plugin.Popups.git</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
-    <PackageLicenseUrl>https://github.com/dansiegel/Prism.Plugin.Popups/blob/master/LICENSE</PackageLicenseUrl>
+    <PackageLicenseExpression>https://github.com/dansiegel/Prism.Plugin.Popups/blob/master/LICENSE</PackageLicenseExpression>
     <PackageTags>prism popups xamarin.forms</PackageTags>
-    <PackageReleaseNotes>- Adds Linker Preserve Attribute for iOS/Android
-- Will now clear the Popup Stack when a non-Popup Page is pushed onto the Navigation Stack
-- Will now properly handle all calls to GoBackAsync in which the animated option has been set
+    <PackageReleaseNotes>- Prism 7.2-pre3 support
     </PackageReleaseNotes>
   </PropertyGroup>
 
