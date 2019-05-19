@@ -100,9 +100,9 @@ stages:
     - task: DownloadPipelineArtifact@1
       inputs:
         artifactName: NuGet
-        downloadPath: $(Pipeline.Workspace)
+        downloadPath: $(System.DefaultWorkingDirectory)/deploy-scratch
     - powershell: $(System.DefaultWorkingDirectory)/build/Process-Release.ps1
-      workingDirectory: $(Pipeline.Workspace)
+      workingDirectory: $(System.DefaultWorkingDirectory)/deploy-scratch
       displayName: Process Artifacts for Release
   - deployment: MyGet
     displayName: MyGet.org
