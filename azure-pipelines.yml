@@ -84,11 +84,11 @@ stages:
         SignServiceResourceId: $(SignServiceResourceId)
       condition: and(succeeded(), not(eq(variables['build.reason'], 'PullRequest')), not(eq(variables['SignClientSecret'], '')), not(eq(variables['SignClientUser'], '')))
 
-    - task: PublishBuildArtifacts@1
+    - task: PublishPipelineArtifact@0
       displayName: Publish Package Artifacts
       inputs:
-        PathtoPublish: '$(Build.ArtifactStagingDirectory)'
-        ArtifactName: NuGet
+        artifactName: NuGet
+        targetPath: '$(Build.ArtifactStagingDirectory)'
       condition: and(succeeded(), eq(variables['system.pullrequest.isfork'], false))
 - stage: deploy
   displayName: Deploy NuGets
