@@ -6,7 +6,7 @@
     <Authors>Dan Siegel</Authors>
     <Company>AvantiPoint</Company>
     <Copyright>© Dan Siegel. All rights reserved.</Copyright>
-    <VersionPrefix>2.4.0</VersionPrefix>
+    <VersionPrefix>7.2.0</VersionPrefix>
     <NeutralLanguage>en-US</NeutralLanguage>
     <IncludeSymbols>True</IncludeSymbols>
     <IncludeSource>True</IncludeSource>
@@ -16,7 +16,7 @@
     <RepositoryType>git</RepositoryType>
     <PackageLicenseUrl>https://raw.githubusercontent.com/dansiegel/Prism.Plugin.Popups/master/LICENSE</PackageLicenseUrl>
     <PackageTags>prism popups xamarin.forms</PackageTags>
-    <PackageReleaseNotes>- Prism 7.2-pre3 support
+    <PackageReleaseNotes>- Prism 7.2 support
     </PackageReleaseNotes>
   </PropertyGroup>
 
