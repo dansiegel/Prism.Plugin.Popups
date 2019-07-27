@@ -157,13 +157,14 @@ namespace Prism.Plugin.Popups
             else
             {
                 var newDetail = CreatePageFromSegment(nextSegment);
-                await ProcessNavigation(newDetail, segments, parameters, newDetail is NavigationPage ? false : true, animated);
+                var segmentParameters = UriParsingHelper.GetSegmentParameters(nextSegment, parameters);
+                await ProcessNavigation(newDetail, segments, segmentParameters, newDetail is NavigationPage ? false : true, animated);
 
-                await ProcessNewDetailForMasterDetailPage(currentPage, newDetail, detail, detailIsNavPage, isPresented, animated, nextSegment, parameters);
+                await DoNavigationActionForNewDetail(currentPage, newDetail, detail, detailIsNavPage, isPresented, animated, nextSegment, segmentParameters);
             }
         }
 
-        private async Task ProcessNewDetailForMasterDetailPage(MasterDetailPage currentPage, Page newDetail, Page oldDetail, bool detailIsNavPage, bool isPresented, bool animated, string nextSegment, INavigationParameters parameters)
+        private async Task DoNavigationActionForNewDetail(MasterDetailPage currentPage, Page newDetail, Page oldDetail, bool detailIsNavPage, bool isPresented, bool animated, string nextSegment, INavigationParameters parameters)
         {
             if (newDetail is PopupPage)
             {
