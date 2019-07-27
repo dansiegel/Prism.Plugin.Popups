@@ -2,6 +2,7 @@
 <MasterDetailPage xmlns="http://xamarin.com/schemas/2014/forms" 
                   xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
                   xmlns:prism="http://prismlibrary.com"
+                  xmlns:local="clr-namespace:PopupPluginSample.Xaml"
                   x:Class="PopupPluginSample.Views.MDPRoot">
 
   <MasterDetailPage.Master>
@@ -24,8 +25,11 @@
         <StackLayout Padding="40"
                              Grid.Row="1">
           <Label Text="You might have menu options here" Grid.Row="1" />
-          <Button Text="Launch Popup" 
-                  Command="{prism:NavigateTo PopupView}" />
+          <Button Text="Launch Popup (XAML)" 
+                  Command="{local:DebugNavigateTo PopupView}" />
+          <Button Text="Launch Popup (Classic)"
+                  Command="{Binding NavigateCommand}"
+                  CommandParameter="PopupView" />
           <Button Text="Back to Menu" 
                   Command="{prism:NavigateTo '/MenuPage'}" />
         </StackLayout>
