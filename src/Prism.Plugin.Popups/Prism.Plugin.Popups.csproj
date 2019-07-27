@@ -5,6 +5,11 @@
     <Description>Prism Forms Plugin to provide Popup Navigation working with the Rg.Plugins.Popup library</Description>
   </PropertyGroup>
 
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <DebugType>pdbonly</DebugType>
+    <DebugSymbols>true</DebugSymbols>
+  </PropertyGroup>
+
   <ItemGroup>
     <PackageReference Include="Rg.Plugins.Popup" Version="1.1.5.188" />
     <PackageReference Include="Prism.Forms" Version="7.2.0.1367" />
