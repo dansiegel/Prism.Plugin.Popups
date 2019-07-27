@@ -45,12 +45,12 @@ stages:
     steps:
     - task: DotNetCoreInstaller@0
       inputs:
-        version: '3.0.100-preview5-011568'
+        version: '3.0.100-preview7-012821'
 
     - task: NuGetToolInstaller@0
-      displayName: Use NuGet 4.9.4
+      displayName: Use NuGet 5.1.0
       inputs:
-        versionSpec: 4.9.4
+        versionSpec: 5.1.0
 
     - task: NuGetCommand@2
       displayName: 'NuGet restore'
@@ -64,6 +64,7 @@ stages:
         solution: Prism.Plugin.Popups.sln
         platform: '$(BuildPlatform)'
         configuration: '$(BuildConfiguration)'
+        msbuildArguments: '/p:DebugType=portable /p:JavaSdkDirectory="$(JAVA_HOME)"'
 
     - task: DotNetCoreCLI@2
       inputs:
@@ -92,18 +93,8 @@ stages:
       condition: and(succeeded(), eq(variables['system.pullrequest.isfork'], false))
 - stage: deploy
   displayName: Deploy NuGets
+  condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
   jobs:
-  - job: ProcessDeployment
-    pool:
-      vmImage: $(VMImage)
-    steps:
-    - task: DownloadPipelineArtifact@1
-      inputs:
-        artifactName: NuGet
-        downloadPath: $(System.DefaultWorkingDirectory)/deploy-scratch
-    - powershell: $(System.DefaultWorkingDirectory)/build/Process-Release.ps1
-      workingDirectory: $(System.DefaultWorkingDirectory)/deploy-scratch
-      displayName: Process Artifacts for Release
   - deployment: MyGet
     displayName: MyGet.org
     environment: MyGet
@@ -121,27 +112,61 @@ stages:
   - deployment: NuGet
     displayName: NuGet.org
     environment: NuGet
-    dependsOn: ProcessDeployment
-    condition: and(succeeded(), eq(variables['DeployToNuGet'], 'true'))
+    condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
     strategy:
       runOnce:
         deploy:
           steps:
-          - task: jakobehn.jakobehn-vsts-github-tasks.publish-github-release.PublishGitHubRelease@0
-            displayName: 'Publish GitHub Release'
+          - powershell: |
+             try {
+                 $artifactDirectory = $env:PIPELINE_WORKSPACE
+                 Write-Host "Currect working directory $artifactDirectory"
+                 $nupkg = Get-ChildItem -Path $artifactDirectory -Filter *.nupkg -Recurse | Select-Object -First 1
+
+                 if($null -eq $nupkg) {
+                     Throw "No NuGet Package could be found in the current directory"
+                 }
+
+                 Write-Host "Package Name $($nupkg.Name)"
+                 $nupkg.Name -match '^(.*?)\.((?:\.?[0-9]+){3,}(?:[-a-z]+)?)\.nupkg$'
+
+                 $VersionName = $Matches[2]
+                 $IsPreview = $VersionName -match '-pre$'
+                 $ReleaseDisplayName = $VersionName
+
+                 if($null -eq $env:IS_PREVIEW) {
+                     Write-Output ("##vso[task.setvariable variable=IS_PREVIEW;]$IsPreview")
+                 }
+
+                 if($true -eq $IsPreview) {
+                     $ReleaseDisplayName = "$VersionName - Preview"
+                 }
+
+                 Write-Host "Version Name" $VersionName
+                 Write-Host "Release Display Name $ReleaseDisplayName"
+                 Write-Output ("##vso[task.setvariable variable=VersionName;]$VersionName")
+                 Write-Output ("##vso[task.setvariable variable=ReleaseDisplayName;]$ReleaseDisplayName")
+             }
+             catch {
+                 Write-Error  $_
+                 exit 1
+             }
+            displayName: Process Artifacts for Deployment
+          - task: GithubRelease@0 
+            displayName: 'Create GitHub Release'
             inputs:
-              applicationName: AzureDevOps
-              token: '$(GitHubToken)'
-              repo: Prism.Container.Extensions
-              owner: dansiegel
-              tagName: 'v$(VersionName)'
-              releaseName: '$(ReleaseDisplayName)'
-              prerelease: $(IsPreview)
-              assetsPattern: '$(Pipeline.Workspace)/**/*.nupkg'
+              gitHubConnection: GitHub
+              title: '$(ReleaseDisplayName)'
+              tagSource: manual
+              tag: 'v$(VersionName)'
+              isPreRelease: $(IS_PREVIEW)
+              assets: '$(Pipeline.Workspace)/**/*.nupkg'
+              addChangeLog: true
+              isDraft: true
           - task: NuGetCommand@2
             displayName: NuGet Push
             inputs:
               command: push
-              packagesToPush: '$(Pipeline.Workspace)/**/*.nupkg;$(Pipeline.Workspace)/**/*.symbols.nupkg'
+              packagesToPush: '$(Pipeline.Workspace)/**/*.nupkg;!$(Pipeline.Workspace)/**/*.symbols.nupkg'
               nuGetFeedType: external
               publishFeedCredentials: 'NuGet'
