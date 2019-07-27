@@ -112,7 +112,7 @@ stages:
   - deployment: NuGet
     displayName: NuGet.org
     environment: NuGet
-    condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
+    condition: and(succeeded(), or(eq(variables['IS_PREVIEW'], true), eq(variables['IS_RELEASE'], true)))
     strategy:
       runOnce:
         deploy:
