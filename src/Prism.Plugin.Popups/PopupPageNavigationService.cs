@@ -302,9 +302,9 @@ namespace Prism.Plugin.Popups
                     break;
                 default:
                     Console.WriteLine("Doing default Prism Push with Xamarin.Forms");
-                    await base.DoPush(currentPage, page, useModalNavigation, animated, insertBeforeLast, navigationOffset);
                     if (_popupNavigation.PopupStack.Any())
-                        await _popupNavigation.PopAllAsync(false);
+                        await _popupNavigation.PopAllAsync(animated);
+                    await base.DoPush(currentPage, page, useModalNavigation, animated, insertBeforeLast, navigationOffset);
                     break;
             }
         }
