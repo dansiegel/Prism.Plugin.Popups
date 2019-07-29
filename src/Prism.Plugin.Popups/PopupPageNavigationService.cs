@@ -293,15 +293,12 @@ namespace Prism.Plugin.Popups
 
         protected override async Task DoPush(Page currentPage, Page page, bool? useModalNavigation, bool animated, bool insertBeforeLast = false, int navigationOffset = 0)
         {
-            Console.WriteLine("Doing Push...");
             switch (page)
             {
                 case PopupPage popup:
-                    Console.WriteLine("Doing Rg.Plugin.Popups Push for PopupPage");
                     await _popupNavigation.PushAsync(popup, animated);
                     break;
                 default:
-                    Console.WriteLine("Doing default Prism Push with Xamarin.Forms");
                     if (_popupNavigation.PopupStack.Any())
                         await _popupNavigation.PopAllAsync(animated);
                     await base.DoPush(currentPage, page, useModalNavigation, animated, insertBeforeLast, navigationOffset);
