@@ -20,7 +20,7 @@ Builds are now generated with a symbols package. This will allow users to better
 
 ## Support
 
-If this project helped you reduce time to develop and made your app better, please help support this project.
+If this project helped you reduce time to develop and made your app better, please be sure to star the project help support Dan.
 
 [![GitHub Sponsors](https://github.blog/wp-content/uploads/2019/05/mona-heart-featured.png?fit=600%2C315)](https://xam.dev/35)
 
