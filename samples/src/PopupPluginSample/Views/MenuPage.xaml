@@ -3,14 +3,14 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:prism="http://prismlibrary.com"
              x:Class="PopupPluginSample.Views.MenuPage">
-
-    <StackLayout HorizontalOptions="Center"
+  <StackLayout HorizontalOptions="Center"
                  VerticalOptions="Center">
-        <Label Text="Select the root page to test from" />
-        <Button Text="Master Detail Page" Command="{prism:NavigateTo '/MDPRoot/NavigationRoot/MainPage'}" />
+    <Label Text="Select the root page to test from" />
+    <Button Text="Master Detail Page" Command="{prism:NavigateTo '/MDPRoot/NavigationRoot/MainPage'}" />
     <Button Text="Tabbed Page" Command="{prism:NavigateTo '/TabbedRoot'}" />
     <Button Text="Navigation Page" Command="{prism:NavigateTo '/NavigationRoot/MainPage'}" />
-<!--        <Button Text="Content Page" Command="NavigateCommand" CommandParameter="MainPage" />-->
-    </StackLayout>
+    <Button Text="Sample Dialog" Command="{prism:ShowDialog SampleDialog}" />
+    <!--        <Button Text="Content Page" Command="NavigateCommand" CommandParameter="MainPage" />-->
+  </StackLayout>
 
 </ContentPage>

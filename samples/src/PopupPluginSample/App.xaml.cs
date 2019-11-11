@@ -1,4 +1,5 @@
 ﻿using DryIoc;
+using PopupPluginSample.Dialogs;
 using PopupPluginSample.Views;
 using Prism;
 using Prism.DryIoc;
@@ -12,7 +13,7 @@ using Xamarin.Forms.Internals;
 
 namespace PopupPluginSample
 {
-    public class App : PrismApplication
+    public partial class App : PrismApplication
     {
         /* 
          * NOTE: 
@@ -32,6 +33,7 @@ namespace PopupPluginSample
 
         protected override async void OnInitialized()
         {
+            InitializeComponent();
             SetupLoggingListeners();
 
             await NavigationService.NavigateAsync("MenuPage");
@@ -40,6 +42,7 @@ namespace PopupPluginSample
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
         {
             containerRegistry.RegisterPopupNavigationService();
+            containerRegistry.RegisterPopupDialogService();
 
             containerRegistry.RegisterForNavigation<TabbedPage>();
             containerRegistry.RegisterForNavigation<NavigationPage>();
@@ -49,6 +52,8 @@ namespace PopupPluginSample
             containerRegistry.RegisterForNavigation<NavigationRoot>();
             containerRegistry.RegisterForNavigation<PopupView>();
             containerRegistry.RegisterForNavigation<TabbedRoot>();
+
+            containerRegistry.RegisterDialog<SampleDialog, SampleDialogViewModel>();
         }
 
         private void SetupLoggingListeners()

@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<prism:PrismApplication xmlns="http://xamarin.com/schemas/2014/forms" 
+                        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                        xmlns:prism="http://prismlibrary.com"
+                        x:Class="PopupPluginSample.App">
+  <prism:PrismApplication.Resources>
+    <ResourceDictionary>
+      <Style TargetType="Button">
+        <Setter Property="BackgroundColor" Value="Gray" />
+        <Setter Property="TextColor" Value="White" />
+        <Setter Property="CornerRadius" Value="15" />
+        <Setter Property="Padding" Value="15,2" />
+      </Style>
+    </ResourceDictionary>
+  </prism:PrismApplication.Resources>
+</prism:PrismApplication>

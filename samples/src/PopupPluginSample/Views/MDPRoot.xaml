@@ -30,6 +30,8 @@
           <Button Text="Launch Popup (Classic)"
                   Command="{Binding NavigateCommand}"
                   CommandParameter="PopupView" />
+          <Button Text="Sample Dialog"
+            Command="{prism:ShowDialog SampleDialog}" />
           <Button Text="Back to Menu" 
                   Command="{prism:NavigateTo '/MenuPage'}" />
         </StackLayout>

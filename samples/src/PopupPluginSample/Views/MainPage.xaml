@@ -7,8 +7,11 @@
              x:Class="PopupPluginSample.Views.MainPage">
   <StackLayout HorizontalOptions="Center" VerticalOptions="Center">
     <Label Text="{Binding Message}" />
-    <Button Text="Launch Popup" Command="{prism:NavigateTo PopupView}" />
+    <Button Text="Launch Popup"
+            Command="{prism:NavigateTo PopupView}" />
+    <Button Text="Sample Dialog"
+            Command="{prism:ShowDialog SampleDialog}" />
     <Button Text="Back to Menu"
-                Command="{prism:NavigateTo '/MenuPage'}" />
+            Command="{prism:NavigateTo '/MenuPage'}" />
   </StackLayout>
 </ContentPage>
