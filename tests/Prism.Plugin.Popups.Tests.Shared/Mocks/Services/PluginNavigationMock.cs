@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Rg.Plugins.Popup.Contracts;
+using Rg.Plugins.Popup.Events;
 using Rg.Plugins.Popup.Pages;
 
 namespace Prism.Plugin.Popups.Tests.Mocks.Services
@@ -12,6 +13,12 @@ namespace Prism.Plugin.Popups.Tests.Mocks.Services
     {
         private static Lazy<IPopupNavigation> _lazyNavigation = new Lazy<IPopupNavigation>(() => new PluginNavigationMock());
         private static IPopupNavigation _instance;
+
+        public event EventHandler<PopupNavigationEventArgs> Pushing;
+        public event EventHandler<PopupNavigationEventArgs> Pushed;
+        public event EventHandler<PopupNavigationEventArgs> Popping;
+        public event EventHandler<PopupNavigationEventArgs> Popped;
+
         public static IPopupNavigation Instance => _instance ?? (_instance = _lazyNavigation.Value);
 
         internal PluginNavigationMock() { }
