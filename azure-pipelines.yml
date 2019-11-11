@@ -19,11 +19,11 @@ pr:
     - .editorconfig
     - .gitignore
 
-name: 2.4.0.$(Build.BuildId)
+name: 7.2.0.$(Build.BuildId)
 
 variables:
 - name: VMImage
-  value: 'windows-2019'
+  value: 'windows-latest'
 - name: BuildPlatform
   value: 'Any CPU'
 - name: BuildConfiguration
@@ -37,7 +37,7 @@ stages:
   displayName: Build NuGet Packages
   jobs:
   - job: buildJob
-    displayName: Build Prism.Plugin.Logging
+    displayName: Build Prism.Plugin.Popups
     pool:
       vmImage: $(VMImage)
       demands:
@@ -45,12 +45,12 @@ stages:
     steps:
     - task: DotNetCoreInstaller@0
       inputs:
-        version: '3.0.100-preview7-012821'
+        version: '3.0.100'
 
     - task: NuGetToolInstaller@0
-      displayName: Use NuGet 5.1.0
+      displayName: Use NuGet 5.3.1
       inputs:
-        versionSpec: 5.1.0
+        versionSpec: 5.3.1
 
     - task: NuGetCommand@2
       displayName: 'NuGet restore'
@@ -152,7 +152,7 @@ stages:
                  exit 1
              }
             displayName: Process Artifacts for Deployment
-          - task: GithubRelease@0 
+          - task: GithubRelease@0
             displayName: 'Create GitHub Release'
             inputs:
               gitHubConnection: GitHub
