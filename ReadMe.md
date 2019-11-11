@@ -22,7 +22,7 @@ Builds are now generated with a symbols package. This will allow users to better
 
 If this project helped you reduce time to develop and made your app better, please help support this project.
 
-[![paypal](https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif)](https://www.paypal.me/dansiegel)
+[![GitHub Sponsors](https://github.blog/wp-content/uploads/2019/05/mona-heart-featured.png?fit=600%2C315)](https://xam.dev/35)
 
 ## Usage
 
@@ -49,6 +49,10 @@ It's worth noting that there is a generic overload for the registration method t
 Prism's underlying Page Navigation Service has a dependency on `IPageBehaviorFactory`. In order to handle navigation events from tapping outside of (and closing) the PopupPage, this plugin relies on the `PopupPageBehaviorFactory` which is also registered by the registration method shown above. If you are registering your own custom implementation, be sure to either add the `BackgroundPopupDismissalBehavior` to PopupPages, or simply inherit from the `PopupPageBehaviorFactory`.
 
 **NOTE**: All initializations for Rg.Plugins.Popup should be done in Platform code, the Registrations for the NavigationService should be done in your PrismApplication. No additional initialization is required inside of Prism Modules.
+
+### Navigation
+
+There is nothing different about navigating with Popup Pages than Navigating with normal pages. You can even deep link with Popup Pages. The only difference that you will encounter is that when Navigating from a Popup Page to a normal Xamarin.Forms Page, it will Pop any Popup Pages that are currently in the Popup Stack.
 
 [1]: https://github.com/rotorgames/Rg.Plugins.Popup
 [2]: https://github.com/PrismLibrary/Prism
