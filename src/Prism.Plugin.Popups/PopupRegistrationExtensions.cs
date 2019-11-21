@@ -45,13 +45,13 @@ namespace Prism.Plugin.Popups
 
         private static bool IsDryIocContainer(IContainerRegistry containerRegistry)
         {
+            var type = Type.GetType("DryIoc.IContainer, DryIoc", throwOnError: false);
+            if (type is null) return false;
+
             var regType = containerRegistry.GetType();
             var propInfo = regType.GetRuntimeProperty("Instance");
-#if NETSTANDARD1_0
-            return propInfo?.PropertyType.FullName.Equals("DryIoc.IContainer", StringComparison.OrdinalIgnoreCase) ?? false;
-#else
-            return propInfo?.PropertyType.FullName.Equals("DryIoc.IContainer", StringComparison.InvariantCultureIgnoreCase) ?? false;
-#endif
+
+            return propInfo.PropertyType == type;
         }
     }
 }
