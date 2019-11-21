@@ -90,7 +90,7 @@ namespace Prism.Plugin.Popups
             {
                 var newDetail = CreatePageFromSegment(nextSegment);
                 await ProcessNavigation(newDetail, segments, parameters, useModalNavigation, animated);
-                await DoNavigateAction(null, nextSegment, newDetail, parameters, onNavigationActionCompleted: () =>
+                await DoNavigateAction(null, nextSegment, newDetail, parameters, onNavigationActionCompleted: p =>
                 {
                     currentPage.IsPresented = isPresented;
                     currentPage.Detail = newDetail;
@@ -142,7 +142,7 @@ namespace Prism.Plugin.Popups
             if ((detailIsNavPage && reuseNavPage) || (!detailIsNavPage && detail.GetType() == nextSegmentType))
             {
                 await ProcessNavigation(detail, segments, parameters, useModalNavigation, animated);
-                await DoNavigateAction(null, nextSegment, detail, parameters, onNavigationActionCompleted: () =>
+                await DoNavigateAction(null, nextSegment, detail, parameters, onNavigationActionCompleted: p =>
                 {
                     if (detail is TabbedPage && nextSegment.Contains(KnownNavigationParameters.SelectedTab))
                     {
@@ -179,7 +179,7 @@ namespace Prism.Plugin.Popups
             }
             else
             {
-                await DoNavigateAction(oldDetail, nextSegment, newDetail, parameters, onNavigationActionCompleted: () =>
+                await DoNavigateAction(oldDetail, nextSegment, newDetail, parameters, onNavigationActionCompleted: p =>
                 {
                     if (detailIsNavPage)
                         OnNavigatedFrom(((NavigationPage)oldDetail).CurrentPage, parameters);

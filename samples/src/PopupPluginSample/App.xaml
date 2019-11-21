@@ -9,7 +9,6 @@
         <Setter Property="BackgroundColor" Value="Gray" />
         <Setter Property="TextColor" Value="White" />
         <Setter Property="CornerRadius" Value="15" />
-        <Setter Property="Padding" Value="15,2" />
       </Style>
     </ResourceDictionary>
   </prism:PrismApplication.Resources>

@@ -2,16 +2,33 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:prism="http://prismlibrary.com"
+             xmlns:essentials="clr-namespace:Xamarin.Essentials;assembly=Xamarin.Essentials"
              prism:ViewModelLocator.AutowireViewModel="True"
              Title="MainPage"
              x:Class="PopupPluginSample.Views.MainPage">
-  <StackLayout HorizontalOptions="Center" VerticalOptions="Center">
-    <Label Text="{Binding Message}" />
-    <Button Text="Launch Popup"
+  <Grid>
+    <Grid.RowDefinitions>
+      <RowDefinition Height="*" />
+      <RowDefinition Height="Auto" />
+    </Grid.RowDefinitions>
+    <StackLayout HorizontalOptions="Center" VerticalOptions="Center">
+      <Label Text="{Binding Message}" />
+      <Button Text="Launch Popup"
             Command="{prism:NavigateTo PopupView}" />
-    <Button Text="Sample Dialog"
+      <Button Text="Sample Dialog"
             Command="{prism:ShowDialog SampleDialog}" />
-    <Button Text="Back to Menu"
+      <Button Text="Back to Menu"
             Command="{prism:NavigateTo '/MenuPage'}" />
-  </StackLayout>
+    </StackLayout>
+    <Label Grid.Row="1"
+           Margin="20"
+           HorizontalTextAlignment="Center">
+      <Label.FormattedText>
+        <FormattedString>
+          <Span Text="Version: " />
+          <Span Text="{x:Static essentials:AppInfo.VersionString}" />
+        </FormattedString>
+      </Label.FormattedText>
+    </Label>
+  </Grid>
 </ContentPage>

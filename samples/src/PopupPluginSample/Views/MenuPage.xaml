@@ -2,15 +2,33 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:prism="http://prismlibrary.com"
+             xmlns:essentials="clr-namespace:Xamarin.Essentials;assembly=Xamarin.Essentials"
              x:Class="PopupPluginSample.Views.MenuPage">
-  <StackLayout HorizontalOptions="Center"
+
+  <Grid>
+    <Grid.RowDefinitions>
+      <RowDefinition Height="*" />
+      <RowDefinition Height="Auto" />
+    </Grid.RowDefinitions>
+    <StackLayout HorizontalOptions="Center"
                  VerticalOptions="Center">
-    <Label Text="Select the root page to test from" />
-    <Button Text="Master Detail Page" Command="{prism:NavigateTo '/MDPRoot/NavigationRoot/MainPage'}" />
-    <Button Text="Tabbed Page" Command="{prism:NavigateTo '/TabbedRoot'}" />
-    <Button Text="Navigation Page" Command="{prism:NavigateTo '/NavigationRoot/MainPage'}" />
-    <Button Text="Sample Dialog" Command="{prism:ShowDialog SampleDialog}" />
-    <!--        <Button Text="Content Page" Command="NavigateCommand" CommandParameter="MainPage" />-->
-  </StackLayout>
+      <Label Text="Select the root page to test from" />
+      <Button Text="Master Detail Page" Command="{prism:NavigateTo '/MDPRoot/NavigationRoot/MainPage'}" />
+      <Button Text="Tabbed Page" Command="{prism:NavigateTo '/TabbedRoot'}" />
+      <Button Text="Navigation Page" Command="{prism:NavigateTo '/NavigationRoot/MainPage'}" />
+      <Button Text="Sample Dialog" Command="{prism:ShowDialog SampleDialog}" />
+      <!--        <Button Text="Content Page" Command="NavigateCommand" CommandParameter="MainPage" />-->
+    </StackLayout>
+    <Label Grid.Row="1"
+           Margin="20"
+           HorizontalTextAlignment="Center">
+      <Label.FormattedText>
+        <FormattedString>
+          <Span Text="Version: " />
+          <Span Text="{x:Static essentials:AppInfo.VersionString}" />
+        </FormattedString>
+      </Label.FormattedText>
+    </Label>
+  </Grid>
 
 </ContentPage>
