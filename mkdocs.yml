@@ -1,0 +1,67 @@
+# Project Information
+site_name: Prism.Plugin.Popups
+site_description: Documentation for the Prism Popups Plugin
+site_author: Dan Siegel
+site_url: http://popups.prismplugins.com
+
+# Repository
+repo_name: dansiegel/Prism.Plugin.Popups
+repo_url: https://github.com/dansiegel/Prism.Plugin.Popups
+edit_uri: ''
+
+# Copyright
+copyright: 'Copyright &copy; 2016 - 2019 Dan Siegel'
+
+# Configuration
+theme:
+  name: 'material'
+  custom_dir: 'theme'
+  logo: assets/prism-logo.png
+  favicon: assets/favicon.ico
+  language: en
+  feature:
+    tabs: true
+  palette:
+    primary: 'white'
+    accent: 'cyan'
+
+# Social
+extra:
+  social:
+    - type: globe
+      link: https://dansiegel.net
+    - type: github
+      link: https://github.com/dansiegel
+    - type: twitch
+      link: https://twitch.tv/dansiegel
+    - type: twitter
+      link: https://twitter.com/DanJSiegel
+    - type: youtube
+      link: https://www.youtube.com/channel/UC0kcuQoK6odp-4UAlI8FeqA
+    - type: linkedin
+      link: https://linkedin.com/in/DanSiegel
+
+# Extensions
+markdown_extensions:
+  - admonition:
+  - codehilite:
+      linenums: false
+  - toc:
+      permalink: true
+
+nav:
+  - Prism:
+    - Prism Library: http://prismlibrary.github.io/docs
+  - Logging:
+    - Logging: http://logging.prismplugins.com
+  - Popups:
+    - Home: index.md
+    - Initializing Rg.Plugin.Popup: rgplugins.md
+    - Navigation Service: navigaton.md
+    - Dialog Service: dialogs.md
+  - Container Extensions:
+    - Container Extensions: http://prismplugins.com
+  - Mobile.BuildTools:
+    - Mobile.BuildTools: http://mobilebuildtools.com
+
+google_analytics: ['UA-153405647-3', 'Prism.Plugin.Popups']

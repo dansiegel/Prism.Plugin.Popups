@@ -1,6 +1,6 @@
 # Prism.Plugin.Popups
 
-The Popups plugin provides an extremely lightweight framework for implementing Popup Pages using the [Rg.Plugin.Popup][1] package with [Prism.Forms][2]. To do this we simply provide you with some friendly extensions for the INavigationService so that you can navigate in a Prism friendly manner. Note that this does not currently support deep linking.
+The Popups plugin provides an extremely lightweight framework for implementing Popup Pages using the [Rg.Plugin.Popup][1] package with [Prism.Forms][2]. To do this we simply provide you with some new implementations of both Prism's Navigation & Dialog Services.
 
 | Platform | Build Status |
 | -------- | ------ |
