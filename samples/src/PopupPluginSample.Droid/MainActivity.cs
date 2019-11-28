@@ -24,7 +24,6 @@ namespace PopupPluginSample.Droid
             base.OnCreate(savedInstanceState);
 
             global::Rg.Plugins.Popup.Popup.Init(this, savedInstanceState);
-            global::Xamarin.Forms.Forms.SetFlags("FastRenderers_Experimental");
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
 
             LoadApplication(new App(new AndroidInitializer()));
