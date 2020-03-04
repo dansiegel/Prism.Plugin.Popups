@@ -302,7 +302,7 @@ namespace Prism.Plugin.Popups
                     if (_popupNavigation.PopupStack.Any())
                     {
                         await _popupNavigation.PopAllAsync(animated);
-                        currentPage = _applicationProvider.MainPage;
+                        currentPage = PageUtilities.GetCurrentPage(_applicationProvider.MainPage);
                     }
                         
                     await base.DoPush(currentPage, page, useModalNavigation, animated, insertBeforeLast, navigationOffset);
