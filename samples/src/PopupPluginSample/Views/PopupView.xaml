@@ -2,7 +2,7 @@
 <popup:PopupPage xmlns="http://xamarin.com/schemas/2014/forms" 
                  xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
                  xmlns:popup="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
-                 xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms" 
+                 xmlns:prism="http://prismlibrary.com" 
                  prism:ViewModelLocator.AutowireViewModel="True"
                  Padding="100"
                  x:Class="PopupPluginSample.Views.PopupView">
@@ -14,7 +14,6 @@
         <Label Text="{Binding Message}" />
         <Button Text="Navigate Back" Command="{Binding NavigateBackCommand}" />
     <Button Text="Navigate to Menu Page"
-            Command="{Binding NavigateToCommand}"
-            CommandParameter="MenuPage" />
+            Command="{prism:NavigateTo '/MenuPage'}" />
   </StackLayout>
 </popup:PopupPage>
