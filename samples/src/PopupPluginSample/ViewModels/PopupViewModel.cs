@@ -14,6 +14,7 @@ namespace PopupPluginSample.ViewModels
             System.Diagnostics.Debug.WriteLine( "Hello from the PopupViewViewModel" );
             _navigationService = navigationService;
             NavigateBackCommand = new DelegateCommand( OnNavigateBackCommandExecuted );
+            NavigateToCommand = new DelegateCommand<string>(OnNavigateToCommandExecuted);
         }
 
         private string _message;
@@ -24,6 +25,8 @@ namespace PopupPluginSample.ViewModels
         }
 
         public DelegateCommand NavigateBackCommand { get; }
+
+        public DelegateCommand<string> NavigateToCommand { get; }
 
         public void OnNavigatingTo(INavigationParameters parameters)
         {
@@ -50,6 +53,12 @@ namespace PopupPluginSample.ViewModels
             await _navigationService.GoBackAsync(new NavigationParameters{
                 { "message", "Hello from the Popup View" }
             });
+        }
+
+        private async void OnNavigateToCommandExecuted(string navPath)
+        {
+            await _navigationService.GoBackToRootAsync();
+            await _navigationService.NavigateAsync(navPath);
         }
     }
 }

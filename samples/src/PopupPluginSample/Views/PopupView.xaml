@@ -13,5 +13,8 @@
                 BackgroundColor="White">
         <Label Text="{Binding Message}" />
         <Button Text="Navigate Back" Command="{Binding NavigateBackCommand}" />
-    </StackLayout>
+    <Button Text="Navigate to Menu Page"
+            Command="{Binding NavigateToCommand}"
+            CommandParameter="MenuPage" />
+  </StackLayout>
 </popup:PopupPage>
