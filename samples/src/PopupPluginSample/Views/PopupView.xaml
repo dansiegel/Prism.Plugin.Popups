@@ -6,13 +6,17 @@
                  prism:ViewModelLocator.AutowireViewModel="True"
                  Padding="100"
                  x:Class="PopupPluginSample.Views.PopupView">
-    <StackLayout HorizontalOptions="Center" 
+  <StackLayout HorizontalOptions="Center" 
                 VerticalOptions="Center"
                 MinimumWidthRequest="300"
                 MinimumHeightRequest="300"
-                BackgroundColor="White">
-        <Label Text="{Binding Message}" />
-        <Button Text="Navigate Back" Command="{Binding NavigateBackCommand}" />
+                BackgroundColor="White"
+                 Padding="20">
+    <Label Text="{Binding Message}" />
+    <Button Text="Navigate to ViewB"
+            Command="{prism:NavigateTo ViewB}" />
+    <Button Text="Navigate Back"
+            Command="{Binding NavigateBackCommand}" />
     <Button Text="Navigate to Menu Page"
             Command="{prism:NavigateTo '/MenuPage'}" />
   </StackLayout>
