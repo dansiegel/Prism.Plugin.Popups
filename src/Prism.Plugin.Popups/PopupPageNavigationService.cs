@@ -300,7 +300,11 @@ namespace Prism.Plugin.Popups
                     break;
                 default:
                     if (_popupNavigation.PopupStack.Any())
+                    {
                         await _popupNavigation.PopAllAsync(animated);
+                        currentPage = PageUtilities.GetCurrentPage(_applicationProvider.MainPage);
+                    }
+                        
                     await base.DoPush(currentPage, page, useModalNavigation, animated, insertBeforeLast, navigationOffset);
                     break;
             }
