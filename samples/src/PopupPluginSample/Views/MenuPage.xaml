@@ -17,6 +17,7 @@
       <Button Text="Tabbed Page" Command="{prism:NavigateTo '/TabbedRoot'}" />
       <Button Text="Navigation Page" Command="{prism:NavigateTo '/NavigationRoot/MainPage'}" />
       <Button Text="Sample Dialog" Command="{prism:ShowDialog SampleDialog}" />
+      <Button Text="ViewA" Command="{prism:NavigateTo ViewA}" />
       <!--        <Button Text="Content Page" Command="NavigateCommand" CommandParameter="MainPage" />-->
     </StackLayout>
     <Label Grid.Row="1"

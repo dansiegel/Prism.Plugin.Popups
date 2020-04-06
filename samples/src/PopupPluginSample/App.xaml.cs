@@ -13,6 +13,7 @@ using Xamarin.Forms.Internals;
 
 namespace PopupPluginSample
 {
+    [AutoRegisterForNavigation]
     public partial class App : PrismApplication
     {
         /* 
@@ -46,12 +47,6 @@ namespace PopupPluginSample
 
             containerRegistry.RegisterForNavigation<TabbedPage>();
             containerRegistry.RegisterForNavigation<NavigationPage>();
-            containerRegistry.RegisterForNavigation<MainPage>();
-            containerRegistry.RegisterForNavigation<MDPRoot>();
-            containerRegistry.RegisterForNavigation<MenuPage>();
-            containerRegistry.RegisterForNavigation<NavigationRoot>();
-            containerRegistry.RegisterForNavigation<PopupView>();
-            containerRegistry.RegisterForNavigation<TabbedRoot>();
 
             containerRegistry.RegisterDialog<SampleDialog, SampleDialogViewModel>();
         }
