@@ -43,14 +43,15 @@ stages:
       demands:
       - MSBuild
     steps:
-    - task: DotNetCoreInstaller@0
+    - task: UseDotNet@2
       inputs:
-        version: '3.0.100'
+        packageType: 'sdk'
+        useGlobalJson: true
 
-    - task: NuGetToolInstaller@0
-      displayName: Use NuGet 5.3.1
+    - task: NuGetToolInstaller@1
+      displayName: Use Latest NuGet
       inputs:
-        versionSpec: 5.3.1
+        checkLatest: true
 
     - task: NuGetCommand@2
       displayName: 'NuGet restore'
@@ -85,7 +86,7 @@ stages:
         SignServiceResourceId: $(SignServiceResourceId)
       condition: and(succeeded(), not(eq(variables['build.reason'], 'PullRequest')), not(eq(variables['SignClientSecret'], '')), not(eq(variables['SignClientUser'], '')))
 
-    - task: PublishPipelineArtifact@0
+    - task: PublishPipelineArtifact@1
       displayName: Publish Package Artifacts
       inputs:
         artifactName: NuGet
@@ -152,12 +153,11 @@ stages:
                  exit 1
              }
             displayName: Process Artifacts for Deployment
-          - task: GithubRelease@0
+          - task: GitHubRelease@1
             displayName: 'Create GitHub Release'
             inputs:
               gitHubConnection: GitHub
               title: '$(ReleaseDisplayName)'
-              tagSource: manual
               tag: 'v$(VersionName)'
               isPreRelease: $(IS_PREVIEW)
               assets: '$(Pipeline.Workspace)/**/*.nupkg'
