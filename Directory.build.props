@@ -8,7 +8,8 @@
     <Copyright>© Dan Siegel. All rights reserved.</Copyright>
     <VersionPrefix>7.2.0</VersionPrefix>
     <NeutralLanguage>en-US</NeutralLanguage>
-    <IncludeSymbols>True</IncludeSymbols>
+    <IncludeSymbols>true</IncludeSymbols>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
     <IncludeSource>True</IncludeSource>
     <PackageIconUrl>http://prismlibrary.github.io/images/prism-logo-graphic-128.png</PackageIconUrl>
     <PackageProjectUrl>https://github.com/dansiegel/Prism.Plugin.Popups</PackageProjectUrl>
@@ -16,8 +17,7 @@
     <RepositoryType>git</RepositoryType>
     <PackageLicenseUrl>https://raw.githubusercontent.com/dansiegel/Prism.Plugin.Popups/master/LICENSE</PackageLicenseUrl>
     <PackageTags>prism popups xamarin.forms</PackageTags>
-    <PackageReleaseNotes>- Prism 7.2 support
-- Updates Rg.Plugins.Popup</PackageReleaseNotes>
+    <PackageReleaseNotes>See the GitHub Release Notes</PackageReleaseNotes>
   </PropertyGroup>
 
   <!-- CI Helpers -->
@@ -50,8 +50,13 @@
     <AllowedOutputExtensionsInPackageBuildOutputFolder>$(AllowedOutputExtensionsInPackageBuildOutputFolder);.pdb</AllowedOutputExtensionsInPackageBuildOutputFolder>
   </PropertyGroup>
 
+  <PropertyGroup>
+    <ContinuousIntegrationBuild>false</ContinuousIntegrationBuild>
+    <ContinuousIntegrationBuild Condition=" '$(BUILD_ARTIFACTSTAGINGDIRECTORY)' != '' ">true</ContinuousIntegrationBuild>
+  </PropertyGroup>
+
   <ItemGroup Condition=" $(IsPackable) ">
-    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.0.0" PrivateAssets="All" />
+    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.1.0-beta-20204-02" PrivateAssets="All" />
   </ItemGroup>
 
   <PropertyGroup Condition=" '$(Configuration)' == 'Release' And '$(IsPackable)' ">
