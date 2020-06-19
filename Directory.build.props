@@ -52,11 +52,12 @@
 
   <PropertyGroup>
     <ContinuousIntegrationBuild>false</ContinuousIntegrationBuild>
-    <ContinuousIntegrationBuild Condition=" '$(BUILD_ARTIFACTSTAGINGDIRECTORY)' != '' ">true</ContinuousIntegrationBuild>
+    <ContinuousIntegrationBuild Condition=" $(IsPackable) And '$(BUILD_ARTIFACTSTAGINGDIRECTORY)' != '' ">true</ContinuousIntegrationBuild>
   </PropertyGroup>
 
   <ItemGroup Condition=" $(IsPackable) ">
     <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.1.0-beta-20204-02" PrivateAssets="All" />
+    <SourceRoot Include="$(MSBuildThisFileDirectory)/"/>
   </ItemGroup>
 
   <PropertyGroup Condition=" '$(Configuration)' == 'Release' And '$(IsPackable)' ">
