@@ -7,6 +7,7 @@ using Prism.AppModel;
 using Prism.Common;
 using Prism.Ioc;
 using Prism.Mvvm;
+using Prism.Plugin.Popups;
 using Prism.Services.Dialogs.Xaml;
 using Rg.Plugins.Popup.Contracts;
 using Rg.Plugins.Popup.Pages;
@@ -35,7 +36,8 @@ namespace Prism.Services.Dialogs.Popups
                 parameters = UriParsingHelper.GetSegmentParameters(name, parameters);
 
                 var view = CreateViewFor(UriParsingHelper.GetSegmentName(name));
-                var popupPage = new PopupPage();
+                var popupPage = CreatePopupPageForView(view);
+
                 var dialogAware = InitializeDialog(view, parameters);
 
                 if (!parameters.TryGetValue<bool>(KnownDialogParameters.CloseOnBackgroundTapped, out var closeOnBackgroundTapped))
@@ -106,7 +108,18 @@ namespace Prism.Services.Dialogs.Popups
             }
         }
 
-        private PopupPage CreatePopup() => new PopupPage();
+        private static PopupPage CreatePopupPageForView(BindableObject view)
+        { 
+            var popupPage =  new PopupPage();
+
+            var hasSystemPadding = view.GetValue(Plugin.Popups.Popups.HasSystemPaddingProperty);
+            if (hasSystemPadding != null) popupPage.HasSystemPadding = (bool)hasSystemPadding;
+
+            var hasKeyboardOffset = view.GetValue(Plugin.Popups.Popups.HasKeyboardOffsetProperty);
+            if (hasKeyboardOffset != null) popupPage.HasKeyboardOffset = (bool)hasKeyboardOffset;
+
+            return popupPage;
+        }
 
         private View CreateViewFor(string name)
         {
