@@ -12,11 +12,7 @@ The Popups plugin provides an extremely lightweight framework for implementing P
 | ------- | ------- | ----- |
 | [Prism.Plugin.Popups][PluginNuGet] | [![PluginNuGetShield]][PluginNuGet] | [![PluginSponsorConnectShield]][PluginSponsorConnect] |
 
-## Symbols
-
-Builds are now generated with a symbols package. This will allow users to better debug code when using our symbol server feed. Packages published to NuGet prior to (and including) 2.0.0-pre2 do not have symbols available. You can add the following Symbol Server for all Prism Plugins.
-
-[https://www.SponsorConnect.org/F/prism-plugins/symbols/](https://www.SponsorConnect.org/F/prism-plugins/symbols/)
+Want to consume the CI packages? Sign up as a [GitHub sponsor](https://xam.dev/35) and you can access the Sponsor Connect private feed.
 
 ## Support
 
