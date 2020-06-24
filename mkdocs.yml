@@ -10,7 +10,7 @@ repo_url: https://github.com/dansiegel/Prism.Plugin.Popups
 edit_uri: ''
 
 # Copyright
-copyright: 'Copyright &copy; 2016 - 2019 Dan Siegel'
+copyright: 'Copyright &copy; 2016 - 2020 Dan Siegel'
 
 # Configuration
 theme:
@@ -64,4 +64,4 @@ nav:
   - Mobile.BuildTools:
     - Mobile.BuildTools: http://mobilebuildtools.com
 
-google_analytics: ['UA-153405647-3', 'Prism.Plugin.Popups']
+# google_analytics: ['UA-153405647-3', 'Prism.Plugin.Popups']

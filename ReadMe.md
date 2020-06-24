@@ -5,18 +5,18 @@ The Popups plugin provides an extremely lightweight framework for implementing P
 | Platform | Build Status |
 | -------- | ------ |
 | VSTS Build | [![Build Status](https://dev.azure.com/dansiegel/Prism.Plugins/_apis/build/status/dansiegel.Prism.Plugin.Popups?branchName=master)](https://dev.azure.com/dansiegel/Prism.Plugins/_build/latest?definitionId=43?branchName=master) |
-| AppCenter Android | [![Build status](https://build.appcenter.ms/v0.1/apps/0c92b88f-fe1b-42cf-a714-240a0704d184/branches/master/badge)](https://appcenter.ms) |
-| AppCenter iOS | [![Build status](https://build.appcenter.ms/v0.1/apps/0a60407d-a075-41cd-a211-31c92d07ec86/branches/master/badge)](https://appcenter.ms) |
+<!-- | AppCenter Android | [![Build status](https://build.appcenter.ms/v0.1/apps/0c92b88f-fe1b-42cf-a714-240a0704d184/branches/master/badge)](https://appcenter.ms) |
+| AppCenter iOS | [![Build status](https://build.appcenter.ms/v0.1/apps/0a60407d-a075-41cd-a211-31c92d07ec86/branches/master/badge)](https://appcenter.ms) | -->
 
-| Package | Version | MyGet |
+| Package | NuGet | Sponsor Connect |
 | ------- | ------- | ----- |
-| [Prism.Plugin.Popups][PluginNuGet] | [![PluginNuGetShield]][PluginNuGet] | [![PluginMyGetShield]][PluginMyGet] |
+| [Prism.Plugin.Popups][PluginNuGet] | [![PluginNuGetShield]][PluginNuGet] | [![PluginSponsorConnectShield]][PluginSponsorConnect] |
 
 ## Symbols
 
 Builds are now generated with a symbols package. This will allow users to better debug code when using our symbol server feed. Packages published to NuGet prior to (and including) 2.0.0-pre2 do not have symbols available. You can add the following Symbol Server for all Prism Plugins.
 
-[https://www.myget.org/F/prism-plugins/symbols/](https://www.myget.org/F/prism-plugins/symbols/)
+[https://www.SponsorConnect.org/F/prism-plugins/symbols/](https://www.SponsorConnect.org/F/prism-plugins/symbols/)
 
 ## Support
 
@@ -59,5 +59,5 @@ There is nothing different about navigating with Popup Pages than Navigating wit
 
 [PluginNuGet]: https://www.nuget.org/packages/Prism.Plugin.Popups
 [PluginNuGetShield]: https://img.shields.io/nuget/vpre/Prism.Plugin.Popups.svg
-[PluginMyGet]: https://www.myget.org/feed/prism-plugins/package/nuget/Prism.Plugin.Popups
-[PluginMyGetShield]: https://img.shields.io/myget/prism-plugins/vpre/Prism.Plugin.Popups.svg
+[PluginSponsorConnect]: https://www.sponsorconnect.dev/package/Prism.Plugin.Popups
+[PluginSponsorConnectShield]: https://img.shields.io/endpoint?url=https%3A%2F%2Fsponsorconnect.dev%2Fshield%2FPrism.Plugin.Popups%2Fvpre
