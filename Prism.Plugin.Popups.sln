@@ -41,6 +41,8 @@ EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
 		tests\Prism.Plugin.Popups.Tests.Shared\Prism.Plugin.Popups.Tests.Shared.projitems*{1eac05e0-f11d-47f3-a01a-a7a3912f8c1c}*SharedItemsImports = 13
+		tests\Prism.Plugin.Popups.Tests.Shared\Prism.Plugin.Popups.Tests.Shared.projitems*{d9a137dd-ff22-4387-bdb9-f5d6e2ef13e9}*SharedItemsImports = 5
+		tests\Prism.Plugin.Popups.Tests.Shared\Prism.Plugin.Popups.Tests.Shared.projitems*{f03ce320-8912-491a-bce4-2d95551f1288}*SharedItemsImports = 5
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Autofac|Any CPU = Autofac|Any CPU
