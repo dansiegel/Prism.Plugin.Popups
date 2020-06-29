@@ -28,17 +28,17 @@ theme:
 # Social
 extra:
   social:
-    - type: globe
+    - icon: fontawesome/brands/blogger
       link: https://dansiegel.net
-    - type: github
+    - icon: fontawesome/brands/github
       link: https://github.com/dansiegel
-    - type: twitch
+    - icon: fontawesome/brands/twitch
       link: https://twitch.tv/dansiegel
-    - type: twitter
+    - icon: fontawesome/brands/twitter
       link: https://twitter.com/DanJSiegel
-    - type: youtube
-      link: https://www.youtube.com/channel/UC0kcuQoK6odp-4UAlI8FeqA
-    - type: linkedin
+    - icon: fontawesome/brands/youtube
+      link: https://youtube.com/dansiegel
+    - icon: fontawesome/brands/linkedin
       link: https://linkedin.com/in/DanSiegel
 
 # Extensions
