@@ -125,5 +125,41 @@ namespace Prism.Plugin.Popups.Tests
             Assert.True(clearResult.Success);
             Assert.Empty(PopupNavigation.Instance.PopupStack);
         }
+
+        [Fact]
+        public async Task PopupPageIsDestroyed_WhenNavigatingBack()
+        {
+            var app = GetApp();
+            app.MainPage = new ContentPage();
+            await app.GetNavigationService().NavigateAsync("PopupPageMock");
+
+            var popupPage = PopupNavigation.Instance.PopupStack.First();
+            Assert.IsType<PopupPageMockViewModel>(popupPage.BindingContext);
+            var vm = (PopupPageMockViewModel)popupPage.BindingContext;
+
+            Assert.Equal(0, vm.Destroyed);
+
+            await app.GetNavigationService(popupPage).GoBackAsync();
+
+            Assert.Equal(1, vm.Destroyed);
+        }
+
+        [Fact]
+        public async Task PopupPageIsDestroyed_WhenNavigatingToContentPage()
+        {
+            var app = GetApp();
+            app.MainPage = new ContentPage();
+            await app.GetNavigationService().NavigateAsync("PopupPageMock");
+
+            var popupPage = PopupNavigation.Instance.PopupStack.First();
+            Assert.IsType<PopupPageMockViewModel>(popupPage.BindingContext);
+            var vm = (PopupPageMockViewModel)popupPage.BindingContext;
+
+            Assert.Equal(0, vm.Destroyed);
+
+            await app.GetNavigationService(popupPage).NavigateAsync("ViewA");
+
+            Assert.Equal(1, vm.Destroyed);
+        }
     }
 }

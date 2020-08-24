@@ -306,6 +306,9 @@ namespace Prism.Plugin.Popups
                 default:
                     if (_popupNavigation.PopupStack.Any())
                     {
+                        foreach (var pageToPop in _popupNavigation.PopupStack)
+                            PageUtilities.DestroyPage(pageToPop);
+
                         await _popupNavigation.PopAllAsync(animated);
                     }
 
