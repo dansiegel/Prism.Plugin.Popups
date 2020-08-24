@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
@@ -14,8 +14,12 @@
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\RetryFactDiscoverer.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\RetryTestCase.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Mocks\Views\MDP.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Mocks\Views\ViewA.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Mocks\Views\ViewB.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Tests\FixtureBase.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Tests\NavigationServiceFixture.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Tests\PrismApp.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Tests\PrismApplicationCollection.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Tests\RegistrationFixture.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Mocks\AppMock.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Mocks\Events\NavigatedFromEvent.cs" />
