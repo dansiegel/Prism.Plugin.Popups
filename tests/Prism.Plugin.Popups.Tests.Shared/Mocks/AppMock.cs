@@ -3,6 +3,7 @@ using Prism.Plugin.Popups.Tests.Mocks.Views;
 using Prism.Navigation;
 using Xamarin.Forms;
 using Prism.Logging;
+using Prism.Common;
 #if AUTOFAC
 using Prism.Autofac;
 #elif DRYIOC
@@ -23,11 +24,11 @@ namespace Prism.Plugin.Popups.Tests.Mocks
 
         protected override async void OnInitialized()
         {
-            var result = await NavigationService.NavigateAsync("MainPage");
-            if(!result.Success)
-            {
-                Container.Resolve<ILoggerFacade>().Log(result.Exception.ToString(), Category.Exception, Priority.High);
-            }
+            //var result = await NavigationService.NavigateAsync("MainPage");
+            //if(!result.Success)
+            //{
+            //    Container.Resolve<ILoggerFacade>().Log(result.Exception.ToString(), Category.Exception, Priority.High);
+            //}
         }
 
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
@@ -35,9 +36,19 @@ namespace Prism.Plugin.Popups.Tests.Mocks
             containerRegistry.RegisterPopupNavigationService();
             containerRegistry.RegisterForNavigation<NavigationPage>();
             containerRegistry.RegisterForNavigation<MainPage>();
+            containerRegistry.RegisterForNavigation<ViewA>();
+            containerRegistry.RegisterForNavigation<ViewB>();
             containerRegistry.RegisterForNavigation<PopupPageMock>();
         }
 
-        public INavigationService GetNavigationService() => NavigationService;
+        public INavigationService GetNavigationService(Page page = null)
+        {
+            if(NavigationService is IPageAware pa)
+            {
+                pa.Page = page ?? MainPage;
+            }
+
+            return NavigationService;
+        }
     }
 }

@@ -1,4 +1,5 @@
-﻿using Prism.Behaviors;
+﻿using System.Threading.Tasks;
+using Prism.Behaviors;
 using Prism.Ioc;
 using Prism.Navigation;
 using Prism.Plugin.Popups.Tests.Fixtures;
@@ -7,20 +8,10 @@ using Prism.Plugin.Popups.Tests.Mocks.Services;
 using Prism.Plugin.Popups.Tests.Mocks.ViewModels;
 using Rg.Plugins.Popup.Contracts;
 using Rg.Plugins.Popup.Services;
-using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Threading.Tasks;
 using Xunit;
 using Xunit.Abstractions;
 
-#if AUTOFAC
-namespace Prism.Plugin.Popups.Autofac.Tests.Fixtures
-#elif DRYIOC
-namespace Prism.Plugin.Popups.DryIoc.Tests.Fixtures
-#else
-namespace Prism.Plugin.Popups.Unity.Tests.Fixtures
-#endif
+namespace Prism.Plugin.Popups.Tests
 {
     public class RegistrationFixture : FixtureBase
     {
@@ -72,7 +63,7 @@ namespace Prism.Plugin.Popups.Unity.Tests.Fixtures
         public async Task MainPage_Has_PopupNavigationService()
         {
             var app = GetApp();
-            await Task.Delay(150);
+            await app.GetNavigationService().NavigateAsync("MainPage");
 
             var vm = app.MainPage.BindingContext as MainPageViewModel;
             Assert.NotNull(vm);

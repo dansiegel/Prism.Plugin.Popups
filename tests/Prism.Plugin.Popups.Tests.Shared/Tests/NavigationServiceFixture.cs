@@ -1,26 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Linq;
 using System.Threading.Tasks;
-using Prism.Ioc;
+using Prism.Navigation;
 using Prism.Plugin.Popups.Tests.Fixtures;
 using Prism.Plugin.Popups.Tests.Mocks.ViewModels;
 using Prism.Plugin.Popups.Tests.Mocks.Views;
 using Rg.Plugins.Popup.Services;
+using Xamarin.Forms;
 using Xunit;
 using Xunit.Abstractions;
-using Prism.Navigation;
-using Prism.Common;
 
-#if AUTOFAC
-namespace Prism.Plugin.Popups.Autofac.Tests
-#elif DRYIOC
-namespace Prism.Plugin.Popups.DryIoc.Tests
-#else
-namespace Prism.Plugin.Popups.Unity.Tests
-#endif
+namespace Prism.Plugin.Popups.Tests
 {
+    [Collection(nameof(PrismApp))]
     public class NavigationServiceFixture : FixtureBase
     {
         public NavigationServiceFixture(ITestOutputHelper testOutputHelper) 
@@ -32,51 +23,107 @@ namespace Prism.Plugin.Popups.Unity.Tests
         public async Task PopupNavigationService_SetsStandardPages()
         {
             var app = GetApp();
-            Assert.Empty(PopupNavigation.Instance.PopupStack);
-            await Task.Delay(150);
+            var result = await app.GetNavigationService().NavigateAsync("MainPage");
+            Assert.Null(result.Exception);
 
             Assert.NotNull(app.MainPage);
             Assert.IsType<MainPage>(app.MainPage);
+
+            Assert.Empty(PopupNavigation.Instance.PopupStack);
         }
 
-        //[Fact]
-        //public async Task PushingPopupPage_PushesToPopupStack()
-        //{
-        //    var app = GetApp();
-        //    Assert.Empty(PopupNavigation.Instance.PopupStack);
-        //    var result = await app.GetNavigationService().NavigateAsync("PopupPageMock");
+        [Fact]
+        public async Task PushingPopupPage_PushesToPopupStack()
+        {
+            var app = GetApp();
+            app.MainPage = new ContentPage();
+            Assert.Empty(PopupNavigation.Instance.PopupStack);
+            var result = await app.GetNavigationService().NavigateAsync("PopupPageMock");
 
-        //    Assert.True(result.Success);
-        //    Assert.Single(PopupNavigation.Instance.PopupStack);
-        //    Assert.IsType<PopupPageMock>(PopupNavigation.Instance.PopupStack[0]);
-        //}
+            Assert.True(result.Success);
+            Assert.Single(PopupNavigation.Instance.PopupStack);
+            Assert.IsType<PopupPageMock>(PopupNavigation.Instance.PopupStack[0]);
+        }
 
+        [Fact]
+        public async Task PushingPopupPage_ResultInPopupNavigationExceptionWithNoRootPage()
+        {
+            var app = GetApp();
+            var result = await app.GetNavigationService().NavigateAsync("PopupPageMock");
+            Assert.IsType<PopupNavigationException>(result.Exception);
+        }
+
+        [Fact]
+        public async Task AbsoluteNavigationClearsNavigationStack()
+        {
+            var app = GetApp();
+            app.MainPage = new MainPage();
+            await app.GetNavigationService().NavigateAsync("ViewA");
+            Assert.Single(app.MainPage.Navigation.ModalStack);
+            var viewA = app.MainPage.Navigation.ModalStack.First();
+            Assert.IsType<ViewA>(viewA);
+            var viewANavService = app.GetNavigationService(viewA);
+            await viewANavService.NavigateAsync("PopupPageMock");
+            Assert.Single(PopupNavigation.Instance.PopupStack);
+            var popupPage = PopupNavigation.Instance.PopupStack.First();
+            Assert.IsType<PopupPageMock>(popupPage);
+            var popupPageNavigationService = app.GetNavigationService(popupPage);
+
+            var result = await popupPageNavigationService.NavigateAsync("/ViewB");
+            Assert.Null(result.Exception);
+            Assert.IsType<ViewB>(app.MainPage);
+        }
+
+        [Fact]
+        public async Task RelativeNavigationDismissesPopupNavigationStack()
+        {
+            var app = GetApp();
+            app.MainPage = new MainPage();
+            await app.GetNavigationService().NavigateAsync("PopupPageMock");
+
+            Assert.Single(PopupNavigation.Instance.PopupStack);
+            Assert.Empty(app.MainPage.Navigation.ModalStack);
+            Assert.Empty(app.MainPage.Navigation.NavigationStack);
+
+            var popupPage = PopupNavigation.Instance.PopupStack.First();
+            await app.GetNavigationService(popupPage).NavigateAsync("ViewA");
+
+            Assert.Empty(PopupNavigation.Instance.PopupStack);
+            Assert.Single(app.MainPage.Navigation.ModalStack);
+            Assert.Empty(app.MainPage.Navigation.NavigationStack);
+            Assert.IsType<ViewA>(app.MainPage.Navigation.ModalStack.First());
+        }
+
+        // TODO: Due to the Reverse navigation required within a NavigationPage this test isn't really supportable
         //[Fact]
         //public async Task SupportsDeepLinkedPopupPages()
         //{
         //    var app = GetApp();
+        //    var navPage = new NavigationPage(new ContentPage());
+        //    app.MainPage = navPage;
         //    Assert.Empty(PopupNavigation.Instance.PopupStack);
-        //    var result = await app.GetNavigationService().NavigateAsync("/NavigationPage/MainPage/PopupPageMock/PopupPageMock");
-        //    Assert.True(result.Success);
+        //    var result = await app.GetNavigationService(navPage.RootPage).NavigateAsync("../MainPage/PopupPageMock");
+        //    Assert.Null(result.Exception);
 
         //    Assert.Equal(2, PopupNavigation.Instance.PopupStack.Count);
         //}
 
-        //[Fact]
-        //public async Task ClearPopupStackExtension_ClearsPopupStack()
-        //{
-        //    var app = GetApp();
-        //    Assert.Empty(PopupNavigation.Instance.PopupStack);
-        //    var result = await app.GetNavigationService().NavigateAsync("PopupPageMock/PopupPageMock");
-        //    Assert.True(result.Success);
-        //    Assert.Equal(2, PopupNavigation.Instance.PopupStack.Count);
+        [Fact]
+        public async Task ClearPopupStackExtension_ClearsPopupStack()
+        {
+            var app = GetApp();
+            app.MainPage = new ContentPage();
+            Assert.Empty(PopupNavigation.Instance.PopupStack);
+            var result = await app.GetNavigationService().NavigateAsync("PopupPageMock/PopupPageMock");
+            Assert.True(result.Success);
+            Assert.Equal(2, PopupNavigation.Instance.PopupStack.Count);
 
-        //    var vm = PopupNavigation.Instance.PopupStack.Last().BindingContext as PopupPageMockViewModel;
+            var vm = PopupNavigation.Instance.PopupStack.Last().BindingContext as PopupPageMockViewModel;
 
-        //    var clearResult = await vm.NavigationService.ClearPopupStackAsync();
-        //    Assert.Null(clearResult.Exception);
-        //    Assert.True(clearResult.Success);
-        //    Assert.Empty(PopupNavigation.Instance.PopupStack);
-        //}
+            var clearResult = await vm.NavigationService.ClearPopupStackAsync();
+            Assert.Null(clearResult.Exception);
+            Assert.True(clearResult.Success);
+            Assert.Empty(PopupNavigation.Instance.PopupStack);
+        }
     }
 }
