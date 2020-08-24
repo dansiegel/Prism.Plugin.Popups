@@ -8,11 +8,13 @@ using System.Text;
 
 namespace Prism.Plugin.Popups.Tests.Mocks.ViewModels
 {
-    public class PopupPageMockViewModel : BindableBase, INavigatedAware
+    public class PopupPageMockViewModel : BindableBase, INavigatedAware, IDestructible
     {
         private IEventAggregator _eventAggregator { get; }
 
         public INavigationService NavigationService { get; }
+
+        public int Destroyed { get; private set; }
 
         public PopupPageMockViewModel(INavigationService navigationService, IEventAggregator eventAggregator)
         {
@@ -30,6 +32,11 @@ namespace Prism.Plugin.Popups.Tests.Mocks.ViewModels
         public void OnNavigatedTo(INavigationParameters parameters)
         {
             NavigatedTo = true;
+        }
+
+        public void Destroy()
+        {
+            Destroyed++;
         }
     }
 }
