@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
@@ -13,7 +13,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\RetryAttribute.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\RetryFactDiscoverer.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\RetryTestCase.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Mocks\MockForms.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Mocks\Views\MDP.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Tests\FixtureBase.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Tests\NavigationServiceFixture.cs" />
