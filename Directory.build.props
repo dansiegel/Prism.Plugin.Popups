@@ -6,10 +6,8 @@
     <Authors>dansiegel</Authors>
     <Company>AvantiPoint</Company>
     <Copyright>© Dan Siegel. All rights reserved.</Copyright>
-    <VersionPrefix>7.2.0</VersionPrefix>
     <NeutralLanguage>en-US</NeutralLanguage>
     <IncludeSymbols>true</IncludeSymbols>
-    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
     <IncludeSource>True</IncludeSource>
     <PackageIconUrl>http://prismlibrary.github.io/images/prism-logo-graphic-128.png</PackageIconUrl>
     <PackageProjectUrl>https://github.com/dansiegel/Prism.Plugin.Popups</PackageProjectUrl>
@@ -30,10 +28,6 @@
     <GeneratePackageOnBuild>$(IsPackable)</GeneratePackageOnBuild>
     <IS_PREVIEW Condition=" $(IS_PREVIEW) == '' ">false</IS_PREVIEW>
     <IS_RELEASE Condition=" $(IS_RELEASE) == '' ">false</IS_RELEASE>
-    <VersionPrefix Condition=" $(BUILD_BUILDID) != '' ">$(VersionPrefix).$(BUILD_BUILDID)</VersionPrefix>
-    <VersionSuffix>ci</VersionSuffix>
-    <VersionSuffix Condition=" $(IS_PREVIEW) ">pre</VersionSuffix>
-    <VersionSuffix Condition=" $(IS_RELEASE) "></VersionSuffix>
   </PropertyGroup>
 
   <PropertyGroup>
@@ -45,6 +39,7 @@
 
   <PropertyGroup>
     <!-- Nuget source link -->
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
     <PublishRepositoryUrl>true</PublishRepositoryUrl>
     <EmbedUntrackedSources>true</EmbedUntrackedSources>
     <AllowedOutputExtensionsInPackageBuildOutputFolder>$(AllowedOutputExtensionsInPackageBuildOutputFolder);.pdb</AllowedOutputExtensionsInPackageBuildOutputFolder>
