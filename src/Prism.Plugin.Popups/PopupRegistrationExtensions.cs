@@ -18,11 +18,7 @@ namespace Prism.Plugin.Popups
             containerRegistry.RegisterPopupNavigation();
             containerRegistry.RegisterSingleton<IPageBehaviorFactory, PopupPageBehaviorFactory>();
 
-            if (IsDryIocContainer(containerRegistry))
-            {
-                containerRegistry.Register<INavigationService, TService>();
-            }
-
+            containerRegistry.RegisterScoped<INavigationService, TService>();
             return containerRegistry.Register<INavigationService, TService>(PrismApplicationBase.NavigationServiceName);
         }
 
@@ -41,17 +37,6 @@ namespace Prism.Plugin.Popups
             {
                 containerRegistry.RegisterInstance<IPopupNavigation>(PopupNavigation.Instance);
             }
-        }
-
-        private static bool IsDryIocContainer(IContainerRegistry containerRegistry)
-        {
-            var type = Type.GetType("DryIoc.IContainer, DryIoc", throwOnError: false);
-            if (type is null) return false;
-
-            var regType = containerRegistry.GetType();
-            var propInfo = regType.GetRuntimeProperty("Instance");
-
-            return propInfo.PropertyType == type;
         }
     }
 }

@@ -16,6 +16,7 @@
     <PackageLicenseUrl>https://raw.githubusercontent.com/dansiegel/Prism.Plugin.Popups/master/LICENSE</PackageLicenseUrl>
     <PackageTags>prism popups xamarin.forms</PackageTags>
     <PackageReleaseNotes>See the GitHub Release Notes</PackageReleaseNotes>
+    <XunitRunnerConfigurationJson>$(MSBuildThisFileDirectory)xunit.runner.json</XunitRunnerConfigurationJson>
   </PropertyGroup>
 
   <!-- CI Helpers -->

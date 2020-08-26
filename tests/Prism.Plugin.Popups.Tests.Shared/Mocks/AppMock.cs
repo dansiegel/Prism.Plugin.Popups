@@ -2,7 +2,6 @@
 using Prism.Plugin.Popups.Tests.Mocks.Views;
 using Prism.Navigation;
 using Xamarin.Forms;
-using Prism.Logging;
 using Prism.Common;
 #if AUTOFAC
 using Prism.Autofac;
@@ -43,12 +42,13 @@ namespace Prism.Plugin.Popups.Tests.Mocks
 
         public INavigationService GetNavigationService(Page page = null)
         {
-            if(NavigationService is IPageAware pa)
+            var navService = Container.Resolve<INavigationService>(PrismApplicationBase.NavigationServiceName);
+            if(navService is IPageAware pa)
             {
                 pa.Page = page ?? MainPage;
             }
 
-            return NavigationService;
+            return navService;
         }
     }
 }

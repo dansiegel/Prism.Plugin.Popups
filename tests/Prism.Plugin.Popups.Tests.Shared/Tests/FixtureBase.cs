@@ -1,4 +1,5 @@
 ﻿using System.Reflection;
+using Prism.Ioc;
 using Prism.Navigation;
 using Prism.Plugin.Popups.Tests.Mocks;
 using Prism.Plugin.Popups.Tests.Mocks.Services;
@@ -15,6 +16,8 @@ namespace Prism.Plugin.Popups.Tests.Fixtures
         {
             _testOutputHelper = testOutputHelper;
             Xamarin.Forms.Mocks.MockForms.Init();
+            PageNavigationRegistry.ClearRegistrationCache();
+            ContainerLocator.ResetContainer();
 
             var type = typeof(PopupNavigation);
             var property = type.GetField("_popupNavigation", BindingFlags.NonPublic | BindingFlags.Static);
