@@ -4,7 +4,6 @@ using PopupPluginSample.Views;
 using Prism;
 using Prism.DryIoc;
 using Prism.Ioc;
-using Prism.Logging;
 using Prism.Plugin.Popups;
 using System.Diagnostics;
 using System.Threading.Tasks;
@@ -56,7 +55,8 @@ namespace PopupPluginSample
             Log.Listeners.Add(new FormsLoggingListener());
             TaskScheduler.UnobservedTaskException += (sender, e) =>
             {
-                Container.Resolve<ILoggerFacade>().Log($"{e.Exception}", Category.Exception, Priority.None);
+                Trace.WriteLine("Unobserved Task Exception:");
+                Trace.WriteLine($"{e.Exception}");
             };
         }
 

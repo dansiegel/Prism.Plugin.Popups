@@ -28,7 +28,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)Mocks\ViewModels\PopupPageMockViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Mocks\Views\MainPage.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Mocks\Views\PopupPageMock.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Mocks\XUnitLogger.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Mocks\XUnitPlatformInitializer.cs" />
   </ItemGroup>
 </Project>

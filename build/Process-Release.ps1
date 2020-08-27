@@ -1,34 +1,31 @@
-$location = Get-Location
-$currentDirectory = $location.Path
+try {
+    $artifactDirectory = $env:PIPELINE_WORKSPACE
+    Write-Host "Currect working directory $artifactDirectory"
+    $nupkg = Get-ChildItem -Path $artifactDirectory -Filter *.nupkg -Recurse | Select-Object -First 1
 
-Write-Host "Currect working directory: $currentDirectory"
+    if($null -eq $nupkg) {
+        Throw "No NuGet Package could be found in the current directory"
+    }
 
-$nupkg = Get-ChildItem -Path $currentDirectory -Filter *.nupkg -Recurse | Select-Object -First 1
+    Write-Host "Package Name $($nupkg.Name)"
+    $nupkg.Name -match '^(.*?)\.((?:\.?[0-9]+){3,}(?:[-a-z]+)?)\.nupkg$'
 
-if($nupkg -eq $null)
-{
-    Throw "No NuGet Package could be found in the current directory"
+    $VersionName = $Matches[2]
+    $IsPreview = $VersionName -match '-beta$'
+    $ReleaseDisplayName = $VersionName
+
+    Write-Output ("##vso[task.setvariable variable=IS_PREVIEW;]$IsPreview")
+
+    if($true -eq $IsPreview) {
+        $ReleaseDisplayName = "$VersionName - Preview"
+    }
+
+    Write-Host "Version Name" $VersionName
+    Write-Host "Release Display Name $ReleaseDisplayName"
+    Write-Output ("##vso[task.setvariable variable=VersionName;]$VersionName")
+    Write-Output ("##vso[task.setvariable variable=ReleaseDisplayName;]$ReleaseDisplayName")
 }
-
-Write-Host "Package Name: $($nupkg.Name)"
-$nupkg.Name -match '^(.*?)\.((?:\.?[0-9]+){3,}(?:[-a-z]+)?)\.nupkg$'
-
-$VersionName = $Matches[2]
-$IsPreview = $VersionName -match '-pre$'
-$DeployToNuGet = !($VersionName -match '-ci$')
-$ReleaseDisplayName = $VersionName
-
-if($IsPreview -eq $true)
-{
-    $ReleaseDisplayName = "$VersionName - Preview"
+catch {
+    Write-Error  $_
+    exit 1
 }
-
-Write-Host "Version Name" $VersionName
-Write-Host "IsPreview $IsPreview"
-Write-Host "Deploy to NuGet: $DeployToNuGet"
-Write-Host "Release Display Name: $ReleaseDisplayName"
-
-Write-Output ("##vso[task.setvariable variable=DeployToNuGet;]$DeployToNuGet")
-Write-Output ("##vso[task.setvariable variable=VersionName;]$VersionName")
-Write-Output ("##vso[task.setvariable variable=IsPreview;]$IsPreview")
-Write-Output ("##vso[task.setvariable variable=ReleaseDisplayName;]$ReleaseDisplayName")

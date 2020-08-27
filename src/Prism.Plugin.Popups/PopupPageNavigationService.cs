@@ -6,7 +6,6 @@ using System.Threading.Tasks;
 using Prism.Behaviors;
 using Prism.Common;
 using Prism.Ioc;
-using Prism.Logging;
 using Prism.Mvvm;
 using Prism.Navigation;
 using Rg.Plugins.Popup.Contracts;
@@ -25,9 +24,8 @@ namespace Prism.Plugin.Popups
         protected IPopupNavigation _popupNavigation { get; }
 
         public PopupPageNavigationService(IPopupNavigation popupNavigation, IContainerExtension container,
-                                          IApplicationProvider applicationProvider, IPageBehaviorFactory pageBehaviorFactor,
-                                          ILoggerFacade logger)
-            : base(container, applicationProvider, pageBehaviorFactor, logger)
+                                          IApplicationProvider applicationProvider, IPageBehaviorFactory pageBehaviorFactory)
+            : base(container, applicationProvider, pageBehaviorFactory)
         {
             _popupNavigation = popupNavigation;
         }
@@ -69,7 +67,6 @@ namespace Prism.Plugin.Popups
 #if DEBUG
                 System.Diagnostics.Debugger.Break();
 #endif
-                _logger.Log(e.ToString(), Category.Exception, Priority.High);
                 result = new NavigationResult { Success = false, Exception = e }; ;
             }
             finally

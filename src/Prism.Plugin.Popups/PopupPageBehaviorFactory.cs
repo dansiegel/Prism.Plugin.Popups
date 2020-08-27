@@ -22,7 +22,7 @@ namespace Prism.Plugin.Popups
             _applicationProvider = applicationProvider;
         }
 
-        public override void ApplyPageBehaviors(Xamarin.Forms.Page page)
+        protected override void ApplyPageBehaviors(Xamarin.Forms.Page page)
         {
             base.ApplyPageBehaviors(page);
             if (page is PopupPage popupPage)
