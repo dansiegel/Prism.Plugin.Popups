@@ -179,6 +179,9 @@ namespace Prism.Services.Dialogs.Popups
                     parameters = new DialogParameters();
                 }
 
+                if (!parameters.TryGetValue<bool>(KnownPopupDialogParameters.Animated, out var animated))
+                    animated = true;
+
                 var dialogAware = GetDialogController(dialogView);
 
                 if (!dialogAware.CanCloseDialog())
@@ -187,7 +190,7 @@ namespace Prism.Services.Dialogs.Popups
                 }
 
                 dialogAware.OnDialogClosed();
-                _popupNavigation.RemovePageAsync(popupPage);
+                _popupNavigation.RemovePageAsync(popupPage, animated);
 
                 return new DialogResult
                 {
