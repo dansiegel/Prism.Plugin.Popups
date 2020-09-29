@@ -9,6 +9,7 @@ using Prism.Ioc;
 using Prism.Mvvm;
 using Prism.Plugin.Popups;
 using Prism.Plugin.Popups.Dialogs;
+using Prism.Plugin.Popups.Dialogs.Xaml;
 using Prism.Services.Dialogs.Xaml;
 using Rg.Plugins.Popup.Contracts;
 using Rg.Plugins.Popup.Pages;
@@ -52,6 +53,13 @@ namespace Prism.Services.Dialogs.Popups
 
                 if (!parameters.TryGetValue<bool>(KnownPopupDialogParameters.Animated, out var animated))
                     animated = true;
+
+                if (!parameters.TryGetValue<bool>(KnownPopupDialogParameters.IsAnimationEnabled, out var isAnimationEnabled))
+                {
+                    var popupDialogLayoutIsAnimationEnabled = PopupDialogLayout.GetIsAnimationEnabled(view);
+                    isAnimationEnabled = popupDialogLayoutIsAnimationEnabled ?? true;
+                }
+                popupPage.IsAnimationEnabled = isAnimationEnabled;
 
                 dialogAware.RequestClose += DialogAware_RequestClose;
 
