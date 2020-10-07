@@ -1,6 +1,4 @@
 
-
-
 <!doctype html>
 <html lang="en" class="no-js">
   <head>
@@ -17,7 +15,7 @@
         <meta name="author" content="Dan Siegel">
       
       <link rel="shortcut icon" href="../assets/favicon.ico">
-      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-5.5.12">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-6.0.2">
     
     
       
@@ -25,19 +23,21 @@
       
     
     
-      <link rel="stylesheet" href="../assets/stylesheets/main.4dd2dd8d.min.css">
-      
-        <link rel="stylesheet" href="../assets/stylesheets/palette.6a5ad368.min.css">
-      
+      <link rel="stylesheet" href="../assets/stylesheets/main.38780c08.min.css">
       
         
+        <link rel="stylesheet" href="../assets/stylesheets/palette.3f72e892.min.css">
         
-        <meta name="theme-color" content="#ffffff">
+          
+          
+          <meta name="theme-color" content="#ffffff">
+        
       
     
     
     
       
+        
         <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
         <style>body,input{font-family:"Roboto",-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono",SFMono-Regular,Consolas,Menlo,monospace}</style>
@@ -55,9 +55,11 @@
     
     
     
-    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="white" data-md-color-accent="cyan">
-  
     
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="white" data-md-color-accent="cyan">
+      
+  
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
     <label class="md-overlay" for="__drawer"></label>
@@ -147,8 +149,6 @@
     
     <div class="md-container" data-md-component="container">
       
-        
-      
       
         
       
@@ -211,7 +211,7 @@
 
 
   <li class="md-nav__item">
-    <a href="http://prismlibrary.github.io/docs" title="Prism Library" class="md-nav__link">
+    <a href="http://prismlibrary.github.io/docs" class="md-nav__link">
       Prism Library
     </a>
   </li>
@@ -249,7 +249,7 @@
 
 
   <li class="md-nav__item">
-    <a href="http://logging.prismplugins.com" title="Logging" class="md-nav__link">
+    <a href="http://logging.prismplugins.com" class="md-nav__link">
       Logging
     </a>
   </li>
@@ -289,7 +289,7 @@
 
 
   <li class="md-nav__item">
-    <a href=".." title="Home" class="md-nav__link">
+    <a href=".." class="md-nav__link">
       Home
     </a>
   </li>
@@ -301,7 +301,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../rgplugins/" title="Initializing Rg.Plugin.Popup" class="md-nav__link">
+    <a href="../rgplugins/" class="md-nav__link">
       Initializing Rg.Plugin.Popup
     </a>
   </li>
@@ -324,7 +324,7 @@
         <span class="md-nav__icon md-icon"></span>
       </label>
     
-    <a href="./" title="Navigation Service" class="md-nav__link md-nav__link--active">
+    <a href="./" class="md-nav__link md-nav__link--active">
       Navigation Service
     </a>
     
@@ -359,7 +359,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../dialogs/" title="Dialog Service" class="md-nav__link">
+    <a href="../dialogs/" class="md-nav__link">
       Dialog Service
     </a>
   </li>
@@ -397,7 +397,7 @@
 
 
   <li class="md-nav__item">
-    <a href="http://prismplugins.com" title="Container Extensions" class="md-nav__link">
+    <a href="http://prismplugins.com" class="md-nav__link">
       Container Extensions
     </a>
   </li>
@@ -435,7 +435,7 @@
 
 
   <li class="md-nav__item">
-    <a href="http://mobilebuildtools.com" title="Mobile.BuildTools" class="md-nav__link">
+    <a href="http://mobilebuildtools.com" class="md-nav__link">
       Mobile.BuildTools
     </a>
   </li>
@@ -487,9 +487,6 @@
               
                 
                 
-                  
-                
-                
                   <h1>Navigation Service</h1>
                 
                 <p>The original purpose of the Popup Plugin was to provide support for Popup Pages within a Prism Application. This cannot be natively supported since Xamarin.Forms has no concept of a PopupPage, and Rg.Plugins.Popup uses it's own service for push and popping PopupPages. While the original implemenation largely consisted of extension methods, the current version of the Popup Plugin now replaces the NavigationService that is registered by Prism with it's own implementation that understands Popup Pages.</p>
@@ -499,7 +496,7 @@
 <p>Popup Pages from Rg.Plugins.Popup are simply a Xamarin.Forms.ContentPage. If you fail to properly initialize Rg.Plugins.Poup or you fail to register the Popup Plugin, Prism will simply push the Popup Page as if it were a Content Page. This may result in the Popup Page being treated as a Modal page or it may be pushed into a Navigation Page. Be sure to see the <a href="../rgplugins/">Initializing Rg.Plugin.Popup</a> topic for more information.</p>
 </div>
 <p>In your Prism Application you will need to be sure to specify that you want to register the Popup Plugin's Navigation Service from your RegisterTypes method. Failure to call this method will result in the Popup Navigation Service not being registered.</p>
-<div class="codehilite"><pre><span></span><code><span class="k">protected</span> <span class="k">override</span> <span class="k">void</span> <span class="nf">RegisterTypes</span><span class="p">(</span><span class="n">IContainerRegistry</span> <span class="n">containerRegistry</span><span class="p">)</span>
+<div class="c# codehilite"><pre><span></span><code><span class="k">protected</span> <span class="k">override</span> <span class="k">void</span> <span class="nf">RegisterTypes</span><span class="p">(</span><span class="n">IContainerRegistry</span> <span class="n">containerRegistry</span><span class="p">)</span>
 <span class="p">{</span>
     <span class="n">containerRegistry</span><span class="p">.</span><span class="n">RegisterPopupNavigationService</span><span class="p">();</span>
 <span class="p">}</span>
@@ -596,15 +593,15 @@
       
     </div>
     
-      <script src="../assets/javascripts/vendor.3636a4ec.min.js"></script>
-      <script src="../assets/javascripts/bundle.e9fe3281.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents"}</script>
+      <script src="../assets/javascripts/vendor.77e55a48.min.js"></script>
+      <script src="../assets/javascripts/bundle.9554a270.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}</script>
       
       <script>
         app = initialize({
           base: "..",
           features: [],
           search: Object.assign({
-            worker: "../assets/javascripts/worker/search.5eca75d3.min.js"
+            worker: "../assets/javascripts/worker/search.4ac00218.min.js"
           }, typeof search !== "undefined" && search)
         })
       </script>
