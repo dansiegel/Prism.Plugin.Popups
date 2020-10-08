@@ -28,7 +28,7 @@ namespace Prism.Plugin.Popups.Tests.Mocks.Services
 
         public async Task PopAllAsync(bool animate = true)
         {
-            while(_popupStack.Any())
+            while (_popupStack.Any())
             {
                 await PopAsync(animate);
             }

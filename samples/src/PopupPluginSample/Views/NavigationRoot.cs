@@ -6,7 +6,7 @@ namespace PopupPluginSample.Views
 {
     public class NavigationRoot : NavigationPage
     {
-        
+
     }
 }
 

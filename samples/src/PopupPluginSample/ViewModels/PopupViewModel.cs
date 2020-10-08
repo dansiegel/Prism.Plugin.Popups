@@ -11,37 +11,37 @@ namespace PopupPluginSample.ViewModels
 
         public PopupViewModel(INavigationService navigationService)
         {
-            System.Diagnostics.Debug.WriteLine( "Hello from the PopupViewViewModel" );
+            System.Diagnostics.Debug.WriteLine("Hello from the PopupViewViewModel");
             _navigationService = navigationService;
-            NavigateBackCommand = new DelegateCommand( OnNavigateBackCommandExecuted );
+            NavigateBackCommand = new DelegateCommand(OnNavigateBackCommandExecuted);
         }
 
         private string _message;
         public string Message
         {
             get { return _message; }
-            set { SetProperty( ref _message, value ); }
+            set { SetProperty(ref _message, value); }
         }
 
         public DelegateCommand NavigateBackCommand { get; }
 
         public void OnNavigatingTo(INavigationParameters parameters)
         {
-            System.Diagnostics.Debug.WriteLine( $"{GetType().Name} Navigating To" );
+            System.Diagnostics.Debug.WriteLine($"{GetType().Name} Navigating To");
         }
 
         public void OnNavigatedFrom(INavigationParameters parameters)
         {
-            System.Diagnostics.Debug.WriteLine( $"{GetType().Name} Navigated From" );
+            System.Diagnostics.Debug.WriteLine($"{GetType().Name} Navigated From");
         }
 
         public void OnNavigatedTo(INavigationParameters parameters)
         {
-            System.Diagnostics.Debug.WriteLine( $"{GetType().Name} Navigated To" );
+            System.Diagnostics.Debug.WriteLine($"{GetType().Name} Navigated To");
 
-            if( parameters.ContainsKey( "message" ) )
+            if (parameters.ContainsKey("message"))
             {
-                Message = parameters[ "message" ].ToString();
+                Message = parameters["message"].ToString();
             }
         }
 

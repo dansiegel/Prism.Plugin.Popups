@@ -9,7 +9,7 @@ namespace PopupPluginSample.ViewModels
 {
     public class MainPageViewModel : BaseViewModel
     {
-        public MainPageViewModel(INavigationService navigationService) 
+        public MainPageViewModel(INavigationService navigationService)
             : base(navigationService)
         {
         }

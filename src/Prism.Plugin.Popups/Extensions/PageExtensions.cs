@@ -1,4 +1,4 @@
-﻿﻿using System;
+﻿using System;
 using Xamarin.Forms;
 using System.Reflection;
 
@@ -11,11 +11,11 @@ namespace Prism.Plugin.Popups.Extensions
 
         public static Page GetDisplayedPage(this Page page)
         {
-            while(page.IsOrDerivesFrom<MasterDetailPage>() ||
+            while (page.IsOrDerivesFrom<MasterDetailPage>() ||
                   page.IsOrDerivesFrom<TabbedPage>() ||
                   page.IsOrDerivesFrom<NavigationPage>())
             {
-                switch(page)
+                switch (page)
                 {
                     case MasterDetailPage mdp:
                         page = mdp.Detail;

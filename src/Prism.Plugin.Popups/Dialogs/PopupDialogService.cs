@@ -67,7 +67,7 @@ namespace Prism.Services.Dialogs.Popups
                         }
 
                         dialogAware.RequestClose -= DialogAware_RequestClose;
-                        if(closeOnBackgroundTapped)
+                        if (closeOnBackgroundTapped)
                         {
                             popupPage.BackgroundClicked -= CloseOnBackgroundClicked;
                         }
@@ -109,8 +109,8 @@ namespace Prism.Services.Dialogs.Popups
         }
 
         private static PopupPage CreatePopupPageForView(BindableObject view)
-        { 
-            var popupPage =  new PopupPage();
+        {
+            var popupPage = new PopupPage();
 
             var hasSystemPadding = view.GetValue(Plugin.Popups.Popups.HasSystemPaddingProperty);
             if (hasSystemPadding != null) popupPage.HasSystemPadding = (bool)hasSystemPadding;

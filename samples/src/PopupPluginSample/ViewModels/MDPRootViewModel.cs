@@ -5,7 +5,7 @@ namespace PopupPluginSample.ViewModels
 {
     public class MDPRootViewModel : BaseViewModel
     {
-        public MDPRootViewModel(INavigationService navigationService) 
+        public MDPRootViewModel(INavigationService navigationService)
             : base(navigationService)
         {
         }
