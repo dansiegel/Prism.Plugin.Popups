@@ -15,10 +15,10 @@ namespace Prism.Plugin.Popups.Tests
 {
     public class RegistrationFixture : FixtureBase
     {
-        public RegistrationFixture(ITestOutputHelper testOutputHelper) 
+        public RegistrationFixture(ITestOutputHelper testOutputHelper)
             : base(testOutputHelper)
         {
-            
+
         }
 
         [Retry]

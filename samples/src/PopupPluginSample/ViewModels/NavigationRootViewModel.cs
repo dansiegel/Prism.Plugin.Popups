@@ -5,7 +5,7 @@ namespace PopupPluginSample.ViewModels
 {
     public class NavigationRootViewModel : BaseViewModel
     {
-        public NavigationRootViewModel(INavigationService navigationService) 
+        public NavigationRootViewModel(INavigationService navigationService)
             : base(navigationService)
         {
         }

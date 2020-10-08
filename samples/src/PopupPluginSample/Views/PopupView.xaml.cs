@@ -20,8 +20,8 @@ namespace PopupPluginSample.Views
 
         private void AnnounceBindingContext()
         {
-            System.Diagnostics.Debug.WriteLine( GetType().Name );
-            System.Diagnostics.Debug.WriteLine( $"BindingContext: {BindingContext?.GetType()?.Name}" );
+            System.Diagnostics.Debug.WriteLine(GetType().Name);
+            System.Diagnostics.Debug.WriteLine($"BindingContext: {BindingContext?.GetType()?.Name}");
         }
 
     }

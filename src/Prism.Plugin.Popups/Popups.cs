@@ -5,12 +5,12 @@ namespace Prism.Plugin.Popups
     public static class Popups
     {
         public static readonly BindableProperty HasSystemPaddingProperty = BindableProperty.CreateAttached("HasSystemPadding", typeof(bool), typeof(View), false);
-        
+
         public static bool GetHasSystemPadding(BindableObject view)
         {
             return (bool)view.GetValue(HasSystemPaddingProperty);
         }
-        
+
         public static void SetHasSystemPadding(BindableObject view, bool value)
         {
             view.SetValue(HasSystemPaddingProperty, value);

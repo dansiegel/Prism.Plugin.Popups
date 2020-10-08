@@ -5,7 +5,7 @@ namespace PopupPluginSample.ViewModels
 {
     public class TabbedRootViewModel : BaseViewModel
     {
-        public TabbedRootViewModel(INavigationService navigationService) 
+        public TabbedRootViewModel(INavigationService navigationService)
             : base(navigationService)
         {
         }

@@ -41,7 +41,7 @@ namespace Prism.Plugin.Popups
         private void OnBackgroundClicked(object sender, EventArgs e)
         {
             // If the Popup Page is not going to dismiss we don't need to do anything
-            if(!AssociatedObject.CloseWhenBackgroundIsClicked) return;
+            if (!AssociatedObject.CloseWhenBackgroundIsClicked) return;
 
             var parameters = PopupUtilities.CreateBackNavigationParameters();
 
@@ -51,29 +51,30 @@ namespace Prism.Plugin.Popups
 
         private void InvokePageInterfaces(Page page, INavigationParameters parameters, bool navigatedTo)
         {
-            PageUtilities.InvokeViewAndViewModelAction<INavigatedAware>(page, (view) => {
-                if(navigatedTo)
+            PageUtilities.InvokeViewAndViewModelAction<INavigatedAware>(page, (view) =>
+            {
+                if (navigatedTo)
                     view.OnNavigatedTo(parameters);
                 else
                     view.OnNavigatedFrom(parameters);
             });
             PageUtilities.InvokeViewAndViewModelAction<IActiveAware>(page, (view) => view.IsActive = navigatedTo);
 
-            if(!navigatedTo)
+            if (!navigatedTo)
                 PageUtilities.InvokeViewAndViewModelAction<IDestructible>(AssociatedObject, (view) => view.Destroy());
         }
 
         private Page TopPage()
         {
             Page page = null;
-            if(_popupNavigation.PopupStack.Any(p => p != AssociatedObject))
+            if (_popupNavigation.PopupStack.Any(p => p != AssociatedObject))
                 page = _popupNavigation.PopupStack.LastOrDefault(p => p != AssociatedObject);
-            else if(_applicationProvider.MainPage.Navigation.ModalStack.Count > 0)
+            else if (_applicationProvider.MainPage.Navigation.ModalStack.Count > 0)
                 page = _applicationProvider.MainPage.Navigation.ModalStack.LastOrDefault();
             else
                 page = _applicationProvider.MainPage.Navigation.NavigationStack.LastOrDefault();
 
-            if(page == null)
+            if (page == null)
                 page = _applicationProvider.MainPage;
 
             return page.GetDisplayedPage();

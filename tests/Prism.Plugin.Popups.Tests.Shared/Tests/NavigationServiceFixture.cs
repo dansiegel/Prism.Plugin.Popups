@@ -14,7 +14,7 @@ namespace Prism.Plugin.Popups.Tests
     [Collection(nameof(PrismApp))]
     public class NavigationServiceFixture : FixtureBase
     {
-        public NavigationServiceFixture(ITestOutputHelper testOutputHelper) 
+        public NavigationServiceFixture(ITestOutputHelper testOutputHelper)
             : base(testOutputHelper)
         {
         }

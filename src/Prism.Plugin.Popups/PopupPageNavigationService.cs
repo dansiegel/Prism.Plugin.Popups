@@ -293,7 +293,7 @@ namespace Prism.Plugin.Popups
             switch (page)
             {
                 case PopupPage popup:
-                    if(_applicationProvider.MainPage is null)
+                    if (_applicationProvider.MainPage is null)
                     {
                         throw new PopupNavigationException(PopupNavigationException.RootPageHasNotBeenSet, popup);
                     }
@@ -309,7 +309,7 @@ namespace Prism.Plugin.Popups
                         await _popupNavigation.PopAllAsync(animated);
                     }
 
-                    if(currentPage is PopupPage)
+                    if (currentPage is PopupPage)
                     {
                         currentPage = PageUtilities.GetCurrentPage(_applicationProvider.MainPage);
                     }

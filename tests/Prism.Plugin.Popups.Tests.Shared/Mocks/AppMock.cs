@@ -43,7 +43,7 @@ namespace Prism.Plugin.Popups.Tests.Mocks
         public INavigationService GetNavigationService(Page page = null)
         {
             var navService = Container.Resolve<INavigationService>(PrismApplicationBase.NavigationServiceName);
-            if(navService is IPageAware pa)
+            if (navService is IPageAware pa)
             {
                 pa.Page = page ?? MainPage;
             }
