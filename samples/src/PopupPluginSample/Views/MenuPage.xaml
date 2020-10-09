@@ -18,11 +18,7 @@
       <Button Text="Tabbed Page" Command="{prism:NavigateTo '/TabbedRoot'}" />
       <Button Text="Navigation Page" Command="{prism:NavigateTo '/NavigationRoot/MainPage'}" />
       <Button Text="Sample Dialog" Command="{prism:ShowDialog SampleDialog}" />
-      <Button Text="Sample Dialog (not animated)" Command="{prism:ShowDialog SampleDialog}">
-        <Button.CommandParameter>
-          <prism:Parameter Key="{x:Static dialogs:KnownPopupDialogParameters.IsAnimationEnabled}" Value="False" />
-        </Button.CommandParameter>
-      </Button>
+      <Button Text="Dialog (not animated)" Command="{prism:ShowDialog NotAnimatedDialog}" />
       <Button Text="ViewA" Command="{prism:NavigateTo ViewA}" />
       <!--        <Button Text="Content Page" Command="NavigateCommand" CommandParameter="MainPage" />-->
     </StackLayout>

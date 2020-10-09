@@ -54,12 +54,8 @@ namespace Prism.Services.Dialogs.Popups
                 if (!parameters.TryGetValue<bool>(KnownPopupDialogParameters.Animated, out var animated))
                     animated = true;
 
-                if (!parameters.TryGetValue<bool>(KnownPopupDialogParameters.IsAnimationEnabled, out var isAnimationEnabled))
-                {
-                    var popupDialogLayoutIsAnimationEnabled = PopupDialogLayout.GetIsAnimationEnabled(view);
-                    isAnimationEnabled = popupDialogLayoutIsAnimationEnabled ?? true;
-                }
-                popupPage.IsAnimationEnabled = isAnimationEnabled;
+                var popupDialogLayoutIsAnimationEnabled = PopupDialogLayout.GetIsAnimationEnabled(view);
+                popupPage.IsAnimationEnabled = popupDialogLayoutIsAnimationEnabled ?? true;
 
                 dialogAware.RequestClose += DialogAware_RequestClose;
 

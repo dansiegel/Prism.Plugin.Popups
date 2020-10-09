@@ -48,6 +48,7 @@ namespace PopupPluginSample
             containerRegistry.RegisterForNavigation<NavigationPage>();
 
             containerRegistry.RegisterDialog<SampleDialog, SampleDialogViewModel>();
+            containerRegistry.RegisterDialog<NotAnimatedDialog, SampleDialogViewModel>();
         }
 
         private void SetupLoggingListeners()
