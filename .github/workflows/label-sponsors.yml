@@ -6,9 +6,11 @@ on:
     types: [opened]
 jobs:
   build:
-    name: is-sponsor-label
+    name: Add Sponsor Labels
     runs-on: ubuntu-latest
     steps:
-      - uses: JasonEtco/is-sponsor-label-action@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Add Sponsor Labels
+        id: sponsor-labels
+        uses: brianlagunas/sponsor-action@v1.0
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
