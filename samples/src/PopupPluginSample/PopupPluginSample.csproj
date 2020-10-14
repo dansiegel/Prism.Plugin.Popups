@@ -16,10 +16,4 @@
     <ProjectReference Include="..\..\..\src\Prism.Plugin.Popups\Prism.Plugin.Popups.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Compile Update="Dialogs\NotAnimatedDialog.xaml.cs">
-      <DependentUpon>NotAnimatedDialog.xaml</DependentUpon>
-    </Compile>
-  </ItemGroup>
-
 </Project>
