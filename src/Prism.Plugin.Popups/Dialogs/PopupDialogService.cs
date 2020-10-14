@@ -8,6 +8,8 @@ using Prism.Common;
 using Prism.Ioc;
 using Prism.Mvvm;
 using Prism.Plugin.Popups;
+using Prism.Plugin.Popups.Dialogs;
+using Prism.Plugin.Popups.Dialogs.Xaml;
 using Prism.Services.Dialogs.Xaml;
 using Rg.Plugins.Popup.Contracts;
 using Rg.Plugins.Popup.Pages;
@@ -48,6 +50,12 @@ namespace Prism.Services.Dialogs.Popups
                         closeOnBackgroundTapped = dialogLayoutCloseOnBackgroundTapped.Value;
                     }
                 }
+
+                if (!parameters.TryGetValue<bool>(KnownPopupDialogParameters.Animated, out var animated))
+                    animated = true;
+
+                var popupDialogLayoutIsAnimationEnabled = PopupDialogLayout.GetIsAnimationEnabled(view);
+                popupPage.IsAnimationEnabled = popupDialogLayoutIsAnimationEnabled ?? true;
 
                 dialogAware.RequestClose += DialogAware_RequestClose;
 
@@ -100,7 +108,7 @@ namespace Prism.Services.Dialogs.Popups
                     popupPage.BackgroundClicked += CloseOnBackgroundClicked;
                 }
 
-                PushPopupPage(popupPage, view);
+                PushPopupPage(popupPage, view, animated);
             }
             catch (Exception ex)
             {
@@ -175,6 +183,9 @@ namespace Prism.Services.Dialogs.Popups
                     parameters = new DialogParameters();
                 }
 
+                if (!parameters.TryGetValue<bool>(KnownPopupDialogParameters.Animated, out var animated))
+                    animated = true;
+
                 var dialogAware = GetDialogController(dialogView);
 
                 if (!dialogAware.CanCloseDialog())
@@ -183,7 +194,7 @@ namespace Prism.Services.Dialogs.Popups
                 }
 
                 dialogAware.OnDialogClosed();
-                _popupNavigation.RemovePageAsync(popupPage);
+                _popupNavigation.RemovePageAsync(popupPage, animated);
 
                 return new DialogResult
                 {
@@ -204,7 +215,7 @@ namespace Prism.Services.Dialogs.Popups
             }
         }
 
-        private async void PushPopupPage(PopupPage popupPage, View dialogView)
+        private async void PushPopupPage(PopupPage popupPage, View dialogView, bool animated = true)
         {
             View mask = DialogLayout.GetMask(dialogView);
 
@@ -255,7 +266,7 @@ namespace Prism.Services.Dialogs.Popups
 
             overlay.Children.Add(dialogView);
             popupPage.Content = overlay;
-            await _popupNavigation.PushAsync(popupPage);
+            await _popupNavigation.PushAsync(popupPage, animated);
         }
 
         private static Style GetOverlayStyle(View popupView)
