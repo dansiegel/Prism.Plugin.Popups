@@ -1,18 +1,17 @@
-﻿using DryIoc;
+﻿using System.Diagnostics;
+using System.Threading.Tasks;
 using PopupPluginSample.Dialogs;
+using PopupPluginSample.ViewModels;
 using PopupPluginSample.Views;
 using Prism;
 using Prism.DryIoc;
 using Prism.Ioc;
 using Prism.Plugin.Popups;
-using System.Diagnostics;
-using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Internals;
 
 namespace PopupPluginSample
 {
-    [AutoRegisterForNavigation]
     public partial class App : PrismApplication
     {
         /* 
@@ -46,6 +45,14 @@ namespace PopupPluginSample
 
             containerRegistry.RegisterForNavigation<TabbedPage>();
             containerRegistry.RegisterForNavigation<NavigationPage>();
+            containerRegistry.RegisterForNavigation<MainPage, MainPageViewModel>();
+            containerRegistry.RegisterForNavigation<MDPRoot, MDPRootViewModel>();
+            containerRegistry.RegisterForNavigation<MenuPage, MenuPageViewModel>();
+            containerRegistry.RegisterForNavigation<NavigationRoot>();
+            containerRegistry.RegisterForNavigation<PopupView, PopupViewModel>();
+            containerRegistry.RegisterForNavigation<TabbedRoot, TabbedRootViewModel>();
+            containerRegistry.RegisterForNavigation<ViewA>();
+            containerRegistry.RegisterForNavigation<ViewB>();
 
             containerRegistry.RegisterDialog<SampleDialog, SampleDialogViewModel>();
             containerRegistry.RegisterDialog<NotAnimatedDialog, SampleDialogViewModel>();
