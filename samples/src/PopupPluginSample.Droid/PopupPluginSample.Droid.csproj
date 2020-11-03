@@ -59,7 +59,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="PropertyChanged.Fody" Version="3.2.10" PrivateAssets="all" />
+    <PackageReference Include="PropertyChanged.Fody" Version="4.0.0" PrivateAssets="all" />
     <PackageReference Include="Xamarin.Forms" Version="4.8.0.1560" />
   </ItemGroup>
   <ItemGroup>
