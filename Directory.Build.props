@@ -32,13 +32,6 @@
   </PropertyGroup>
 
   <PropertyGroup>
-    <!-- Strong Naming -->
-    <SignAssembly>true</SignAssembly>
-    <AssemblyOriginatorKeyFile>$(MSBuildThisFileDirectory)plugin.snk</AssemblyOriginatorKeyFile>
-    <DelaySign>false</DelaySign>
-  </PropertyGroup>
-
-  <PropertyGroup>
     <!-- Nuget source link -->
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>
     <PublishRepositoryUrl>true</PublishRepositoryUrl>
