@@ -17,6 +17,7 @@
     <PackageTags>prism popups xamarin.forms</PackageTags>
     <PackageReleaseNotes>See the GitHub Release Notes</PackageReleaseNotes>
     <XunitRunnerConfigurationJson>$(MSBuildThisFileDirectory)xunit.runner.json</XunitRunnerConfigurationJson>
+    <LangVersion>latest</LangVersion>
   </PropertyGroup>
 
   <!-- CI Helpers -->
