@@ -1,13 +1,11 @@
-﻿using System;
-using System.Reflection;
-using Prism.Behaviors;
+﻿using Prism.Behaviors;
 using Prism.Ioc;
 using Prism.Navigation;
 using Prism.Services.Dialogs;
-using Rg.Plugins.Popup.Contracts;
-using Rg.Plugins.Popup.Services;
 using Prism.Services.Dialogs.Popups;
+using Rg.Plugins.Popup.Contracts;
 using Rg.Plugins.Popup.Pages;
+using Rg.Plugins.Popup.Services;
 using Xamarin.Forms;
 
 namespace Prism.Plugin.Popups
