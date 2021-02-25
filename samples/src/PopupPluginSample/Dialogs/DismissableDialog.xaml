@@ -3,7 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:prism="http://prismlibrary.com"
              prism:DialogLayout.CloseOnBackgroundTapped="True"
-             prism:DialogLayout.RelativeWidthRequest="0.8"
+             prism:DialogLayout.LayoutBounds="0.5, 0, -1, -1"
+             prism:DialogLayout.UseMask="False"
              BackgroundColor="White"
              Padding="15,20"
              x:Class="PopupPluginSample.Dialogs.DismissableDialog">
