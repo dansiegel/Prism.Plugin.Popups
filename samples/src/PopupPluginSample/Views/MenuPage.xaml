@@ -19,6 +19,7 @@
       <Button Text="Navigation Page" Command="{prism:NavigateTo '/NavigationRoot/MainPage'}" />
       <Button Text="Sample Dialog" Command="{prism:ShowDialog SampleDialog}" />
       <Button Text="Dialog (not animated)" Command="{prism:ShowDialog NotAnimatedDialog}" />
+      <Button Text="Dismissable Dialog" Command="{prism:ShowDialog DismissableDialog}" />
       <Button Text="ViewA" Command="{prism:NavigateTo ViewA}" />
       <!--        <Button Text="Content Page" Command="NavigateCommand" CommandParameter="MainPage" />-->
     </StackLayout>

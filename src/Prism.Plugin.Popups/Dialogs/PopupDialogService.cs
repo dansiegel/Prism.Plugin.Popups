@@ -103,7 +103,8 @@ namespace Prism.Services.Dialogs.Popups
                     popupPage.BackgroundClicked += CloseOnBackgroundClicked;
                 }
 
-                PushPopupPage(popupPage, view, animated);
+                Action<IDialogParameters> closeCallback = closeOnBackgroundTapped ? DialogAware_RequestClose : p => { };
+                PushPopupPage(popupPage, view, closeCallback , animated);
             }
             catch (Exception ex)
             {
@@ -205,9 +206,15 @@ namespace Prism.Services.Dialogs.Popups
             }
         }
 
-        private async void PushPopupPage(PopupPage popupPage, View dialogView, bool animated = true)
+        private async void PushPopupPage(PopupPage popupPage, View dialogView, Action<IDialogParameters> closeCallback, bool animated = true)
         {
             View mask = DialogLayout.GetMask(dialogView);
+            var gesture = new TapGestureRecognizer
+            {
+                NumberOfTapsRequired = 1,
+                Command = new Command<IDialogParameters>(closeCallback),
+                CommandParameter = new DialogParameters()
+            };
 
             if (mask is null)
             {
@@ -221,6 +228,7 @@ namespace Prism.Services.Dialogs.Popups
 
             mask.SetBinding(VisualElement.WidthRequestProperty, new Binding { Path = "Width", Source = popupPage });
             mask.SetBinding(VisualElement.HeightRequestProperty, new Binding { Path = "Height", Source = popupPage });
+            mask.GestureRecognizers.Add(gesture);
 
             var overlay = new AbsoluteLayout();
             var relativeWidth = DialogLayout.GetRelativeWidthRequest(dialogView);
@@ -252,6 +260,10 @@ namespace Prism.Services.Dialogs.Popups
             if (DialogLayout.GetUseMask(dialogView) ?? true)
             {
                 overlay.Children.Add(mask);
+            }
+            else
+            {
+                overlay.GestureRecognizers.Add(gesture);
             }
 
             overlay.Children.Add(dialogView);

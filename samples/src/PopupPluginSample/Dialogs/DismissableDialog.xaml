@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:prism="http://prismlibrary.com"
+             prism:DialogLayout.CloseOnBackgroundTapped="True"
+             prism:DialogLayout.LayoutBounds="0.5, 0, -1, -1"
+             prism:DialogLayout.UseMask="False"
+             BackgroundColor="White"
+             Padding="15,20"
+             x:Class="PopupPluginSample.Dialogs.DismissableDialog">
+  <StackLayout>
+    <Label Text="Dismissable Dialog"
+           FontSize="Title"
+           HorizontalTextAlignment="Center"
+           FontAttributes="Bold"
+           Margin="0,10"/>
+    <Label Text="This is a sample dialog. Click on the shaded area to dismiss the dialog." />
+    <Button Text="Close"
+            Command="{Binding CloseCommand}" />
+  </StackLayout>
+</ContentView>
