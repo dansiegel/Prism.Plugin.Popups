@@ -14,22 +14,31 @@ using Xamarin.Forms;
 
 namespace Prism.Plugin.Popups
 {
-#if __IOS__
-    [Foundation.Preserve(AllMembers = true)]
-#elif __ANDROID__
-    [Android.Runtime.Preserve(AllMembers = true)]
-#endif
+    /// <summary>
+    /// Implements the <see cref="INavigationService" /> for working with <see cref="PopupPage" />
+    /// </summary>
     public class PopupPageNavigationService : PageNavigationService
     {
+        /// <summary>
+        /// Gets the <see cref="IPopupNavigation" /> service.
+        /// </summary>
         protected IPopupNavigation _popupNavigation { get; }
 
-        public PopupPageNavigationService(IPopupNavigation popupNavigation, IContainerExtension container,
+        /// <summary>
+        /// Creates a new instance of the <see cref="PopupPageNavigationService" />
+        /// </summary>
+        /// <param name="popupNavigation"></param>
+        /// <param name="container"></param>
+        /// <param name="applicationProvider"></param>
+        /// <param name="pageBehaviorFactory"></param>
+        public PopupPageNavigationService(IPopupNavigation popupNavigation, IContainerProvider container,
                                           IApplicationProvider applicationProvider, IPageBehaviorFactory pageBehaviorFactory)
             : base(container, applicationProvider, pageBehaviorFactory)
         {
             _popupNavigation = popupNavigation;
         }
 
+        /// <inheritdoc />
         protected override async Task<INavigationResult> GoBackInternal(INavigationParameters parameters, bool? useModalNavigation, bool animated)
         {
             INavigationResult result = null;
@@ -78,6 +87,7 @@ namespace Prism.Plugin.Popups
 
         #region MasterDetailPage Hack
 
+        /// <inheritdoc />
         protected override async Task ProcessNavigationForMasterDetailPage(MasterDetailPage currentPage, string nextSegment, Queue<string> segments, INavigationParameters parameters, bool? useModalNavigation, bool animated)
         {
             bool isPresented = GetMasterDetailPageIsPresented(currentPage);
@@ -277,6 +287,7 @@ namespace Prism.Plugin.Popups
 
         #endregion MasterDetailPage Hack
 
+        /// <inheritdoc />
         protected override async Task<Page> DoPop(INavigation navigation, bool useModalNavigation, bool animated)
         {
             if (_popupNavigation.PopupStack.Count > 0 || _page is PopupPage)
@@ -288,6 +299,7 @@ namespace Prism.Plugin.Popups
             return await base.DoPop(navigation, useModalNavigation, animated);
         }
 
+        /// <inheritdoc />
         protected override async Task DoPush(Page currentPage, Page page, bool? useModalNavigation, bool animated, bool insertBeforeLast = false, int navigationOffset = 0)
         {
             switch (page)
@@ -295,7 +307,7 @@ namespace Prism.Plugin.Popups
                 case PopupPage popup:
                     if (_applicationProvider.MainPage is null)
                     {
-                        throw new PopupNavigationException(PopupNavigationException.RootPageHasNotBeenSet, popup);
+                        throw new PopupNavigationException(popup);
                     }
 
                     await _popupNavigation.PushAsync(popup, animated);
@@ -319,6 +331,7 @@ namespace Prism.Plugin.Popups
             }
         }
 
+        /// <inheritdoc />
         protected override Page GetCurrentPage()
         {
             if (_popupNavigation.PopupStack.Any())

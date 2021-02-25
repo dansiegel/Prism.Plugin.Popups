@@ -9,11 +9,10 @@
     <IncludeSymbols>true</IncludeSymbols>
     <IncludeSource>True</IncludeSource>
     <PackageIcon>prism-logo.png</PackageIcon>
-    <!-- <PackageIconUrl>http://prismlibrary.github.io/images/prism-logo-graphic-128.png</PackageIconUrl> -->
     <PackageProjectUrl>https://github.com/dansiegel/Prism.Plugin.Popups</PackageProjectUrl>
     <RepositoryUrl>https://github.com/dansiegel/Prism.Plugin.Popups.git</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
-    <PackageLicenseUrl>https://raw.githubusercontent.com/dansiegel/Prism.Plugin.Popups/master/LICENSE</PackageLicenseUrl>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageTags>prism popups xamarin.forms</PackageTags>
     <PackageReleaseNotes>See the GitHub Release Notes</PackageReleaseNotes>
     <XunitRunnerConfigurationJson>$(MSBuildThisFileDirectory)xunit.runner.json</XunitRunnerConfigurationJson>
