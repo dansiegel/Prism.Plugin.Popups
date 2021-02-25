@@ -15,7 +15,7 @@ namespace PopupPluginSample.iOS
             global::Rg.Plugins.Popup.Popup.Init();
             global::Xamarin.Forms.Forms.Init();
 
-            LoadApplication(new App(new iOSInitializer()));
+            LoadApplication(new App());
 
             return base.FinishedLaunching(uiApplication, launchOptions);
         }
