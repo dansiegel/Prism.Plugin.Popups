@@ -12,20 +12,32 @@ using Xamarin.Forms;
 
 namespace Prism.Services.Dialogs.Popups
 {
+    /// <summary>
+    /// Provides an implementation of the <see cref="IDialogService" /> that uses <see cref="PopupPage"/>
+    /// as the background page container.
+    /// </summary>
     public class PopupDialogService : IDialogService
     {
+        /// <summary>
+        /// The Style name expected in the Application <see cref="ResourceDictionary" />
+        /// </summary>
         public const string PopupOverlayStyle = "PrismDialogMaskStyle";
 
         private IPopupNavigation _popupNavigation { get; }
-        private IContainerExtension _containerExtension { get; }
+        private IContainerProvider _containerProvider { get; }
 
-        public PopupDialogService(IPopupNavigation popupNavigation, IContainerExtension containerExtension)
+        /// <summary>
+        /// Creates a new <see cref="PopupDialogService" />
+        /// </summary>
+        /// <param name="popupNavigation">The <see cref="IPopupNavigation" /> service to push and pop the <see cref="PopupPage" />.</param>
+        /// <param name="containerProvider">The <see cref="IContainerProvider" /> to resolve the Dialog View.</param>
+        public PopupDialogService(IPopupNavigation popupNavigation, IContainerProvider containerProvider)
         {
             _popupNavigation = popupNavigation;
-            _containerExtension = containerExtension;
+            _containerProvider = containerProvider;
         }
 
-        [SuppressMessage("Design", "CA1031:Do not catch general exception types", Justification = "We need a catch all to return any exception in the Dialog Result")]
+        /// <inheritdoc />
         public void ShowDialog(string name, IDialogParameters parameters, Action<IDialogResult> callback)
         {
             try
@@ -115,10 +127,10 @@ namespace Prism.Services.Dialogs.Popups
         {
             var popupPage = new PopupPage();
 
-            var hasSystemPadding = view.GetValue(Plugin.Popups.Popups.HasSystemPaddingProperty);
+            var hasSystemPadding = view.GetValue(PopupDialogLayout.HasSystemPaddingProperty);
             if (hasSystemPadding != null) popupPage.HasSystemPadding = (bool)hasSystemPadding;
 
-            var hasKeyboardOffset = view.GetValue(Plugin.Popups.Popups.HasKeyboardOffsetProperty);
+            var hasKeyboardOffset = view.GetValue(PopupDialogLayout.HasKeyboardOffsetProperty);
             if (hasKeyboardOffset != null) popupPage.HasKeyboardOffset = (bool)hasKeyboardOffset;
 
             return popupPage;
@@ -126,7 +138,7 @@ namespace Prism.Services.Dialogs.Popups
 
         private View CreateViewFor(string name)
         {
-            var view = (View)_containerExtension.Resolve<object>(name);
+            var view = (View)_containerProvider.Resolve<object>(name);
 
             if (ViewModelLocator.GetAutowireViewModel(view) is null)
             {
@@ -163,7 +175,6 @@ namespace Prism.Services.Dialogs.Popups
             return dialog;
         }
 
-        [SuppressMessage("Design", "CA1031:Do not catch general exception types", Justification = "We need a catch all to return any exception in the Dialog Result")]
         private IDialogResult CloseDialog(IDialogParameters parameters, PopupPage popupPage, View dialogView)
         {
             try
@@ -283,7 +294,6 @@ namespace Prism.Services.Dialogs.Popups
             Application.Current.Resources[PopupOverlayStyle] = overlayStyle;
             return overlayStyle;
         }
-
 
         private class DialogResult : IDialogResult
         {

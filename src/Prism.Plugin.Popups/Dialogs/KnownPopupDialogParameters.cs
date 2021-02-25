@@ -1,5 +1,8 @@
 ﻿namespace Prism.Plugin.Popups.Dialogs
 {
+    /// <summary>
+    /// Provides additional known dialog parameters for Popups
+    /// </summary>
     public static class KnownPopupDialogParameters
     {
         /// <summary>

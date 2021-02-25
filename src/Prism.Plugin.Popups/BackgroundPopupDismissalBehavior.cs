@@ -10,28 +10,33 @@ using Xamarin.Forms;
 
 namespace Prism.Plugin.Popups
 {
-#if __IOS__
-    [Foundation.Preserve(AllMembers = true)]
-#elif __ANDROID__
-    [Android.Runtime.Preserve(AllMembers = true)]
-#endif
+    /// <summary>
+    /// Provides a custom behavior for Popup Pages to ensure that the page is properly dismissed
+    /// </summary>
     public sealed class BackgroundPopupDismissalBehavior : BehaviorBase<PopupPage>
     {
         private IPopupNavigation _popupNavigation { get; }
         private IApplicationProvider _applicationProvider { get; }
 
+        /// <summary>
+        /// Creates a new instance of the <see cref="BackgroundPopupDismissalBehavior"/>
+        /// </summary>
+        /// <param name="popupNavigation">The <see cref="IPopupNavigation"/> instance.</param>
+        /// <param name="applicationProvider">The <see cref="IApplicationProvider"/> instance.</param>
         public BackgroundPopupDismissalBehavior(IPopupNavigation popupNavigation, IApplicationProvider applicationProvider)
         {
             _popupNavigation = popupNavigation;
             _applicationProvider = applicationProvider;
         }
 
+        /// <inheritdoc />
         protected override void OnAttachedTo(PopupPage bindable)
         {
             base.OnAttachedTo(bindable);
             bindable.BackgroundClicked += OnBackgroundClicked;
         }
 
+        /// <inheritdoc />
         protected override void OnDetachingFrom(PopupPage bindable)
         {
             base.OnDetachingFrom(bindable);
