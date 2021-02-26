@@ -116,7 +116,7 @@ namespace Prism.Services.Dialogs.Popups
                 }
 
                 Action<IDialogParameters> closeCallback = closeOnBackgroundTapped ? DialogAware_RequestClose : p => { };
-                PushPopupPage(popupPage, view, closeCallback , animated);
+                PushPopupPage(popupPage, view, closeCallback, animated);
             }
             catch (Exception ex)
             {
