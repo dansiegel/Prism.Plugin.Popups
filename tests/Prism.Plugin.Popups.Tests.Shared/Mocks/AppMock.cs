@@ -13,7 +13,7 @@ using Prism.Unity;
 
 namespace Prism.Plugin.Popups.Tests.Mocks
 {
-    public class AppMock : PrismApplication
+    public class AppMock : PrismApplication, IApplicationProvider
     {
         public AppMock(IPlatformInitializer platformInitializer)
             : base(platformInitializer)
@@ -34,6 +34,8 @@ namespace Prism.Plugin.Popups.Tests.Mocks
         {
             containerRegistry.RegisterPopupNavigationService();
             containerRegistry.RegisterForNavigation<NavigationPage>();
+            containerRegistry.RegisterForNavigation<TabbedPage>();
+            containerRegistry.RegisterForNavigation<MDP>();
             containerRegistry.RegisterForNavigation<MainPage>();
             containerRegistry.RegisterForNavigation<ViewA>();
             containerRegistry.RegisterForNavigation<ViewB>();

@@ -1,6 +1,7 @@
 ﻿using Android.App;
 using Android.Content.PM;
 using Android.OS;
+using Prism.Plugin.Popups;
 
 namespace PopupPluginSample.Droid
 {
@@ -18,6 +19,11 @@ namespace PopupPluginSample.Droid
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
             global::Rg.Plugins.Popup.Popup.Init(this);
             LoadApplication(new App());
+        }
+
+        public override void OnBackPressed()
+        {
+            PopupPlugin.OnBackPressed();
         }
     }
 }

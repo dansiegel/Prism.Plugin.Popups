@@ -1,5 +1,6 @@
 ﻿using Prism.Common;
 using Prism.Navigation;
+using Prism.Plugin.Popups.Dialogs;
 using Prism.Plugin.Popups.Extensions;
 using Rg.Plugins.Popup.Contracts;
 using System.Linq;
@@ -19,15 +20,21 @@ namespace Prism.Plugin.Popups
 
         public static INavigationParameters AddNavigationMode(this INavigationParameters parameters, NavigationMode mode)
         {
-            ((INavigationParametersInternal)parameters).Add(NavigationModeKey, mode);
+            return parameters.AddInternalParameter(NavigationModeKey, mode);
+        }
+
+        public static INavigationParameters AddInternalParameter(this INavigationParameters parameters, string key, object value)
+        {
+            ((INavigationParametersInternal)parameters).Add(key, value);
             return parameters;
         }
 
         public static Page TopPage(IPopupNavigation popupNavigation, IApplicationProvider applicationProvider)
         {
             Page page = null;
-            if (popupNavigation.PopupStack.Count > 0)
-                page = popupNavigation.PopupStack.LastOrDefault();
+            var popupStack = popupNavigation.PopupStack.Where(x => !(x is PopupDialogContainer));
+            if (popupStack.Count() > 0)
+                page = popupStack.LastOrDefault();
             else if (applicationProvider.MainPage.Navigation.ModalStack.Count > 0)
                 page = applicationProvider.MainPage.Navigation.ModalStack.LastOrDefault();
             else

@@ -18,6 +18,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Mocks\Views\ViewB.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Tests\FixtureBase.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Tests\NavigationServiceFixture.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Tests\PopupUtilitiesFixture.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Tests\PrismApp.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Tests\PrismApplicationCollection.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Tests\RegistrationFixture.cs" />
