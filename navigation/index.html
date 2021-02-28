@@ -13,19 +13,21 @@
         <meta name="author" content="Dan Siegel">
       
       
-      <link rel="shortcut icon" href="assets/favicon.ico">
+        <link rel="canonical" href="http://popups.prismplugins.com/navigation/">
+      
+      <link rel="shortcut icon" href="../assets/favicon.ico">
       <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-7.0.3">
     
     
       
-        <title>Prism.Plugin.Popups</title>
+        <title>Index - Prism.Plugin.Popups</title>
       
     
     
-      <link rel="stylesheet" href="assets/stylesheets/main.1655a90d.min.css">
+      <link rel="stylesheet" href="../assets/stylesheets/main.1655a90d.min.css">
       
         
-        <link rel="stylesheet" href="assets/stylesheets/palette.7fa14f5b.min.css">
+        <link rel="stylesheet" href="../assets/stylesheets/palette.7fa14f5b.min.css">
         
           
           
@@ -69,6 +71,11 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
+        
+        <a href="#initializing-the-popup-plugin" class="md-skip">
+          Skip to content
+        </a>
+      
     </div>
     <div data-md-component="announce">
       
@@ -80,7 +87,7 @@
   <nav class="md-header__inner md-grid" aria-label="Header">
     <a href="http://popups.prismplugins.com" title="Prism.Plugin.Popups" class="md-header__button md-logo" aria-label="Prism.Plugin.Popups">
       
-  <img src="assets/prism-logo.png" alt="logo">
+  <img src="../assets/prism-logo.png" alt="logo">
 
     </a>
     <label class="md-header__button md-icon" for="__drawer">
@@ -96,7 +103,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              
+              Index
             
           </span>
         </div>
@@ -203,7 +210,7 @@
   
   
     <li class="md-tabs__item">
-      <a href="." class="md-tabs__link">
+      <a href=".." class="md-tabs__link">
         Popups
       </a>
     </li>
@@ -266,7 +273,7 @@
   <label class="md-nav__title" for="__drawer">
     <a href="http://popups.prismplugins.com" title="Prism.Plugin.Popups" class="md-nav__button md-logo" aria-label="Prism.Plugin.Popups">
       
-  <img src="assets/prism-logo.png" alt="logo">
+  <img src="../assets/prism-logo.png" alt="logo">
 
     </a>
     Prism.Plugin.Popups
@@ -400,7 +407,7 @@
   
   
     <li class="md-nav__item">
-      <a href="." class="md-nav__link">
+      <a href=".." class="md-nav__link">
         Home
       </a>
     </li>
@@ -412,7 +419,7 @@
   
   
     <li class="md-nav__item">
-      <a href="rgplugins/" class="md-nav__link">
+      <a href="../rgplugins/" class="md-nav__link">
         Initializing Rg.Plugin.Popup
       </a>
     </li>
@@ -424,7 +431,7 @@
   
   
     <li class="md-nav__item">
-      <a href="navigaton.md" class="md-nav__link">
+      <a href="../navigaton.md" class="md-nav__link">
         Navigation Service
       </a>
     </li>
@@ -436,7 +443,7 @@
   
   
     <li class="md-nav__item">
-      <a href="dialogs/" class="md-nav__link">
+      <a href="../dialogs/" class="md-nav__link">
         Dialog Service
       </a>
     </li>
@@ -540,11 +547,60 @@
               </div>
             
             
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#initializing-the-popup-plugin" class="md-nav__link">
+    Initializing the Popup Plugin
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
           
           <div class="md-content" data-md-component="content">
             <article class="md-content__inner md-typeset">
               
-  <h1>404 - Not found</h1>
+                
+                
+                  <h1>Index</h1>
+                
+                <p>The original purpose of the Popup Plugin was to provide support for Popup Pages within a Prism Application. This cannot be natively supported since Xamarin.Forms has no concept of a PopupPage, and Rg.Plugins.Popup uses it's own service for push and popping PopupPages. While the original implemenation largely consisted of extension methods, the current version of the Popup Plugin now replaces the NavigationService that is registered by Prism with it's own implementation that understands Popup Pages.</p>
+<h2 id="initializing-the-popup-plugin">Initializing the Popup Plugin<a class="headerlink" href="#initializing-the-popup-plugin" title="Permanent link">&para;</a></h2>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Popup Pages from Rg.Plugins.Popup are simply a Xamarin.Forms.ContentPage. If you fail to properly initialize Rg.Plugins.Poup or you fail to register the Popup Plugin, Prism will simply push the Popup Page as if it were a Content Page. This may result in the Popup Page being treated as a Modal page or it may be pushed into a Navigation Page. Be sure to see the <a href="rgplugins.md">Initializing Rg.Plugin.Popup</a> topic for more information.</p>
+</div>
+<p>In your Prism Application you will need to be sure to specify that you want to register the Popup Plugin's Navigation Service from your RegisterTypes method. Failure to call this method will result in the Popup Navigation Service not being registered.</p>
+<div class="codehilite"><pre><span></span><code><span class="k">protected</span> <span class="k">override</span> <span class="k">void</span> <span class="nf">RegisterTypes</span><span class="p">(</span><span class="n">IContainerRegistry</span> <span class="n">containerRegistry</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">containerRegistry</span><span class="p">.</span><span class="n">RegisterPopupNavigationService</span><span class="p">();</span>
+<span class="p">}</span>
+</code></pre></div>
+                
+              
+              
+                
+
 
               
             </article>
@@ -634,10 +690,10 @@
     <div class="md-dialog" data-md-component="dialog">
       <div class="md-dialog__inner md-typeset"></div>
     </div>
-    <script id="__config" type="application/json">{"base": "", "features": ["navigation.tabs", "navigation.tabs.sticky"], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}, "search": "assets/javascripts/workers/search.fb4a9340.min.js", "version": null}</script>
+    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.tabs", "navigation.tabs.sticky"], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}, "search": "../assets/javascripts/workers/search.fb4a9340.min.js", "version": null}</script>
     
     
-      <script src="assets/javascripts/bundle.ca5457b8.min.js"></script>
+      <script src="../assets/javascripts/bundle.ca5457b8.min.js"></script>
       
     
   </body>
