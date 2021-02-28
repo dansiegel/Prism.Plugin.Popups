@@ -126,7 +126,7 @@ namespace Prism.Services.Dialogs.Popups
 
         private static PopupPage CreatePopupPageForView(BindableObject view)
         {
-            var popupPage = new PopupPage();
+            var popupPage = new PopupDialogContainer();
 
             var hasSystemPadding = view.GetValue(PopupDialogLayout.HasSystemPaddingProperty);
             if (hasSystemPadding != null) popupPage.HasSystemPadding = (bool)hasSystemPadding;
