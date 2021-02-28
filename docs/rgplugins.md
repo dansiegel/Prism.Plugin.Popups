@@ -1,6 +1,9 @@
 # Initializing Rg.Plugin.Popup
 
-Rg.Plugin.Popup must be initialized on each platform.
+Rg.Plugin.Popup must be initialized on each platform. 
+
+!!! danger "Critical Note"
+    With the exception of the BackButton handler for Android there is NO platform specific code in this Plugin. Any platform specific errors that you may encounter are likely the result of a bug in either Rg.Plugins.Popup or Xamarin.Forms.
 
 ## Android
 

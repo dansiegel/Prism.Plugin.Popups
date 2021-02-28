@@ -10,7 +10,7 @@ repo_url: https://github.com/dansiegel/Prism.Plugin.Popups
 edit_uri: ''
 
 # Copyright
-copyright: 'Copyright &copy; 2016 - 2020 Dan Siegel'
+copyright: 'Copyright &copy; 2016 - 2021 Dan Siegel'
 
 # Configuration
 theme:
@@ -60,7 +60,10 @@ nav:
   - Popups:
     - Home: index.md
     - Initializing Rg.Plugin.Popup: rgplugins.md
-    - Navigation Service: navigaton.md
+    - Navigation Service:
+      - Getting Started: navigation/index.md
+      - Android Back Button: navigation/backbutton.md
+      - Application Lifecycle: navigation/application-lifecycle.md
     - Dialog Service: dialogs.md
   - Container Extensions:
     - Container Extensions: http://prismplugins.com
