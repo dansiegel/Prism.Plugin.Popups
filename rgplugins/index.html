@@ -479,10 +479,61 @@
   
   
   
-    <li class="md-nav__item">
-      <a href="../navigaton.md" class="md-nav__link">
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_3" type="checkbox" id="__nav_3_3" >
+      
+      <label class="md-nav__link" for="__nav_3_3">
         Navigation Service
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Navigation Service" data-md-level="2">
+        <label class="md-nav__title" for="__nav_3_3">
+          <span class="md-nav__icon md-icon"></span>
+          Navigation Service
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../navigation/" class="md-nav__link">
+        Getting Started
       </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../navigation/backbutton/" class="md-nav__link">
+        Android Back Button
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../navigation/application-lifecycle/" class="md-nav__link">
+        Application Lifecycle
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
     </li>
   
 
@@ -641,7 +692,11 @@
                 
                 
                 <h1 id="initializing-rgpluginpopup">Initializing Rg.Plugin.Popup<a class="headerlink" href="#initializing-rgpluginpopup" title="Permanent link">&para;</a></h1>
-<p>Rg.Plugin.Popup must be initialized on each platform.</p>
+<p>Rg.Plugin.Popup must be initialized on each platform. </p>
+<div class="admonition danger">
+<p class="admonition-title">Critical Note</p>
+<p>With the exception of the BackButton handler for Android there is NO platform specific code in this Plugin. Any platform specific errors that you may encounter are likely the result of a bug in either Rg.Plugins.Popup or Xamarin.Forms.</p>
+</div>
 <h2 id="android">Android<a class="headerlink" href="#android" title="Permanent link">&para;</a></h2>
 <div class="codehilite"><pre><span></span><code><span class="k">public</span> <span class="k">class</span> <span class="nc">MainActivity</span> <span class="p">:</span> <span class="n">FormsAppCompatActivity</span>
 <span class="p">{</span>
@@ -695,7 +750,7 @@
       <div class="md-footer-copyright">
       
         <div class="md-footer-copyright__highlight">
-        Copyright &copy; 2016 - 2020 Dan Siegel
+        Copyright &copy; 2016 - 2021 Dan Siegel
         </div>
       
       </div>
