@@ -1,4 +1,5 @@
-﻿using System;
+﻿#if MONOANDROID
+using System;
 using System.Threading;
 using Prism.Common;
 using Prism.Ioc;
@@ -13,7 +14,6 @@ namespace Prism.Plugin.Popups
     public static class PopupPlugin
     {
         private static readonly SemaphoreSlim semaphore = new SemaphoreSlim(1);
-#if MONOANDROID
         /// <summary>
         /// Called when the Activity has detected the user's press of the back key
         /// </summary>
@@ -42,6 +42,6 @@ namespace Prism.Plugin.Popups
                 semaphore.Release();
             }
         }
-#endif
     }
 }
+#endif

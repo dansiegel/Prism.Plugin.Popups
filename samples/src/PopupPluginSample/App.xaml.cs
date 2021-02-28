@@ -65,5 +65,15 @@ namespace PopupPluginSample
             public override void Warning(string category, string message) =>
                 Trace.WriteLine($"    {category}: {message}");
         }
+
+        protected override void OnResume()
+        {
+            this.PopupPluginOnResume();
+        }
+
+        protected override void OnSleep()
+        {
+            this.PopupPluginOnSleep();
+        }
     }
 }
