@@ -14,8 +14,8 @@ public class MainActivity : FormsAppCompatActivity
 
         base.OnCreate(savedInstanceState);
 
-        global::Rg.Plugins.Popup.Popup.Init(this, savedInstanceState);
         global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
+        global::Rg.Plugins.Popup.Popup.Init(this);
 
         LoadApplication(new App());
     }

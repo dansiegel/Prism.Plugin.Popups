@@ -16,11 +16,14 @@ copyright: 'Copyright &copy; 2016 - 2020 Dan Siegel'
 theme:
   name: 'material'
   custom_dir: 'theme'
+  icon:
+    repo: fontawesome/brands/github
   logo: assets/prism-logo.png
   favicon: assets/favicon.ico
   language: en
-  feature:
-    tabs: true
+  features:
+    - navigation.tabs
+    - navigation.tabs.sticky
   palette:
     primary: 'white'
     accent: 'cyan'
@@ -64,4 +67,7 @@ nav:
   - Mobile.BuildTools:
     - Mobile.BuildTools: http://mobilebuildtools.com
 
+google_analytics:
+  - UA-153405647-3
+  - auto
 # google_analytics: ['UA-153405647-3', 'Prism.Plugin.Popups']
