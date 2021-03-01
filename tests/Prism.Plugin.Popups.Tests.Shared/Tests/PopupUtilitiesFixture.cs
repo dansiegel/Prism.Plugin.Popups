@@ -14,7 +14,7 @@ namespace Prism.Plugin.Popups.Tests
     [Collection(nameof(PrismApp))]
     public class PopupUtilitiesFixture : FixtureBase
     {
-        public PopupUtilitiesFixture(ITestOutputHelper testOutputHelper) 
+        public PopupUtilitiesFixture(ITestOutputHelper testOutputHelper)
             : base(testOutputHelper)
         {
         }
@@ -38,7 +38,7 @@ namespace Prism.Plugin.Popups.Tests
             Assert.IsType(pageType, topPage);
 
             var navService = app.Container.Resolve<INavigationService>(PrismApplicationBase.NavigationServiceName);
-            if(navService is IPageAware pa)
+            if (navService is IPageAware pa)
             {
                 pa.Page = topPage;
             }
