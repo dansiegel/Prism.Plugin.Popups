@@ -1,9 +1,10 @@
-﻿#if MONOANDROID
-using System;
+﻿using System;
+using System.Linq;
 using System.Threading;
 using Prism.Common;
 using Prism.Ioc;
 using Prism.Navigation;
+using Prism.Plugin.Popups.Dialogs;
 using Rg.Plugins.Popup.Contracts;
 
 namespace Prism.Plugin.Popups
@@ -23,10 +24,23 @@ namespace Prism.Plugin.Popups
             try
             {
                 var container = ContainerLocator.Container;
-                var popupNavigation = container.Resolve<IPopupNavigation>();
-                var appProvider = container.Resolve<IApplicationProvider>();
+                if (container is null)
+                {
+                    Console.WriteLine("Android back button pressed before Prism has initialized.");
+                    return;
+                }
 
+                var popupNavigation = container.Resolve<IPopupNavigation>(); 
+                if (popupNavigation.PopupStack.Count > 0 &&
+                    popupNavigation.PopupStack.LastOrDefault() is PopupDialogContainer dialog)
+                {
+                    dialog.RequestClose.Invoke();
+                    return;
+                }
+
+                var appProvider = container.Resolve<IApplicationProvider>();
                 var topPage = PopupUtilities.TopPage(popupNavigation, appProvider);
+
                 var navService = container.Resolve<INavigationService>(PrismApplicationBase.NavigationServiceName);
                 if (navService is IPageAware pa)
                 {
@@ -44,4 +58,3 @@ namespace Prism.Plugin.Popups
         }
     }
 }
-#endif

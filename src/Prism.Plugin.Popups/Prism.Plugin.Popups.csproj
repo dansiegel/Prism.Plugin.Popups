@@ -11,9 +11,16 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="PopupPlugin.cs" />
+    <None Include="PopupPlugin.cs" />
     <None Include="ReadMe.txt" 
           Pack="True"
           PackagePath="." />
+  </ItemGroup>
+
+  <ItemGroup Condition="$(TargetFramework.StartsWith('MonoAndroid'))">
+    <None Remove="PopupPlugin.cs" />
+    <Compile Include="PopupPlugin.cs" />
   </ItemGroup>
 
   <ItemGroup>
