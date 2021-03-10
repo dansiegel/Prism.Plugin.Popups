@@ -4,7 +4,7 @@ VisualStudioVersion = 15.0.27130.2010
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PopupPluginSample.iOS", "src\PopupPluginSample.iOS\PopupPluginSample.iOS.csproj", "{0675FAF6-30EC-4565-B591-A9ECA3C1B22A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PopupPluginSample.Droid", "src\PopupPluginSample.Droid\PopupPluginSample.Droid.csproj", "{596F0CCC-53CF-42B0-B56A-7B902C38BB0F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PopupPluginSample.Android", "src\PopupPluginSample.Android\PopupPluginSample.Android.csproj", "{596F0CCC-53CF-42B0-B56A-7B902C38BB0F}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{DA1A5447-C2B7-4A1E-9E49-B94CB1566AF2}"
 EndProject
