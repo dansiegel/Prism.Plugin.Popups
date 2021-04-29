@@ -115,6 +115,8 @@ namespace Prism.Services.Dialogs.Popups
                     popupPage.BackgroundClicked += CloseOnBackgroundClicked;
                 }
 
+                popupPage.RequestClose = () => DialogAware_RequestClose(null);
+
                 Action<IDialogParameters> closeCallback = closeOnBackgroundTapped ? DialogAware_RequestClose : p => { };
                 PushPopupPage(popupPage, view, closeCallback, animated);
             }
@@ -124,7 +126,7 @@ namespace Prism.Services.Dialogs.Popups
             }
         }
 
-        private static PopupPage CreatePopupPageForView(BindableObject view)
+        private static PopupDialogContainer CreatePopupPageForView(View view)
         {
             var popupPage = new PopupDialogContainer();
 

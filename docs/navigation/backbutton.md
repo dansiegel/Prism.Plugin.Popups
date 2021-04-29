@@ -14,3 +14,5 @@ public class MainActivity : FormsAppCompatActivity
     }
 }
 ```
+
+The PopupPlugin.OnBackPressed will check to see if the currently displayed page is PopupDialogContainer. If it is it will call all of the same Dialog API's that you would expect, while using the Navigation Service for all of your other pages and PopupPages.
