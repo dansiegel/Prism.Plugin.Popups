@@ -113,7 +113,7 @@ stages:
 
 - stage: deployNuGetOrg
   displayName: 'Deploy to NuGet.org'
-  condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/rel'))
+  condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'), eq(variables['IS_RELEASE'], 'true'))
   jobs:
   - deployment: NuGet
     displayName: NuGet.org
