@@ -14,3 +14,6 @@ public class MainActivity : FormsAppCompatActivity
     }
 }
 ```
+
+!!! note
+    This should only be used for version 8.0. Prism 8.1 introduced back button support which supports BOTH dialogs and Page navigation. This API will be deprecated when we bump to 8.1 as the Prism.Forms API should be used directly with 8.1.
