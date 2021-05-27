@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
 using Prism.Behaviors;
 using Prism.Common;
 using Prism.Ioc;
-using Prism.Mvvm;
 using Prism.Navigation;
 using Rg.Plugins.Popup.Contracts;
 using Rg.Plugins.Popup.Pages;
@@ -15,17 +15,17 @@ using Xamarin.Forms;
 namespace Prism.Plugin.Popups
 {
     /// <summary>
-    /// Implements the <see cref="INavigationService" /> for working with <see cref="PopupPage" />
+    ///     Implements the <see cref="INavigationService" /> for working with <see cref="PopupPage" />
     /// </summary>
     public class PopupPageNavigationService : PageNavigationService
     {
         /// <summary>
-        /// Gets the <see cref="IPopupNavigation" /> service.
+        ///     Gets the <see cref="IPopupNavigation" /> service.
         /// </summary>
         protected IPopupNavigation _popupNavigation { get; }
 
         /// <summary>
-        /// Creates a new instance of the <see cref="PopupPageNavigationService" />
+        ///     Creates a new instance of the <see cref="PopupPageNavigationService" />
         /// </summary>
         /// <param name="popupNavigation"></param>
         /// <param name="container"></param>
@@ -49,34 +49,34 @@ namespace Prism.Plugin.Popups
                 switch (PopupUtilities.TopPage(_popupNavigation, _applicationProvider))
                 {
                     case PopupPage popupPage:
-                        var segmentParameters = UriParsingHelper.GetSegmentParameters(null, parameters);
-                        ((INavigationParametersInternal)segmentParameters).Add("__NavigationMode", NavigationMode.Back);
-                        var previousPage = PopupUtilities.GetOnNavigatedToTarget(_popupNavigation, _applicationProvider);
-
-                        await DoPop(popupPage.Navigation, false, animated);
-
-                        if (popupPage != null)
                         {
+                            INavigationParameters segmentParameters = UriParsingHelper.GetSegmentParameters(null, parameters);
+                            ((INavigationParametersInternal)segmentParameters).Add("__NavigationMode", NavigationMode.Back);
+                            Page previousPage = PopupUtilities.GetOnNavigatedToTarget(_popupNavigation, _applicationProvider);
+
+                            await DoPop(popupPage.Navigation, false, animated);
+
                             PageUtilities.InvokeViewAndViewModelAction<IActiveAware>(popupPage, a => a.IsActive = false);
                             PageUtilities.OnNavigatedFrom(popupPage, segmentParameters);
                             PageUtilities.OnNavigatedTo(previousPage, segmentParameters);
                             PageUtilities.InvokeViewAndViewModelAction<IActiveAware>(previousPage, a => a.IsActive = true);
                             PageUtilities.DestroyPage(popupPage);
-                            result = new NavigationResult { Success = true };
+                            result = new NavigationResult {Success = true};
                             break;
                         }
-                        throw new NullReferenceException("The PopupPage was null following the Pop");
                     default:
-                        result = await base.GoBackInternal(parameters, useModalNavigation, animated);
-                        break;
+                        {
+                            result = await base.GoBackInternal(parameters, useModalNavigation, animated);
+                            break;
+                        }
                 }
             }
             catch (Exception e)
             {
 #if DEBUG
-                System.Diagnostics.Debugger.Break();
+                Debugger.Break();
 #endif
-                result = new NavigationResult { Success = false, Exception = e }; ;
+                result = new NavigationResult {Success = false, Exception = e};
             }
             finally
             {
@@ -90,38 +90,38 @@ namespace Prism.Plugin.Popups
         /// <inheritdoc />
         protected override async Task ProcessNavigationForMasterDetailPage(MasterDetailPage currentPage, string nextSegment, Queue<string> segments, INavigationParameters parameters, bool? useModalNavigation, bool animated)
         {
-            bool isPresented = GetMasterDetailPageIsPresented(currentPage);
+            var isPresented = GetMasterDetailPageIsPresented(currentPage);
 
-            var detail = currentPage.Detail;
+            Page detail = currentPage.Detail;
             if (detail == null)
             {
-                var newDetail = CreatePageFromSegment(nextSegment);
+                Page newDetail = CreatePageFromSegment(nextSegment);
                 await ProcessNavigation(newDetail, segments, parameters, useModalNavigation, animated);
                 await DoNavigateAction(null, nextSegment, newDetail, parameters, onNavigationActionCompleted: p =>
-                {
-                    currentPage.IsPresented = isPresented;
-                    currentPage.Detail = newDetail;
-                });
+                                                                                                              {
+                                                                                                                  currentPage.IsPresented = isPresented;
+                                                                                                                  currentPage.Detail = newDetail;
+                                                                                                              });
                 return;
             }
 
             if (useModalNavigation.HasValue && useModalNavigation.Value)
             {
-                var nextPage = CreatePageFromSegment(nextSegment);
+                Page nextPage = CreatePageFromSegment(nextSegment);
                 await ProcessNavigation(nextPage, segments, parameters, useModalNavigation, animated);
                 await DoNavigateAction(currentPage, nextSegment, nextPage, parameters, async () =>
-                {
-                    currentPage.IsPresented = isPresented;
-                    await DoPush(currentPage, nextPage, true, animated);
-                });
+                                                                                       {
+                                                                                           currentPage.IsPresented = isPresented;
+                                                                                           await DoPush(currentPage, nextPage, true, animated);
+                                                                                       });
                 return;
             }
 
-            var nextSegmentType = PageNavigationRegistry.GetPageType(UriParsingHelper.GetSegmentName(nextSegment));
+            Type nextSegmentType = PageNavigationRegistry.GetPageType(UriParsingHelper.GetSegmentName(nextSegment));
 
-            //we must recreate the NavigationPage everytime or the transitions on iOS will not work properly, unless we meet the two scenarios below
-            bool detailIsNavPage = false;
-            bool reuseNavPage = false;
+            //we must recreate the NavigationPage every time or the transitions on iOS will not work properly, unless we meet the two scenarios below
+            var detailIsNavPage = false;
+            var reuseNavPage = false;
             if (detail is NavigationPage navPage)
             {
                 detailIsNavPage = true;
@@ -136,8 +136,8 @@ namespace Prism.Plugin.Popups
                     {
                         //if we weren't forced to reuse the NavPage, then let's check the NavPage.CurrentPage against the next segment type as we don't want to recreate the entire nav stack
                         //just in case the user is trying to navigate to the same page which may be nested in a NavPage
-                        var nextPageType = PageNavigationRegistry.GetPageType(UriParsingHelper.GetSegmentName(segments.Peek()));
-                        var currentPageType = navPage.CurrentPage.GetType();
+                        Type nextPageType = PageNavigationRegistry.GetPageType(UriParsingHelper.GetSegmentName(segments.Peek()));
+                        Type currentPageType = navPage.CurrentPage.GetType();
                         if (nextPageType == currentPageType)
                         {
                             reuseNavPage = true;
@@ -150,21 +150,20 @@ namespace Prism.Plugin.Popups
             {
                 await ProcessNavigation(detail, segments, parameters, useModalNavigation, animated);
                 await DoNavigateAction(null, nextSegment, detail, parameters, onNavigationActionCompleted: p =>
-                {
-                    if (detail is TabbedPage && nextSegment.Contains(KnownNavigationParameters.SelectedTab))
-                    {
-                        var segmentParams = UriParsingHelper.GetSegmentParameters(nextSegment);
-                        SelectPageTab(detail, segmentParams);
-                    }
+                                                                                                           {
+                                                                                                               if (detail is TabbedPage && nextSegment.Contains(KnownNavigationParameters.SelectedTab))
+                                                                                                               {
+                                                                                                                   INavigationParameters segmentParams = UriParsingHelper.GetSegmentParameters(nextSegment);
+                                                                                                                   SelectPageTab(detail, segmentParams);
+                                                                                                               }
 
-                    currentPage.IsPresented = isPresented;
-                });
-                return;
+                                                                                                               currentPage.IsPresented = isPresented;
+                                                                                                           });
             }
             else
             {
-                var newDetail = CreatePageFromSegment(nextSegment);
-                var segmentParameters = UriParsingHelper.GetSegmentParameters(nextSegment, parameters);
+                Page newDetail = CreatePageFromSegment(nextSegment);
+                INavigationParameters segmentParameters = UriParsingHelper.GetSegmentParameters(nextSegment, parameters);
                 await ProcessNavigation(newDetail, segments, segmentParameters, newDetail is NavigationPage ? false : true, animated);
 
                 await DoNavigationActionForNewDetail(currentPage, newDetail, detail, detailIsNavPage, isPresented, animated, nextSegment, segmentParameters);
@@ -175,26 +174,30 @@ namespace Prism.Plugin.Popups
         {
             if (newDetail is PopupPage)
             {
-                await DoNavigateAction(oldDetail, nextSegment, newDetail, parameters, navigationAction: () =>
-                {
-                    if (detailIsNavPage)
-                        OnNavigatedFrom(((NavigationPage)oldDetail).CurrentPage, parameters);
+                await DoNavigateAction(oldDetail, nextSegment, newDetail, parameters, () =>
+                                                                                      {
+                                                                                          if (detailIsNavPage)
+                                                                                          {
+                                                                                              OnNavigatedFrom(((NavigationPage)oldDetail).CurrentPage, parameters);
+                                                                                          }
 
-                    currentPage.IsPresented = false;
-                    return DoPush(currentPage, newDetail, false, animated);
-                });
+                                                                                          currentPage.IsPresented = false;
+                                                                                          return DoPush(currentPage, newDetail, false, animated);
+                                                                                      });
             }
             else
             {
                 await DoNavigateAction(oldDetail, nextSegment, newDetail, parameters, onNavigationActionCompleted: p =>
-                {
-                    if (detailIsNavPage)
-                        OnNavigatedFrom(((NavigationPage)oldDetail).CurrentPage, parameters);
+                                                                                                                   {
+                                                                                                                       if (detailIsNavPage)
+                                                                                                                       {
+                                                                                                                           OnNavigatedFrom(((NavigationPage)oldDetail).CurrentPage, parameters);
+                                                                                                                       }
 
-                    currentPage.IsPresented = isPresented;
-                    currentPage.Detail = newDetail;
-                    PageUtilities.DestroyPage(oldDetail);
-                });
+                                                                                                                       currentPage.IsPresented = isPresented;
+                                                                                                                       currentPage.Detail = newDetail;
+                                                                                                                       PageUtilities.DestroyPage(oldDetail);
+                                                                                                                   });
             }
         }
 
@@ -236,10 +239,10 @@ namespace Prism.Plugin.Popups
             var selectedTab = parameters?.GetValue<string>(KnownNavigationParameters.SelectedTab);
             if (!string.IsNullOrWhiteSpace(selectedTab))
             {
-                var selectedTabType = PageNavigationRegistry.GetPageType(UriParsingHelper.GetSegmentName(selectedTab));
+                Type selectedTabType = PageNavigationRegistry.GetPageType(UriParsingHelper.GetSegmentName(selectedTab));
 
                 var childFound = false;
-                foreach (var child in tabbedPage.Children)
+                foreach (Page child in tabbedPage.Children)
                 {
                     if (!childFound && child.GetType() == selectedTabType)
                     {
@@ -264,12 +267,14 @@ namespace Prism.Plugin.Popups
             var selectedTab = parameters?.GetValue<string>(KnownNavigationParameters.SelectedTab);
             if (!string.IsNullOrWhiteSpace(selectedTab))
             {
-                var selectedTabType = PageNavigationRegistry.GetPageType(UriParsingHelper.GetSegmentName(selectedTab));
+                Type selectedTabType = PageNavigationRegistry.GetPageType(UriParsingHelper.GetSegmentName(selectedTab));
 
-                foreach (var child in carouselPage.Children)
+                foreach (ContentPage child in carouselPage.Children)
                 {
                     if (child.GetType() == selectedTabType)
+                    {
                         carouselPage.CurrentPage = child;
+                    }
                 }
             }
         }
@@ -277,7 +282,9 @@ namespace Prism.Plugin.Popups
         internal static bool IsSameOrSubclassOf<T>(Type potentialDescendant)
         {
             if (potentialDescendant == null)
+            {
                 return false;
+            }
 
             Type potentialBase = typeof(T);
 
@@ -315,8 +322,10 @@ namespace Prism.Plugin.Popups
                 default:
                     if (_popupNavigation.PopupStack.Any())
                     {
-                        foreach (var pageToPop in _popupNavigation.PopupStack)
+                        foreach (PopupPage pageToPop in _popupNavigation.PopupStack)
+                        {
                             PageUtilities.DestroyPage(pageToPop);
+                        }
 
                         await _popupNavigation.PopAllAsync(animated);
                     }

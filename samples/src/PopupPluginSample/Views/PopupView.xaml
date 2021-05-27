@@ -1,23 +1,28 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<popup:PopupPage xmlns="http://xamarin.com/schemas/2014/forms" 
-                 xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-                 xmlns:popup="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
-                 xmlns:prism="http://prismlibrary.com" 
-                 prism:ViewModelLocator.AutowireViewModel="True"
-                 Padding="100"
-                 x:Class="PopupPluginSample.Views.PopupView">
-  <StackLayout HorizontalOptions="Center" 
-                VerticalOptions="Center"
-                MinimumWidthRequest="300"
-                MinimumHeightRequest="300"
-                BackgroundColor="White"
-                 Padding="20">
-    <Label Text="{Binding Message}" />
-    <Button Text="Navigate to ViewB"
+<?xml version="1.0" encoding="UTF-8" ?>
+<popup:PopupPage
+    x:Class="PopupPluginSample.Views.PopupView"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:popup="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
+    xmlns:prism="http://prismlibrary.com"
+    Padding="100"
+    prism:ViewModelLocator.AutowireViewModel="True">
+    <StackLayout
+        Padding="20"
+        HorizontalOptions="Center"
+        VerticalOptions="Center"
+        MinimumWidthRequest="300"
+        MinimumHeightRequest="300"
+        BackgroundColor="White">
+        <Label Text="{Binding Message}" />
+        <Button
+            Text="Navigate to ViewB"
             Command="{prism:NavigateTo ViewB}" />
-    <Button Text="Navigate Back"
+        <Button
+            Text="Navigate Back"
             Command="{Binding NavigateBackCommand}" />
-    <Button Text="Navigate to Menu Page"
+        <Button
+            Text="Navigate to Menu Page"
             Command="{prism:NavigateTo '/MenuPage'}" />
-  </StackLayout>
+    </StackLayout>
 </popup:PopupPage>

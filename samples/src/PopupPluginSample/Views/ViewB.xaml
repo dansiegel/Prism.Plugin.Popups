@@ -1,17 +1,21 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             xmlns:prism="http://prismlibrary.com"
-             mc:Ignorable="d"
-             x:Class="PopupPluginSample.Views.ViewB">
-  <StackLayout VerticalOptions="Center"
-               HorizontalOptions="Center">
-    <Label Text="Welcome to ViewB" />
-    <Button Text="Go Back"
-            Command="{prism:GoBack}"/>
-    <Button Text="Go to Menu"
+<ContentPage
+    x:Class="PopupPluginSample.Views.ViewB"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:prism="http://prismlibrary.com"
+    mc:Ignorable="d">
+    <StackLayout
+        VerticalOptions="Center"
+        HorizontalOptions="Center">
+        <Label Text="Welcome to ViewB" />
+        <Button
+            Text="Go Back"
+            Command="{prism:GoBack}" />
+        <Button
+            Text="Go to Menu"
             Command="{prism:NavigateTo '/MenuPage'}" />
-  </StackLayout>
+    </StackLayout>
 </ContentPage>

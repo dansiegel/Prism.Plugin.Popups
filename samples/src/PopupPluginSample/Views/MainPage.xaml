@@ -1,34 +1,41 @@
-<?xml version="1.0" encoding="utf-8"?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:prism="http://prismlibrary.com"
-             xmlns:essentials="clr-namespace:Xamarin.Essentials;assembly=Xamarin.Essentials"
-             prism:ViewModelLocator.AutowireViewModel="True"
-             Title="MainPage"
-             x:Class="PopupPluginSample.Views.MainPage">
-  <Grid>
-    <Grid.RowDefinitions>
-      <RowDefinition Height="*" />
-      <RowDefinition Height="Auto" />
-    </Grid.RowDefinitions>
-    <StackLayout HorizontalOptions="Center" VerticalOptions="Center">
-      <Label Text="{Binding Message}" />
-      <Button Text="Launch Popup"
-            Command="{prism:NavigateTo PopupView}" />
-      <Button Text="Sample Dialog"
-            Command="{prism:ShowDialog SampleDialog}" />
-      <Button Text="Back to Menu"
-            Command="{prism:NavigateTo '/MenuPage'}" />
-    </StackLayout>
-    <Label Grid.Row="1"
-           Margin="20"
-           HorizontalTextAlignment="Center">
-      <Label.FormattedText>
-        <FormattedString>
-          <Span Text="Version: " />
-          <Span Text="{x:Static essentials:AppInfo.VersionString}" />
-        </FormattedString>
-      </Label.FormattedText>
-    </Label>
-  </Grid>
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="PopupPluginSample.Views.MainPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:prism="http://prismlibrary.com"
+    xmlns:essentials="clr-namespace:Xamarin.Essentials;assembly=Xamarin.Essentials"
+    Title="MainPage"
+    prism:ViewModelLocator.AutowireViewModel="True">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <StackLayout
+            HorizontalOptions="Center"
+            VerticalOptions="Center">
+            <Label Text="{Binding Message}" />
+            <Button
+                Text="Launch Popup"
+                Command="{prism:NavigateTo PopupView}" />
+            <Button
+                Text="Sample Dialog"
+                Command="{prism:ShowDialog SampleDialog}" />
+            <Button
+                Text="Back to Menu"
+                Command="{prism:NavigateTo '/MenuPage'}" />
+        </StackLayout>
+        <Label
+            Grid.Row="1"
+            Margin="20"
+            HorizontalTextAlignment="Center">
+            <Label.FormattedText>
+                <FormattedString>
+                    <Span Text="Version: " />
+                    <Span Text="{x:Static essentials:AppInfo.VersionString}" />
+                </FormattedString>
+            </Label.FormattedText>
+        </Label>
+    </Grid>
 </ContentPage>

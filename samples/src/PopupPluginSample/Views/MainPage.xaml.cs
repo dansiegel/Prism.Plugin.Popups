@@ -1,8 +1,6 @@
-﻿using Xamarin.Forms;
-
-namespace PopupPluginSample.Views
+﻿namespace PopupPluginSample.Views
 {
-    public partial class MainPage : ContentPage
+    public partial class MainPage
     {
         public MainPage()
         {
@@ -10,4 +8,3 @@ namespace PopupPluginSample.Views
         }
     }
 }
-

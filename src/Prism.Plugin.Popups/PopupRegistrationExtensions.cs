@@ -11,14 +11,15 @@ using Xamarin.Forms;
 namespace Prism.Plugin.Popups
 {
     /// <summary>
-    /// Provides additional extensions to easily register Popup Service Extensions for Prism.
+    ///     Provides additional extensions to easily register Popup Service Extensions for Prism.
     /// </summary>
     public static class PopupRegistrationExtensions
     {
         /// <summary>
-        /// Registers your custom <see cref="PopupPageNavigationService" /> to override the default <see cref="INavigationService" />
-        /// provided by Prism. This adds support for navigating to / from <see cref="PopupPage" /> Views as easily as any
-        /// other <see cref="Page" />.
+        ///     Registers your custom <see cref="PopupPageNavigationService" /> to override the default
+        ///     <see cref="INavigationService" />
+        ///     provided by Prism. This adds support for navigating to / from <see cref="PopupPage" /> Views as easily as any
+        ///     other <see cref="Page" />.
         /// </summary>
         /// <typeparam name="TService">Your custom type of <see cref="PopupPageNavigationService " />.</typeparam>
         /// <param name="containerRegistry">The <see cref="IContainerRegistry" />.</param>
@@ -34,17 +35,20 @@ namespace Prism.Plugin.Popups
         }
 
         /// <summary>
-        /// Registers the <see cref="PopupPageNavigationService" /> to override the default <see cref="INavigationService" />
-        /// provided by Prism. This adds support for navigating to / from <see cref="PopupPage" /> Views as easily as any
-        /// other <see cref="Page" />.
+        ///     Registers the <see cref="PopupPageNavigationService" /> to override the default <see cref="INavigationService" />
+        ///     provided by Prism. This adds support for navigating to / from <see cref="PopupPage" /> Views as easily as any
+        ///     other <see cref="Page" />.
         /// </summary>
         /// <param name="containerRegistry">The <see cref="IContainerRegistry" />.</param>
         /// <returns>The <see cref="IContainerRegistry" />.</returns>
-        public static IContainerRegistry RegisterPopupNavigationService(this IContainerRegistry containerRegistry) =>
-            containerRegistry.RegisterPopupNavigationService<PopupPageNavigationService>();
+        public static IContainerRegistry RegisterPopupNavigationService(this IContainerRegistry containerRegistry)
+        {
+            return containerRegistry.RegisterPopupNavigationService<PopupPageNavigationService>();
+        }
 
         /// <summary>
-        /// Updates the <see cref="IDialogService" /> registration to use a <see cref="PopupPage" /> as the root Page container.
+        ///     Updates the <see cref="IDialogService" /> registration to use a <see cref="PopupPage" /> as the root Page
+        ///     container.
         /// </summary>
         /// <param name="containerRegistry">The <see cref="IContainerRegistry" />.</param>
         /// <returns>The <see cref="IContainerRegistry" />.</returns>
@@ -58,7 +62,7 @@ namespace Prism.Plugin.Popups
         {
             if (!containerRegistry.IsRegistered<IPopupNavigation>())
             {
-                containerRegistry.RegisterInstance<IPopupNavigation>(PopupNavigation.Instance);
+                containerRegistry.RegisterInstance(PopupNavigation.Instance);
             }
         }
     }

@@ -1,10 +1,8 @@
-﻿using Xamarin.Forms;
-using Rg.Plugins.Popup;
-using Rg.Plugins.Popup.Pages;
+﻿using System.Diagnostics;
 
 namespace PopupPluginSample.Views
 {
-    public partial class PopupView : PopupPage
+    public partial class PopupView
     {
         public PopupView()
         {
@@ -20,10 +18,8 @@ namespace PopupPluginSample.Views
 
         private void AnnounceBindingContext()
         {
-            System.Diagnostics.Debug.WriteLine(GetType().Name);
-            System.Diagnostics.Debug.WriteLine($"BindingContext: {BindingContext?.GetType()?.Name}");
+            Debug.WriteLine(GetType().Name);
+            Debug.WriteLine($"BindingContext: {BindingContext?.GetType()?.Name}");
         }
-
     }
 }
-
