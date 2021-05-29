@@ -16,4 +16,10 @@
     <ProjectReference Include="..\..\..\src\Prism.Plugin.Popups\Prism.Plugin.Popups.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Compile Update="Views\FLPRoot.xaml.cs">
+      <DependentUpon>FLPRoot.xaml</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
 </Project>
