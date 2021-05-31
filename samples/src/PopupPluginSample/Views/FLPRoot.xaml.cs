@@ -3,7 +3,7 @@ using Xamarin.Forms;
 
 namespace PopupPluginSample.Views
 {
-    public partial class FLPRoot : FlyoutPage, IMasterDetailPageOptions
+    public partial class FLPRoot : FlyoutPage, IFlyoutPageOptions
     {
         public FLPRoot()
         {
