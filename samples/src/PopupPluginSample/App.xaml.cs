@@ -38,6 +38,7 @@ namespace PopupPluginSample
             containerRegistry.RegisterForNavigation<NavigationPage>();
             containerRegistry.RegisterForNavigation<MainPage, MainPageViewModel>();
             containerRegistry.RegisterForNavigation<MDPRoot, MDPRootViewModel>();
+            containerRegistry.RegisterForNavigation<FLPRoot, FLPRootViewModel>();
             containerRegistry.RegisterForNavigation<MenuPage, MenuPageViewModel>();
             containerRegistry.RegisterForNavigation<NavigationRoot>();
             containerRegistry.RegisterForNavigation<PopupView, PopupViewModel>();

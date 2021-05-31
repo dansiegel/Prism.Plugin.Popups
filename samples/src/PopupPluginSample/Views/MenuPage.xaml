@@ -15,6 +15,7 @@
                  VerticalOptions="Center">
       <Label Text="Select the root page to test from" />
       <Button Text="Master Detail Page" Command="{prism:NavigateTo '/MDPRoot/NavigationRoot/MainPage'}" />
+      <Button Text="Flyout Page" Command="{prism:NavigateTo '/FLPRoot/NavigationRoot/MainPage'}" />
       <Button Text="Tabbed Page" Command="{prism:NavigateTo '/TabbedRoot'}" />
       <Button Text="Navigation Page" Command="{prism:NavigateTo '/NavigationRoot/MainPage'}" />
       <Button Text="Sample Dialog" Command="{prism:ShowDialog SampleDialog}" />

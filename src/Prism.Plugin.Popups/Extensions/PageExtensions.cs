@@ -25,14 +25,14 @@ namespace Prism.Plugin.Popups.Extensions
         /// <returns>The displayed page.</returns>
         public static Page GetDisplayedPage(this Page page)
         {
-            while (page.IsOrDerivesFrom<MasterDetailPage>() ||
+            while (page.IsOrDerivesFrom<FlyoutPage>() ||
                   page.IsOrDerivesFrom<TabbedPage>() ||
                   page.IsOrDerivesFrom<NavigationPage>())
             {
                 switch (page)
                 {
-                    case MasterDetailPage mdp:
-                        page = mdp.Detail;
+                    case FlyoutPage flp:
+                        page = flp.Detail;
                         break;
                     case TabbedPage tabbed:
                         page = tabbed.CurrentPage;

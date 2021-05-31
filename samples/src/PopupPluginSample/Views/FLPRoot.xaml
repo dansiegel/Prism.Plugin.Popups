@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<FlyoutPage xmlns="http://xamarin.com/schemas/2014/forms" 
+                  xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                  xmlns:prism="http://prismlibrary.com"
+                  xmlns:local="clr-namespace:PopupPluginSample.Xaml"
+                  x:Class="PopupPluginSample.Views.FLPRoot">
+
+  <FlyoutPage.Flyout>
+    <ContentPage Title="Menu">
+      <Grid>
+        <Grid.RowDefinitions>
+          <RowDefinition Height="1*" />
+          <RowDefinition Height="2*" />
+        </Grid.RowDefinitions>
+
+        <BoxView Color="LightCoral"
+                 HorizontalOptions="FillAndExpand"
+                 VerticalOptions="FillAndExpand" />
+        <Label Text="A Menu" 
+               TextColor="White"
+               HorizontalOptions="CenterAndExpand"
+               VerticalOptions="CenterAndExpand"
+               Grid.Row="0" />
+
+        <StackLayout Padding="40"
+                             Grid.Row="1">
+          <Label Text="You might have menu options here" Grid.Row="1" />
+          <Button Text="Launch Popup (XAML)" 
+                  Command="{local:DebugNavigateTo PopupView}" />
+          <Button Text="Launch Popup (Classic)"
+                  Command="{Binding NavigateCommand}"
+                  CommandParameter="PopupView" />
+          <Button Text="Sample Dialog"
+            Command="{prism:ShowDialog SampleDialog}" />
+          <Button Text="Back to Menu" 
+                  Command="{prism:NavigateTo '/MenuPage'}" />
+        </StackLayout>
+      </Grid>
+    </ContentPage>
+  </FlyoutPage.Flyout>
+
+</FlyoutPage>
