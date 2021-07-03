@@ -1,10 +1,10 @@
-﻿using Prism.Events;
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
+using Prism.Events;
 using Prism.Mvvm;
 using Prism.Navigation;
 using Prism.Plugin.Popups.Tests.Mocks.Events;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Prism.Plugin.Popups.Tests.Mocks.ViewModels
 {

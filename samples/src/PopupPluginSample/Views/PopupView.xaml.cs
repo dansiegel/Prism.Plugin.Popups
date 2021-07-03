@@ -1,6 +1,6 @@
-﻿using Xamarin.Forms;
-using Rg.Plugins.Popup;
+﻿using Rg.Plugins.Popup;
 using Rg.Plugins.Popup.Pages;
+using Xamarin.Forms;
 
 namespace PopupPluginSample.Views
 {
@@ -26,4 +26,3 @@ namespace PopupPluginSample.Views
 
     }
 }
-
