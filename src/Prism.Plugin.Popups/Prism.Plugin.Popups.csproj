@@ -11,13 +11,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Include="ReadMe.txt" 
-          Pack="True"
-          PackagePath="." />
+    <None Include="ReadMe.txt" Pack="True" PackagePath="." />
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Rg.Plugins.Popup" Version="2.0.0.12" />
+    <PackageReference Include="Rg.Plugins.Popup" Version="2.0.0.14" />
     <PackageReference Include="Prism.Forms" Version="8.1.97" />
   </ItemGroup>
 
