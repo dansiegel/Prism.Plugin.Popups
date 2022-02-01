@@ -44,7 +44,7 @@ namespace Prism.Plugin.Popups
                 var popupNavigation = app.Container.Resolve<IPopupNavigation>();
                 var appProvider = app.Container.Resolve<IApplicationProvider>();
 
-                var page = PopupUtilities.TopPage(popupNavigation, appProvider);
+                var page = PopupUtilities.TopPage(popupNavigation, appProvider.MainPage);
                 PageUtilities.InvokeViewAndViewModelAction(page, action);
             }
         }

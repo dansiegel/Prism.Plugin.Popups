@@ -29,19 +29,19 @@ namespace Prism.Plugin.Popups
             return parameters;
         }
 
-        public static Page TopPage(IPopupNavigation popupNavigation, IApplicationProvider applicationProvider)
+        public static Page TopPage(IPopupNavigation popupNavigation, Page mainPage)
         {
             Page page = null;
             var popupStack = popupNavigation.PopupStack.Where(x => !(x is PopupDialogContainer));
             if (popupStack.Count() > 0)
                 page = popupStack.LastOrDefault();
-            else if (applicationProvider.MainPage.Navigation.ModalStack.Count > 0)
-                page = applicationProvider.MainPage.Navigation.ModalStack.LastOrDefault();
+            else if (mainPage.Navigation.ModalStack.Count > 0)
+                page = mainPage.Navigation.ModalStack.LastOrDefault();
             else
-                page = applicationProvider.MainPage.Navigation.NavigationStack.LastOrDefault();
+                page = mainPage.Navigation.NavigationStack.LastOrDefault();
 
             if (page == null)
-                page = applicationProvider.MainPage;
+                page = mainPage;
 
             return page.GetDisplayedPage();
         }

@@ -34,7 +34,7 @@ namespace Prism.Plugin.Popups.Tests
             Assert.Null(result.Exception);
 
             var popupNavigation = app.Container.Resolve<IPopupNavigation>();
-            var topPage = PopupUtilities.TopPage(popupNavigation, app);
+            var topPage = PopupUtilities.TopPage(popupNavigation, app.MainPage);
             Assert.IsType(pageType, topPage);
 
             var navService = app.Container.Resolve<INavigationService>(PrismApplicationBase.NavigationServiceName);
@@ -46,7 +46,7 @@ namespace Prism.Plugin.Popups.Tests
             result = await navService.NavigateAsync("PopupPageMock");
             Assert.Null(result.Exception);
 
-            topPage = PopupUtilities.TopPage(popupNavigation, app);
+            topPage = PopupUtilities.TopPage(popupNavigation, app.MainPage);
             Assert.IsType<PopupPageMock>(topPage);
         }
     }

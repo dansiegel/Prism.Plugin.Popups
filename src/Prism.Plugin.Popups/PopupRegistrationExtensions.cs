@@ -1,4 +1,5 @@
 ﻿using Prism.Behaviors;
+using Prism.Common;
 using Prism.Ioc;
 using Prism.Navigation;
 using Prism.Services.Dialogs;
@@ -15,6 +16,8 @@ namespace Prism.Plugin.Popups
     /// </summary>
     public static class PopupRegistrationExtensions
     {
+        private static bool s_IsConfigured = false;
+
         /// <summary>
         /// Registers your custom <see cref="PopupPageNavigationService" /> to override the default <see cref="INavigationService" />
         /// provided by Prism. This adds support for navigating to / from <see cref="PopupPage" /> Views as easily as any
@@ -59,6 +62,15 @@ namespace Prism.Plugin.Popups
             if (!containerRegistry.IsRegistered<IPopupNavigation>())
             {
                 containerRegistry.RegisterInstance<IPopupNavigation>(PopupNavigation.Instance);
+            }
+
+            if (!s_IsConfigured)
+            {
+                s_IsConfigured = true;
+                PageUtilities.SetCurrentPageDelegate(p =>
+                {
+                    return PopupUtilities.TopPage(((IContainerProvider)containerRegistry).Resolve<IPopupNavigation>(), p);
+                });
             }
         }
     }
