@@ -193,7 +193,7 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="PropertyChanged.Fody" Version="3.4.0" PrivateAssets="all" />
-    <PackageReference Include="Xamarin.Forms" Version="5.0.0.2012" />
+    <PackageReference Include="Xamarin.Forms" Version="5.0.0.2337+884-sha.8f765bd87-azdo.5638139" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\src\Prism.Plugin.Popups\Prism.Plugin.Popups.csproj">
