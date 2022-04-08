@@ -2,6 +2,7 @@
 
   <PropertyGroup>
     <TargetFrameworks>netstandard2.0;Xamarin.iOS10;MonoAndroid10.0</TargetFrameworks>
+    <TargetFrameworks Condition=" '$(OS)' == 'Windows_NT' ">uap10.0.18362;$(TargetFrameworks)</TargetFrameworks>
     <Description>Prism Forms Plugin to provide Popup Navigation working with the Rg.Plugins.Popup library</Description>
   </PropertyGroup>
 
