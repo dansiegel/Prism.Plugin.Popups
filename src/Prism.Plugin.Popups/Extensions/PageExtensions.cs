@@ -1,6 +1,6 @@
 ﻿using System;
-using Xamarin.Forms;
 using System.Reflection;
+using Xamarin.Forms;
 
 namespace Prism.Plugin.Popups.Extensions
 {

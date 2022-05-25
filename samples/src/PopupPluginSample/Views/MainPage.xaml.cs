@@ -10,4 +10,3 @@ namespace PopupPluginSample.Views
         }
     }
 }
-

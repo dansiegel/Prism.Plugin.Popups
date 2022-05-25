@@ -1,9 +1,9 @@
-﻿using Prism.Commands;
-using Prism.Mvvm;
-using Prism.Navigation;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Prism.Commands;
+using Prism.Mvvm;
+using Prism.Navigation;
 
 namespace PopupPluginSample.ViewModels
 {
@@ -20,4 +20,3 @@ namespace PopupPluginSample.ViewModels
             await _navigationService.NavigateAsync("PopupView");
     }
 }
-
