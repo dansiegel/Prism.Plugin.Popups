@@ -192,7 +192,7 @@
     <Reference Include="Xamarin.iOS" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="PropertyChanged.Fody" Version="3.4.0" PrivateAssets="all" />
+    <PackageReference Include="PropertyChanged.Fody" Version="4.0.4" PrivateAssets="all" />
     <PackageReference Include="Xamarin.Forms" Version="5.0.0.2401+905-sha.aeec18668-azdo.5950840" />
   </ItemGroup>
   <ItemGroup>
