@@ -1,7 +1,7 @@
-name: Prism.Plugin.Popups CI
+name: Prism.Plugin.Popups PR Validation
 
 on:
-  push:
+  pull_request:
     branches: [ master ]
     paths:
       - "samples/**"
@@ -14,7 +14,7 @@ on:
 
 jobs:
   build:
-    uses: avantipoint/workflow-templates/.github/workflows/dotnet-build.yml@master
+    uses: avantipoint/workflow-templates/.github/workflows/msbuild-build.yml@master
     with:
       name: Prism.Plugin.Popups
       solution-path: Prism.Plugin.Popups.sln
