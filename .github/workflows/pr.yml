@@ -1,0 +1,21 @@
+name: Prism.Plugin.Popups CI
+
+on:
+  push:
+    branches: [ master ]
+    paths:
+      - "samples/**"
+      - "src/**"
+      - "tests/**"
+      - "version.json"
+      - "Prism.Plugin.Popups.sln"
+      - ".github/workflows/pr.yml"
+  workflow_dispatch:
+
+jobs:
+  build:
+    uses: avantipoint/workflow-templates/.github/workflows/dotnet-build.yml@master
+    with:
+      name: Prism.Plugin.Popups
+      solution-path: Prism.Plugin.Popups.sln
+      dotnet-version: 7.0.x
