@@ -1,0 +1,27 @@
+name: Start NuGet Release
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    uses: avantipoint/workflow-templates/.github/workflows/dotnet-build.yml@master
+    with:
+      name: Prism.Plugin.Popups
+      solution-path: Prism.Plugin.Popups.sln
+      dotnet-version: 7.0.x
+      code-sign: true
+    secrets:
+      codeSignKeyVault: ${{ secrets.CodeSignKeyVault }}
+      codeSignClientId: ${{ secrets.CodeSignClientId }}
+      codeSignTenantId: ${{ secrets.CodeSignTenantId }}
+      codeSignClientSecret: ${{ secrets.CodeSignClientSecret }}
+      codeSignCertificate: ${{ secrets.CodeSignCertificate }}
+
+  release:
+    uses: avantipoint/workflow-templates/.github/workflows/generate-release.yml@master
+    needs: [build]
+    permissions:
+      contents: write
+    with:
+      package-name: Prism.Plugin.Popups

@@ -10,6 +10,8 @@
     "editor.autoIndent": "full"
   },
   "files.associations": {
-    "**/*.yml": "azure-pipelines"
+    "build/**/*.yml": "azure-pipelines",
+    "azure-pipelines.yml": "azure-pipelines",
+    ".github/**/*.yml": "cschleiden.vscode-github-actions"
   }
 }
