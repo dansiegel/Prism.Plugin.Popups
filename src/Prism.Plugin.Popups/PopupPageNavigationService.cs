@@ -46,7 +46,7 @@ namespace Prism.Plugin.Popups
             {
                 NavigationSource = PageNavigationSource.NavigationService;
 
-                switch (PopupUtilities.TopPage(_popupNavigation, _applicationProvider))
+                switch (PopupUtilities.TopPage(_popupNavigation, _applicationProvider.MainPage))
                 {
                     case PopupPage popupPage:
                         var segmentParameters = UriParsingHelper.GetSegmentParameters(null, parameters);

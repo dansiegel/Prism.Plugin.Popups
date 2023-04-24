@@ -13,20 +13,20 @@ namespace Prism.Plugin.Popups
     /// </summary>
     public static class PopupPlugin
     {
-        private static readonly SemaphoreSlim semaphore = new SemaphoreSlim(1);
+        private static readonly SemaphoreSlim Semaphore = new SemaphoreSlim(1);
         /// <summary>
         /// Called when the Activity has detected the user's press of the back key
         /// </summary>
         public static async void OnBackPressed()
         {
-            await semaphore.WaitAsync();
+            await Semaphore.WaitAsync();
             try
             {
                 var container = ContainerLocator.Container;
                 var popupNavigation = container.Resolve<IPopupNavigation>();
                 var appProvider = container.Resolve<IApplicationProvider>();
 
-                var topPage = PopupUtilities.TopPage(popupNavigation, appProvider);
+                var topPage = PopupUtilities.TopPage(popupNavigation, appProvider.MainPage);
                 var navService = container.Resolve<INavigationService>(PrismApplicationBase.NavigationServiceName);
                 if (navService is IPageAware pa)
                 {
@@ -39,7 +39,7 @@ namespace Prism.Plugin.Popups
             }
             finally
             {
-                semaphore.Release();
+                Semaphore.Release();
             }
         }
     }
